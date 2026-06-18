@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Госуслуги 1 апреля</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            background: white;
+            border-radius: 32px 32px 24px 24px;
+            box-shadow: 0 20px 40px rgba(0, 20, 40, 0.12);
+            overflow: hidden;
+            border: 1px solid rgba(0, 70, 150, 0.08);
+        }
+
+        .header {
+            background: linear-gradient(145deg, #0a2a5e, #1a3f7a);
+            padding: 1rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 4px solid #ffd966;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            font-size: 2.2rem;
+            color: #ffd966;
+            background: rgba(255, 255, 255, 0.06);
+            padding: 0.3rem 0.6rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .logo-text {
+            color: white;
+            font-weight: 600;
+            font-size: 1.5rem;
+            letter-spacing: 0.3px;
+        }
+        .logo-text span {
+            font-weight: 300;
+            color: #b6d0f0;
+            font-size: 0.9rem;
+            margin-left: 6px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+        }
+
+        .header-actions i {
+            margin-right: 6px;
+        }
+
+        .april-badge {
+            background: #e63e3e;
+            color: white;
+            font-weight: 700;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            box-shadow: 0 0 0 2px #ffb3b3;
+            animation: blink 1.8s infinite;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @keyframes blink {
+            0% { background: #c92a2a; }
+            50% { background: #ff6b6b; box-shadow: 0 0 12px #ff8787; }
+            100% { background: #c92a2a; }
+        }
+
+        .nav-bar {
+            background: #eef3fa;
+            padding: 0.7rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem 2.5rem;
+            border-bottom: 1px solid #cddae9;
+            align-items: center;
+        }
+
+        .nav-item {
+            font-weight: 500;
+            color: #1f3a6b;
+            cursor: default;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0.3rem 0.1rem;
+            border-bottom: 2px solid transparent;
+            transition: 0.1s;
+        }
+        .nav-item i {
+            color: #2b4f8a;
+            width: 1.2rem;
+        }
+        .nav-item:hover {
+            border-bottom-color: #ffb347;
+            color: #0b1d3a;
+        }
+        .nav-item.joke {
+            background: #ffe1b0;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            border-bottom: none;
+            color: #7a4a1a;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .nav-item.joke i {
+            color: #c76b1a;
+        }
+
+        .banner {
+            background: linear-gradient(135deg, #dce6f5, #c2d6ed);
+            padding: 2rem 2.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px dashed #3b6aa5;
+        }
+
+        .banner-text h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0a2652;
+        }
+        .banner-text h1 i {
+            color: #d45a1a;
+            margin-right: 12px;
+        }
+        .banner-text p {
+            font-size: 1.1rem;
+            color: #1f3f6b;
+            max-width: 500px;
+            margin-top: 6px;
+        }
+        .banner-text .fake-btn {
+            background: #f5c542;
+            color: #1d3b5e;
+            border: none;
+            padding: 0.8rem 2.2rem;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-top: 16px;
+            display: inline-block;
+            box-shadow: 0 4px 0 #b37b2a;
+            transition: 0.05s linear;
+            cursor: default;
+        }
+        .banner-text .fake-btn i {
+            margin-right: 10px;
+        }
+        .banner-text .fake-btn:active {
+            transform: translateY(4px);
+            box-shadow: none;
+        }
+
+        .banner-emoji {
+            font-size: 4.5rem;
+            background: rgba(255,255,240,0.5);
+            padding: 0.5rem 2rem;
+            border-radius: 120px;
+            backdrop-filter: blur(2px);
+            border: 2px solid #f7d97e;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.8rem;
+            padding: 2.5rem 2rem;
+            background: #fafcfd;
+        }
+
+        .card {
+            background: white;
+            border-radius: 24px;
+            padding: 1.8rem 0.8rem 1.2rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 30, 50, 0.06);
+            border: 1px solid #dfe9f2;
+            transition: all 0.15s;
+            cursor: default;
+            position: relative;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: #f5b342;
+            box-shadow: 0 12px 24px rgba(0, 40, 70, 0.08);
+        }
+        .card i {
+            font-size: 2.8rem;
+            color: #1d4b7a;
+            margin-bottom: 0.5rem;
+        }
+        .card .title {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #0b2b4f;
+        }
+        .card .sub {
+            font-size: 0.75rem;
+            color: #576f8b;
+            margin-top: 6px;
+            border-top: 1px dashed #cbdae7;
+            padding-top: 8px;
+        }
+        .card .tag {
+            position: absolute;
+            top: -10px;
+            right: -6px;
+            background: #f03e3e;
+            color: white;
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            transform: rotate(6deg);
+            box-shadow: 0 2px 8px rgba(200, 0, 0, 0.2);
+        }
+
+        .news {
+            background: #e8eff8;
+            padding: 1.8rem 2rem;
+            border-top: 1px solid #b8cee6;
+            border-bottom: 1px solid #b8cee6;
+        }
+
+        .news-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.2rem;
+        }
+        .news-header h3 {
+            color: #0e2f57;
+            font-weight: 600;
+            font-size: 1.3rem;
+        }
+        .news-header h3 i {
+            color: #c95b1a;
+            margin-right: 10px;
+        }
+        .news-header .fake-link {
+            color: #2d6a9f;
+            font-weight: 500;
+            border-bottom: 1px dotted #7fa3c9;
+            cursor: default;
+        }
+
+        .news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+        .news-item {
+            background: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-left: 6px solid #edb13b;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+        }
+        .news-item i {
+            color: #cc6b2b;
+            width: 1.6rem;
+        }
+        .news-item .label {
+            font-weight: 600;
+            color: #043162;
+        }
+        .news-item .snippet {
+            color: #334e6e;
+            font-size: 0.9rem;
+        }
+        .news-item .badge {
+            margin-left: auto;
+            background: #f7d7a0;
+            padding: 0.1rem 1rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            color: #4f2e0a;
+            font-weight: 600;
+        }
+
+        .footer {
+            background: #0d2447;
+            color: #b6cee8;
+            padding: 1.8rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            border-top: 4px solid #f5b342;
+        }
+        .footer a {
+            color: #fad47a;
+            text-decoration: none;
+            border-bottom: 1px dotted #735e2e;
+            cursor: default;
+        }
+        .footer .april-foot {
+            background: #2b4a70;
+            padding: 0.2rem 1.4rem;
+            border-radius: 60px;
+            color: #f9eec1;
+            font-weight: 500;
+        }
+
+        @media (max-width: 700px) {
+            .header { flex-direction: column; align-items: start; gap: 12px; }
+            .banner { flex-direction: column; align-items: start; gap: 20px; }
+            .banner-emoji { align-self: center; }
+            .grid { grid-template-columns: 1fr 1fr; }
+            .news-item { flex-wrap: wrap; border-radius: 20px; }
+        }
+        @media (max-width: 480px) {
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo-area">
+                <div class="logo-icon"><i class="fas fa-landmark"></i></div>
+                <div class="logo-text">Госуслуги <span>· 1 апреля</span></div>
+            </div>
+            <div class="header-actions">
+                <span><i class="fas fa-user-circle"></i> Иванов И.И.</span>
+                <span><i class="fas fa-bell"></i> 12</span>
+                <div class="april-badge"><i class="fas fa-grin-squint-tears"></i> Шутка дня</div>
+            </div>
+        </header>
+
+        <nav class="nav-bar">
+            <span class="nav-item"><i class="fas fa-home"></i> Главная</span>
+            <span class="nav-item"><i class="fas fa-file-alt"></i> Заявления</span>
+            <span class="nav-item"><i class="fas fa-credit-card"></i> Платежи</span>
+            <span class="nav-item"><i class="fas fa-id-card"></i> Документы</span>
+            <span class="nav-item joke"><i class="fas fa-fish"></i> Рыбный день</span>
+            <span class="nav-item joke"><i class="fas fa-cow"></i> Выдача слонов</span>
+        </nav>
+
+        <div class="banner">
+            <div class="banner-text">
+                <h1><i class="fas fa-hat-wizard"></i> Внимание!</h1>
+                <p>С 1 апреля все услуги удваиваются. А ещё мы запустили <strong>«Госуслуги-Лайт»</strong> с голосовым управлением через чайник.</p>
+                <div class="fake-btn"><i class="fas fa-arrow-right"></i> Получить скидку 200%</div>
+            </div>
+            <div class="banner-emoji">🤡 1.04</div>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <i class="fas fa-paper-plane"></i>
+                <div class="title">Заказать невесомость</div>
+                <div class="sub">с 12:00 до 12:01</div>
+                <span class="tag">шутка</span>
+            </div>
+            <div class="card">
+                <i class="fas fa-robot"></i>
+                <div class="title">Робот-чиновник</div>
+                <div class="sub">отвечает стихами</div>
+                <span class="tag">🤖</span>
+            </div>
+            <div class="card">
+                <i class="fas fa-cloud-sun"></i>
+                <div class="title">Погода по желанию</div>
+                <div class="sub">+ дождь из конфет</div>
+                <span class="tag">🍬</span>
+            </div>
+            <div class="card">
+                <i class="fas fa-pizza-slice"></i>
+                <div class="title">Пицца по полису</div>
+                <div class="sub">ОМС + ананас</div>
+                <span class="tag">🍕</span>
+            </div>
+            <div class="card">
+                <i class="fas fa-dragon"></i>
+                <div class="title">Лицензия на дракона</div>
+                <div class="sub">огнеопасно</div>
+                <span class="tag">🐉</span>
+            </div>
+            <div class="card">
+                <i class="fas fa-feather"></i>
+                <div class="title">Перьевая ручка</div>
+                <div class="sub">для подписей</div>
+                <span class="tag">✒️</span>
+            </div>
+        </div>
+
+        <div class="news">
+            <div class="news-header">
+                <h3><i class="fas fa-newspaper"></i> Новости ведомства</h3>
+                <span class="fake-link"><i class="fas fa-calendar-day"></i> 1 апреля 2026</span>
+            </div>
+            <div class="news-list">
+                <div class="news-item">
+                    <i class="fas fa-crown"></i>
+                    <span class="label">Указ:</span>
+                    <span class="snippet">Все чиновники обязаны ходить в костюмах супергероев</span>
+                    <span class="badge">розыгрыш</span>
+                </div>
+                <div class="news-item">
+                    <i class="fas fa-coffee"></i>
+                    <span class="label">Сервис:</span>
+                    <span class="snippet">Кофейный портал — заявки принимаются через эспрессо</span>
+                    <span class="badge">1 апреля</span>
+                </div>
+                <div class="news-item">
+                    <i class="fas fa-guitar"></i>
+                    <span class="label">Культура:</span>
+                    <span class="snippet">Гимн России теперь можно исполнить на балалайке онлайн</span>
+                    <span class="badge">шутка</span>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div>
+                <i class="fas fa-smile-wink"></i> © Госуслуги, 1 апреля 
+                <span style="margin-left: 10px; opacity:0.6;"><i class="fas fa-pepper-hot"></i> осторожно, юмор</span>
+            </div>
+            <div>
+                <span class="april-foot"><i class="fas fa-face-smile-tears"></i> Всё по-настоящему</span>
+                <span style="margin-left: 20px;"><a href="#"><i class="fas fa-question-circle"></i> Помощь</a></span>
+                <span style="margin-left: 12px;"><a href="#"><i class="fas fa-shield-alt"></i> Верификация</a></span>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
