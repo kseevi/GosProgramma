@@ -181,7 +181,6 @@
             position: relative;
         }
 
-        /* ===== ВЕРХНЯЯ ПАНЕЛЬ ===== */
         .top-bar {
             background: #f5f7fa;
             padding: 8px 24px;
@@ -191,6 +190,8 @@
             font-size: 13px;
             border-bottom: 1px solid #e0e4ea;
             transition: background 0.3s, border-color 0.3s;
+            flex-wrap: wrap;
+            gap: 8px;
         }
         .top-bar-left {
             display: flex;
@@ -225,8 +226,22 @@
             color: var(--color-primary);
             background: rgba(0,83,214,0.08);
         }
+        .lang-btn {
+            font-size: 13px;
+            cursor: pointer;
+            color: #7d8590;
+            background: none;
+            border: 1px solid #d0d5dd;
+            padding: 4px 10px;
+            border-radius: 6px;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        .lang-btn:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
 
-        /* ===== ШАПКА ===== */
         .header {
             padding: 16px 24px;
             display: flex;
@@ -346,7 +361,6 @@
             font-size: 18px;
         }
 
-        /* ===== НАВИГАЦИЯ ===== */
         .nav-main {
             background: var(--color-white);
             padding: 0 24px;
@@ -383,7 +397,6 @@
             border-bottom-color: #d0d5dd;
         }
 
-        /* ===== СТРАНИЦЫ ===== */
         .page {
             display: none;
             padding: 0;
@@ -400,7 +413,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ===== ГЛАВНАЯ ===== */
         .hero {
             background: linear-gradient(135deg, #e8f0fe 0%, #f0f4ff 50%, #e6edf6 100%);
             padding: 40px 32px;
@@ -474,6 +486,7 @@
             transition: var(--transition);
             position: relative;
             box-shadow: var(--shadow-sm);
+            user-select: none;
         }
         .card:hover {
             border-color: var(--color-primary);
@@ -513,10 +526,9 @@
             position: absolute;
             top: 8px;
             right: 8px;
-            font-size: 12px;
+            font-size: 14px;
         }
 
-        /* ===== СТРАНИЦА УСЛУГИ ===== */
         .service-detail {
             padding: 32px 24px;
             max-width: 800px;
@@ -609,7 +621,6 @@
             text-decoration: underline;
         }
 
-        /* ===== НОВОСТИ ===== */
         .news-grid {
             display: grid;
             gap: 12px;
@@ -624,6 +635,7 @@
             cursor: pointer;
             transition: var(--transition);
             border: 1px solid transparent;
+            user-select: none;
         }
         .news-card:hover {
             background: #f0f4f8;
@@ -656,7 +668,59 @@
             flex-shrink: 0;
         }
 
-        /* ===== МОДАЛЬНОЕ ОКНО ===== */
+        .document-card {
+            background: #f9fbfd;
+            border-radius: var(--border-radius-md);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid transparent;
+            margin-bottom: 12px;
+        }
+        .document-card:hover {
+            background: #f0f4f8;
+            border-color: #d0d8e8;
+        }
+        .document-card:active {
+            transform: scale(0.98);
+        }
+        .document-card .doc-icon {
+            font-size: 32px;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--border-radius-md);
+            flex-shrink: 0;
+        }
+        .document-card .doc-icon.blue { background: #e8f0fe; color: var(--color-primary); }
+        .document-card .doc-icon.red { background: #fde8ea; color: var(--color-red); }
+        .document-card .doc-icon.green { background: #e6f4ea; color: var(--color-green); }
+        .document-card .doc-icon.orange { background: #fef5e7; color: var(--color-orange); }
+        .document-card .doc-info {
+            flex: 1;
+        }
+        .document-card .doc-title {
+            font-weight: 600;
+            font-size: 15px;
+            color: #1b1f26;
+            margin-bottom: 4px;
+        }
+        .document-card .doc-desc {
+            font-size: 13px;
+            color: #7d8590;
+        }
+        .document-card .doc-action {
+            color: var(--color-primary);
+            font-size: 13px;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+
         .modal-overlay {
             display: none;
             position: fixed;
@@ -769,7 +833,6 @@
             display: block;
         }
 
-        /* ===== ПРИВЕТСТВЕННОЕ ОКНО ===== */
         .welcome-modal .modal {
             text-align: center;
         }
@@ -778,7 +841,6 @@
             margin-bottom: 16px;
         }
 
-        /* ===== ПОДВАЛ ===== */
         .footer {
             background: #f5f7fa;
             padding: 24px;
@@ -808,7 +870,6 @@
             gap: 6px;
         }
 
-        /* ===== АДАПТИВ ===== */
         @media (max-width: 768px) {
             .header {
                 flex-direction: column;
@@ -853,6 +914,10 @@
                 margin-left: 0;
                 margin-right: 12px;
             }
+            .top-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
         @media (max-width: 400px) {
             .services-grid {
@@ -864,107 +929,94 @@
 <body>
 
 <div class="container">
-    <!-- ===== ВЕРХНЯЯ ПАНЕЛЬ ===== -->
     <div class="top-bar">
         <div class="top-bar-left">
-            <a onclick="navigateTo('home')" title="На главную">Госуслуги</a>
-            <a onclick="openModal('help')" title="Помощь">Помощь</a>
-            <a onclick="openModal('security')" title="Безопасность">Безопасность</a>
+            <a id="top-home">Госуслуги</a>
+            <a id="top-help">Помощь</a>
+            <a id="top-security">Безопасность</a>
         </div>
         <div class="top-bar-right">
-            <span style="font-size:13px;color:#7d8590;">🇷🇺 Русский</span>
+            <button class="lang-btn" id="lang-toggle" title="Сменить язык">🇷🇺 Русский</button>
             <button id="theme-toggle" title="Тёмная тема" aria-label="Переключить тему">🌙</button>
         </div>
     </div>
 
-    <!-- ===== ШАПКА ===== -->
     <header class="header">
-        <div class="logo-main" onclick="navigateTo('home')" title="На главную">
+        <div class="logo-main" id="logo-click">
             <i class="fas fa-shield-haltered"></i>
-            <span>Госуслуги</span>
+            <span id="logo-text">Госуслуги</span>
         </div>
         <div class="search-box">
             <i class="fas fa-search"></i>
-            <input type="text" placeholder="Поиск услуг, ведомств, документов..." id="search-input">
+            <input type="text" id="search-input" placeholder="Поиск услуг, ведомств, документов...">
         </div>
         <div class="header-actions">
-            <button class="btn-icon" title="Уведомления" aria-label="Уведомления" onclick="openModal('notifications')">
+            <button class="btn-icon" id="btn-notifications" title="Уведомления" aria-label="Уведомления">
                 <i class="fas fa-bell"></i>
                 <span class="badge" id="notif-count">8</span>
             </button>
-            <button class="btn-user" onclick="openModal('profile')" title="Профиль">
+            <button class="btn-user" id="btn-profile" title="Профиль">
                 <i class="fas fa-user-circle"></i>
                 <span id="user-name">Гость</span>
             </button>
         </div>
     </header>
 
-    <!-- ===== НАВИГАЦИЯ ===== -->
     <nav class="nav-main" id="nav-main">
-        <a href="#" class="active" data-page="home"><i class="fas fa-home"></i> Главная</a>
-        <a href="#" data-page="services-all"><i class="fas fa-th-large"></i> Все услуги</a>
-        <a href="#" data-page="applications"><i class="fas fa-file-alt"></i> Заявления</a>
-        <a href="#" data-page="payments"><i class="fas fa-credit-card"></i> Платежи</a>
-        <a href="#" data-page="documents"><i class="fas fa-id-card"></i> Документы</a>
+        <a href="#" class="active" data-page="home"><i class="fas fa-home"></i> <span id="nav-home">Главная</span></a>
+        <a href="#" data-page="services-all"><i class="fas fa-th-large"></i> <span id="nav-services">Все услуги</span></a>
+        <a href="#" data-page="applications"><i class="fas fa-file-alt"></i> <span id="nav-apps">Заявления</span></a>
+        <a href="#" data-page="payments"><i class="fas fa-credit-card"></i> <span id="nav-pay">Платежи</span></a>
+        <a href="#" data-page="documents"><i class="fas fa-id-card"></i> <span id="nav-docs">Документы</span></a>
     </nav>
 
-    <!-- ===== ГЛАВНАЯ СТРАНИЦА ===== -->
     <div class="page active" id="page-home">
         <div class="hero">
             <div class="hero-content">
-                <h1><i class="fas fa-star"></i> Добро пожаловать на Госуслуги</h1>
-                <p>Получите государственные и муниципальные услуги быстро, удобно и безопасно. Более 1000 услуг доступны онлайн.</p>
+                <h1><i class="fas fa-star"></i> <span id="hero-title">Добро пожаловать на Госуслуги</span></h1>
+                <p id="hero-desc">Получите государственные и муниципальные услуги быстро, удобно и безопасно. Более 1000 услуг доступны онлайн.</p>
             </div>
             <div class="hero-emoji">🇷🇺</div>
         </div>
-
         <div class="section">
-            <h2 class="section-title"><i class="fas fa-fire"></i> Популярные услуги</h2>
-            <div class="services-grid" id="popular-services">
-                <!-- Заполняется скриптом -->
-            </div>
+            <h2 class="section-title"><i class="fas fa-fire"></i> <span id="popular-title">Популярные услуги</span></h2>
+            <div class="services-grid" id="popular-services"></div>
         </div>
-
         <div class="section">
-            <h2 class="section-title"><i class="fas fa-newspaper"></i> Новости кота Мабоя</h2>
-            <div class="news-grid" id="news-grid">
-                <!-- Заполняется скриптом -->
-            </div>
+            <h2 class="section-title"><i class="fas fa-newspaper"></i> <span id="news-title">Новости кота Мабоя</span></h2>
+            <div class="news-grid" id="news-grid"></div>
         </div>
     </div>
 
-    <!-- ===== СТРАНИЦА ДЕТАЛЕЙ УСЛУГИ ===== -->
     <div class="page" id="page-service-detail">
         <div class="service-detail" id="service-detail-content"></div>
     </div>
 
-    <!-- ===== СТРАНИЦА ВСЕ УСЛУГИ ===== -->
     <div class="page" id="page-services-all">
         <div class="section">
-            <h2 class="section-title"><i class="fas fa-th-large"></i> Все услуги</h2>
+            <h2 class="section-title"><i class="fas fa-th-large"></i> <span id="all-services-title">Все услуги</span></h2>
             <div class="services-grid" id="all-services-grid"></div>
         </div>
     </div>
 
-    <!-- ===== СТРАНИЦА ЗАЯВЛЕНИЯ ===== -->
     <div class="page" id="page-applications">
         <div class="section">
-            <h2 class="section-title"><i class="fas fa-file-alt"></i> Мои заявления</h2>
-            <p style="color:#7d8590;margin-bottom:16px;">Здесь отображаются ваши поданные заявления и их статус.</p>
+            <h2 class="section-title"><i class="fas fa-file-alt"></i> <span id="apps-title">Мои заявления</span></h2>
+            <p style="color:#7d8590;margin-bottom:16px;" id="apps-desc">Здесь отображаются ваши поданные заявления и их статус.</p>
             <div class="news-grid" id="applications-list">
                 <div class="news-card">
                     <div class="news-icon">📄</div>
                     <div class="news-content">
-                        <div class="news-label">Заявление на загранпаспорт</div>
-                        <div class="news-text">Статус: На рассмотрении</div>
+                        <div class="news-label" id="app1-label">Заявление на загранпаспорт</div>
+                        <div class="news-text" id="app1-status">Статус: На рассмотрении</div>
                     </div>
                     <div class="news-date">15.06.2026</div>
                 </div>
                 <div class="news-card">
                     <div class="news-icon">📄</div>
                     <div class="news-content">
-                        <div class="news-label">Запись к врачу</div>
-                        <div class="news-text">Статус: Подтверждено</div>
+                        <div class="news-label" id="app2-label">Запись к врачу</div>
+                        <div class="news-text" id="app2-status">Статус: Подтверждено</div>
                     </div>
                     <div class="news-date">10.06.2026</div>
                 </div>
@@ -972,88 +1024,97 @@
         </div>
     </div>
 
-    <!-- ===== СТРАНИЦА ПЛАТЕЖИ ===== -->
     <div class="page" id="page-payments">
         <div class="section">
-            <h2 class="section-title"><i class="fas fa-credit-card"></i> Платежи</h2>
-            <p style="color:#7d8590;margin-bottom:16px;">Оплата госпошлин, налогов, штрафов и других начислений.</p>
-            <div class="services-grid">
-                <div class="card" onclick="openModal('payment-form')">
+            <h2 class="section-title"><i class="fas fa-credit-card"></i> <span id="pay-title">Платежи</span></h2>
+            <p style="color:#7d8590;margin-bottom:16px;" id="pay-desc">Оплата госпошлин, налогов, штрафов и других начислений.</p>
+            <div class="services-grid" id="payments-grid">
+                <div class="card" data-payment="duty">
                     <div class="card-icon green"><i class="fas fa-receipt"></i></div>
-                    <div class="card-title">Оплатить госпошлину</div>
-                    <div class="card-desc">По квитанции или УИН</div>
+                    <div class="card-title" id="pay1-title">Оплатить госпошлину</div>
+                    <div class="card-desc" id="pay1-desc">По квитанции или УИН</div>
                 </div>
-                <div class="card" onclick="openModal('payment-form')">
+                <div class="card" data-payment="fines">
                     <div class="card-icon orange"><i class="fas fa-car-crash"></i></div>
-                    <div class="card-title">Штрафы ГИБДД</div>
-                    <div class="card-desc">Проверка и оплата</div>
+                    <div class="card-title" id="pay2-title">Штрафы ГИБДД</div>
+                    <div class="card-desc" id="pay2-desc">Проверка и оплата</div>
                 </div>
-                <div class="card" onclick="openModal('payment-form')">
+                <div class="card" data-payment="tax">
                     <div class="card-icon blue"><i class="fas fa-file-invoice"></i></div>
-                    <div class="card-title">Налоговая задолженность</div>
-                    <div class="card-desc">Оплата налогов</div>
+                    <div class="card-title" id="pay3-title">Налоговая задолженность</div>
+                    <div class="card-desc" id="pay3-desc">Оплата налогов</div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ===== СТРАНИЦА ДОКУМЕНТЫ ===== -->
     <div class="page" id="page-documents">
         <div class="section">
-            <h2 class="section-title"><i class="fas fa-id-card"></i> Документы</h2>
-            <p style="color:#7d8590;margin-bottom:16px;">Цифровые копии ваших документов, доступные всегда.</p>
-            <div class="services-grid">
-                <div class="card">
-                    <div class="card-icon blue"><i class="fas fa-passport"></i></div>
-                    <div class="card-title">Паспорт РФ</div>
-                    <div class="card-desc">Данные паспорта</div>
+            <h2 class="section-title"><i class="fas fa-id-card"></i> <span id="docs-title">Документы</span></h2>
+            <p style="color:#7d8590;margin-bottom:16px;" id="docs-desc">Цифровые копии ваших документов, доступные всегда.</p>
+            <div id="documents-list">
+                <div class="document-card" data-doc="passport-rf">
+                    <div class="doc-icon blue"><i class="fas fa-passport"></i></div>
+                    <div class="doc-info">
+                        <div class="doc-title" id="doc1-title">Паспорт РФ</div>
+                        <div class="doc-desc" id="doc1-desc">Серия 4510 № 123456</div>
+                    </div>
+                    <div class="doc-action"><i class="fas fa-chevron-right"></i></div>
                 </div>
-                <div class="card">
-                    <div class="card-icon red"><i class="fas fa-globe"></i></div>
-                    <div class="card-title">Загранпаспорт</div>
-                    <div class="card-desc">Действителен до 2028</div>
+                <div class="document-card" data-doc="passport-int">
+                    <div class="doc-icon red"><i class="fas fa-globe"></i></div>
+                    <div class="doc-info">
+                        <div class="doc-title" id="doc2-title">Загранпаспорт</div>
+                        <div class="doc-desc" id="doc2-desc">Действителен до 20.05.2028</div>
+                    </div>
+                    <div class="doc-action"><i class="fas fa-chevron-right"></i></div>
                 </div>
-                <div class="card">
-                    <div class="card-icon green"><i class="fas fa-id-card"></i></div>
-                    <div class="card-title">СНИЛС</div>
-                    <div class="card-desc">Пенсионный номер</div>
+                <div class="document-card" data-doc="snils">
+                    <div class="doc-icon green"><i class="fas fa-id-card"></i></div>
+                    <div class="doc-info">
+                        <div class="doc-title" id="doc3-title">СНИЛС</div>
+                        <div class="doc-desc" id="doc3-desc">123-456-789 00</div>
+                    </div>
+                    <div class="doc-action"><i class="fas fa-chevron-right"></i></div>
                 </div>
-                <div class="card">
-                    <div class="card-icon orange"><i class="fas fa-file-medical"></i></div>
-                    <div class="card-title">Полис ОМС</div>
-                    <div class="card-desc">Медицинский полис</div>
+                <div class="document-card" data-doc="oms">
+                    <div class="doc-icon orange"><i class="fas fa-file-medical"></i></div>
+                    <div class="doc-info">
+                        <div class="doc-title" id="doc4-title">Полис ОМС</div>
+                        <div class="doc-desc" id="doc4-desc">Единый полис обязательного медицинского страхования</div>
+                    </div>
+                    <div class="doc-action"><i class="fas fa-chevron-right"></i></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ===== ПОДВАЛ ===== -->
     <footer class="footer">
         <div class="footer-copy">
-            <i class="fas fa-shield-haltered"></i> <span>© Госуслуги РФ, 2026</span>
+            <i class="fas fa-shield-haltered"></i> <span id="footer-copy">© Госуслуги РФ, 2026</span>
         </div>
         <div>
-            <a onclick="openModal('help')"><i class="fas fa-question-circle"></i> Помощь</a>
-            <a onclick="openModal('security')"><i class="fas fa-shield-alt"></i> Безопасность</a>
-            <a onclick="openModal('cat-info')"><i class="fas fa-cat"></i> Кот Мабой</a>
+            <a id="footer-help"><i class="fas fa-question-circle"></i> <span id="footer-help-text">Помощь</span></a>
+            <a id="footer-security"><i class="fas fa-shield-alt"></i> <span id="footer-security-text">Безопасность</span></a>
+            <a id="footer-cat"><i class="fas fa-cat"></i> <span id="footer-cat-text">Кот Мабой</span></a>
         </div>
     </footer>
 </div>
 
-<!-- ===== МОДАЛЬНЫЕ ОКНА ===== -->
+<!-- Модальные окна -->
 <div class="modal-overlay" id="modal-welcome">
     <div class="modal welcome-modal">
         <div class="modal-icon">👋</div>
-        <h2>Добро пожаловать на Госуслуги!</h2>
-        <p style="margin:12px 0;">Пожалуйста, представьтесь, чтобы мы знали, как к вам обращаться.</p>
+        <h2 id="welcome-title">Добро пожаловать на Госуслуги!</h2>
+        <p style="margin:12px 0;" id="welcome-desc">Пожалуйста, представьтесь, чтобы мы знали, как к вам обращаться.</p>
         <div class="form-group">
-            <label for="welcome-name">Ваше имя</label>
+            <label for="welcome-name" id="welcome-label">Ваше имя</label>
             <input type="text" id="welcome-name" placeholder="Например: Иванов Иван" autocomplete="name">
         </div>
         <p class="error-message" id="welcome-error">Пожалуйста, введите ваше имя (минимум 2 символа).</p>
         <div class="form-actions" style="justify-content: center;">
             <button class="btn btn-primary" id="welcome-submit">
-                <i class="fas fa-check"></i> Продолжить
+                <i class="fas fa-check"></i> <span id="welcome-btn">Продолжить</span>
             </button>
         </div>
     </div>
@@ -1062,11 +1123,11 @@
 <div class="modal-overlay" id="modal-help">
     <div class="modal">
         <div class="modal-header">
-            <h2>Помощь</h2>
-            <button class="modal-close" onclick="closeModal('help')">&times;</button>
+            <h2 id="modal-help-title">Помощь</h2>
+            <button class="modal-close" data-close="help">&times;</button>
         </div>
-        <p>Здесь вы можете найти ответы на часто задаваемые вопросы или обратиться в службу поддержки.</p>
-        <p style="margin-top:12px;"><strong>Телефон поддержки:</strong> 8-800-100-70-10</p>
+        <p id="modal-help-text">Здесь вы можете найти ответы на часто задаваемые вопросы или обратиться в службу поддержки.</p>
+        <p style="margin-top:12px;"><strong id="modal-help-phone-label">Телефон поддержки:</strong> 8-800-100-70-10</p>
         <p><strong>Email:</strong> support@gosuslugi.ru</p>
     </div>
 </div>
@@ -1074,25 +1135,25 @@
 <div class="modal-overlay" id="modal-security">
     <div class="modal">
         <div class="modal-header">
-            <h2>Безопасность</h2>
-            <button class="modal-close" onclick="closeModal('security')">&times;</button>
+            <h2 id="modal-security-title">Безопасность</h2>
+            <button class="modal-close" data-close="security">&times;</button>
         </div>
-        <p>Все ваши данные защищены в соответствии с законодательством РФ.</p>
-        <p style="margin-top:12px;">✅ Двухфакторная аутентификация</p>
-        <p>✅ Шифрование данных</p>
-        <p>✅ Защита от мошенников</p>
+        <p id="modal-security-text">Все ваши данные защищены в соответствии с законодательством РФ.</p>
+        <p style="margin-top:12px;">✅ <span id="sec-item1">Двухфакторная аутентификация</span></p>
+        <p>✅ <span id="sec-item2">Шифрование данных</span></p>
+        <p>✅ <span id="sec-item3">Защита от мошенников</span></p>
     </div>
 </div>
 
 <div class="modal-overlay" id="modal-cat-info">
     <div class="modal">
         <div class="modal-header">
-            <h2>🐱 Кот Мабой</h2>
-            <button class="modal-close" onclick="closeModal('cat-info')">&times;</button>
+            <h2>🐱 <span id="modal-cat-title">Кот Мабой</span></h2>
+            <button class="modal-close" data-close="cat-info">&times;</button>
         </div>
-        <p><strong>Кот Мабой</strong> — официальный талисман портала Госуслуги с 2025 года.</p>
-        <p>Характер: злой, но трусливый. Любит прятаться под машинами и кусать курьеров за пальцы.</p>
-        <p>Девиз: «Бойся, но делай!»</p>
+        <p id="modal-cat-text1"><strong>Кот Мабой</strong> — официальный талисман портала Госуслуги с 2025 года.</p>
+        <p id="modal-cat-text2">Характер: злой, но трусливый. Любит прятаться под машинами и кусать курьеров за пальцы.</p>
+        <p id="modal-cat-text3">Девиз: «Бойся, но делай!»</p>
     </div>
 </div>
 
@@ -1100,7 +1161,7 @@
     <div class="modal">
         <div class="modal-header">
             <h2 id="modal-news-title">Новость</h2>
-            <button class="modal-close" onclick="closeModal('news-detail')">&times;</button>
+            <button class="modal-close" data-close="news-detail">&times;</button>
         </div>
         <p id="modal-news-text"></p>
     </div>
@@ -1109,15 +1170,15 @@
 <div class="modal-overlay" id="modal-profile">
     <div class="modal">
         <div class="modal-header">
-            <h2>Профиль пользователя</h2>
-            <button class="modal-close" onclick="closeModal('profile')">&times;</button>
+            <h2 id="modal-profile-title">Профиль пользователя</h2>
+            <button class="modal-close" data-close="profile">&times;</button>
         </div>
         <p><strong id="profile-name">Иванов Иван</strong></p>
         <p>📧 <span id="profile-email">ivanov@email.ru</span></p>
         <p>📱 <span id="profile-phone">+7 (900) 123-45-67</span></p>
         <div class="form-actions" style="margin-top:16px;">
-            <button class="btn btn-secondary" onclick="openModal('change-name')">
-                <i class="fas fa-edit"></i> Изменить имя
+            <button class="btn btn-secondary" id="btn-change-name-modal">
+                <i class="fas fa-edit"></i> <span id="change-name-btn-text">Изменить имя</span>
             </button>
         </div>
     </div>
@@ -1126,18 +1187,18 @@
 <div class="modal-overlay" id="modal-change-name">
     <div class="modal">
         <div class="modal-header">
-            <h2>Изменить имя</h2>
-            <button class="modal-close" onclick="closeModal('change-name')">&times;</button>
+            <h2 id="modal-change-title">Изменить имя</h2>
+            <button class="modal-close" data-close="change-name">&times;</button>
         </div>
         <div class="form-group">
-            <label for="change-name-input">Новое имя</label>
+            <label for="change-name-input" id="change-name-label">Новое имя</label>
             <input type="text" id="change-name-input" placeholder="Введите новое имя">
         </div>
         <p class="error-message" id="change-name-error">Пожалуйста, введите имя (минимум 2 символа).</p>
         <div class="form-actions">
-            <button class="btn btn-secondary" onclick="closeModal('change-name')">Отмена</button>
+            <button class="btn btn-secondary" data-close="change-name" id="change-cancel">Отмена</button>
             <button class="btn btn-primary" id="change-name-submit">
-                <i class="fas fa-save"></i> Сохранить
+                <i class="fas fa-save"></i> <span id="change-save">Сохранить</span>
             </button>
         </div>
     </div>
@@ -1146,49 +1207,59 @@
 <div class="modal-overlay" id="modal-payment-form">
     <div class="modal">
         <div class="modal-header">
-            <h2>Оплата</h2>
-            <button class="modal-close" onclick="closeModal('payment-form')">&times;</button>
+            <h2 id="modal-payment-title">Оплата</h2>
+            <button class="modal-close" data-close="payment-form">&times;</button>
         </div>
         <div class="form-group">
-            <label>УИН или номер квитанции</label>
-            <input type="text" placeholder="Введите номер" id="payment-uin">
+            <label for="payment-uin" id="payment-uin-label">УИН или номер квитанции</label>
+            <input type="text" id="payment-uin" placeholder="Введите номер">
         </div>
         <div class="form-group">
-            <label>Сумма (₽)</label>
-            <input type="number" placeholder="Введите сумму" id="payment-amount">
+            <label for="payment-amount" id="payment-amount-label">Сумма (₽)</label>
+            <input type="number" id="payment-amount" placeholder="Введите сумму">
         </div>
-        <p class="success-message" id="payment-success">✅ Платёж успешно обработан! Спасибо.</p>
-        <p class="error-message" id="payment-error">Пожалуйста, заполните все поля корректно.</p>
+        <p class="success-message" id="payment-success">✅ <span id="payment-success-text">Платёж успешно обработан! Спасибо.</span></p>
+        <p class="error-message" id="payment-error"><span id="payment-error-text">Пожалуйста, заполните все поля корректно.</span></p>
         <div class="form-actions">
-            <button class="btn btn-secondary" onclick="closeModal('payment-form')">Отмена</button>
+            <button class="btn btn-secondary" data-close="payment-form" id="payment-cancel">Отмена</button>
             <button class="btn btn-primary" id="payment-submit">
-                <i class="fas fa-check-circle"></i> Оплатить
+                <i class="fas fa-check-circle"></i> <span id="payment-btn-text">Оплатить</span>
             </button>
         </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="modal-document-detail">
+    <div class="modal">
+        <div class="modal-header">
+            <h2 id="modal-doc-title">Документ</h2>
+            <button class="modal-close" data-close="document-detail">&times;</button>
+        </div>
+        <div id="modal-doc-content"></div>
     </div>
 </div>
 
 <div class="modal-overlay" id="modal-notifications">
     <div class="modal">
         <div class="modal-header">
-            <h2>Уведомления</h2>
-            <button class="modal-close" onclick="closeModal('notifications')">&times;</button>
+            <h2 id="modal-notif-title">Уведомления</h2>
+            <button class="modal-close" data-close="notifications">&times;</button>
         </div>
         <div class="news-card" style="cursor:default;">
             <div class="news-icon">📬</div>
             <div class="news-content">
-                <div class="news-label">Госуслуги</div>
-                <div class="news-text">Ваше заявление на загранпаспорт принято в обработку</div>
+                <div class="news-label" id="notif1-label">Госуслуги</div>
+                <div class="news-text" id="notif1-text">Ваше заявление на загранпаспорт принято в обработку</div>
             </div>
-            <div class="news-date">сегодня</div>
+            <div class="news-date" id="notif1-date">сегодня</div>
         </div>
         <div class="news-card" style="cursor:default;">
             <div class="news-icon">💰</div>
             <div class="news-content">
-                <div class="news-label">Налоговая</div>
-                <div class="news-text">Напоминаем о сроке подачи декларации</div>
+                <div class="news-label" id="notif2-label">Налоговая</div>
+                <div class="news-text" id="notif2-text">Напоминаем о сроке подачи декларации</div>
             </div>
-            <div class="news-date">вчера</div>
+            <div class="news-date" id="notif2-date">вчера</div>
         </div>
     </div>
 </div>
@@ -1200,126 +1271,169 @@
     // ============================================================
     // ДАННЫЕ
     // ============================================================
-    const servicesData = {
+    var servicesData = {
         medicine: {
-            title: 'Медицина',
-            icon: 'fa-hospital',
-            color: 'blue',
-            emoji: '❤️',
+            title: 'Медицина', icon: 'fa-hospital', color: 'blue', emoji: '❤️',
             desc: 'Запись к врачу, полис ОМС, прикрепление к поликлинике, медицинские справки и документы.',
             info: [
                 { title: 'Запись к врачу', text: 'Выберите поликлинику, врача и удобное время для посещения. Запись доступна онлайн 24/7. Вам не нужно стоять в очередях — просто приходите к назначенному времени.' },
                 { title: 'Полис ОМС', text: 'Оформите или замените полис обязательного медицинского страхования. Полис даёт право на бесплатную медицинскую помощь на всей территории России.' },
-                { title: 'Медицинские документы', text: 'Получите справки, выписки, направления и результаты анализов в электронном виде. Все документы заверены электронной подписью врача.' }
+                { title: 'Медицинские документы', text: 'Получите справки, выписки, направления и результаты анализов в электронном виде.' }
             ]
         },
         education: {
-            title: 'Образование',
-            icon: 'fa-graduation-cap',
-            color: 'red',
-            emoji: '🔥',
+            title: 'Образование', icon: 'fa-graduation-cap', color: 'red', emoji: '🔥',
             desc: 'Запись в школу, поступление в вуз, сертификаты и дипломы, курсы повышения квалификации.',
             info: [
-                { title: 'Запись в школу', text: 'Подайте заявление на зачисление ребёнка в первый класс или перевод в другую школу. Укажите желаемое учебное заведение и приложите необходимые документы.' },
-                { title: 'Поступление в вуз', text: 'Подайте документы в высшие учебные заведения России онлайн. Отслеживайте статус заявки и свою позицию в конкурсных списках.' },
-                { title: 'Сертификаты и дипломы', text: 'Закажите электронные копии документов об образовании: аттестаты, дипломы, сертификаты ЕГЭ. Документы имеют юридическую силу.' }
+                { title: 'Запись в школу', text: 'Подайте заявление на зачисление ребёнка в первый класс или перевод в другую школу.' },
+                { title: 'Поступление в вуз', text: 'Подайте документы в высшие учебные заведения России онлайн. Отслеживайте статус заявки.' },
+                { title: 'Сертификаты и дипломы', text: 'Закажите электронные копии документов об образовании: аттестаты, дипломы, сертификаты ЕГЭ.' }
             ]
         },
         taxes: {
-            title: 'Налоги и финансы',
-            icon: 'fa-calculator',
-            color: 'green',
-            emoji: '👍',
+            title: 'Налоги и финансы', icon: 'fa-calculator', color: 'green', emoji: '👍',
             desc: 'Налоговые декларации, вычеты, проверка задолженностей, оплата штрафов.',
             info: [
-                { title: 'Налоговый вычет', text: 'Оформите имущественный, социальный или инвестиционный налоговый вычет. Верните до 13% от потраченной суммы на обучение, лечение или покупку жилья.' },
-                { title: 'Декларация 3-НДФЛ', text: 'Заполните и подайте налоговую декларацию в электронном виде. Система автоматически проверит правильность заполнения.' },
-                { title: 'Проверка задолженности', text: 'Узнайте о наличии налоговой задолженности и оплатите её онлайн. Избегайте пеней и блокировки счетов.' }
+                { title: 'Налоговый вычет', text: 'Оформите имущественный, социальный или инвестиционный налоговый вычет.' },
+                { title: 'Декларация 3-НДФЛ', text: 'Заполните и подайте налоговую декларацию в электронном виде.' },
+                { title: 'Проверка задолженности', text: 'Узнайте о наличии налоговой задолженности и оплатите её онлайн.' }
             ]
         },
         housing: {
-            title: 'ЖКХ и жильё',
-            icon: 'fa-home',
-            color: 'orange',
-            emoji: '❤️',
+            title: 'ЖКХ и жильё', icon: 'fa-home', color: 'orange', emoji: '❤️',
             desc: 'Показания счётчиков, субсидии, регистрация по месту жительства, выписки из ЕГРН.',
             info: [
-                { title: 'Показания счётчиков', text: 'Передайте показания приборов учёта воды, газа и электроэнергии. Данные автоматически отправятся в управляющую компанию.' },
-                { title: 'Субсидии на ЖКУ', text: 'Оформите субсидию на оплату жилищно-коммунальных услуг, если расходы превышают установленную норму от дохода семьи.' },
-                { title: 'Регистрация по месту жительства', text: 'Оформите постоянную или временную регистрацию онлайн. Больше не нужно посещать паспортный стол лично.' }
+                { title: 'Показания счётчиков', text: 'Передайте показания приборов учёта воды, газа и электроэнергии.' },
+                { title: 'Субсидии на ЖКУ', text: 'Оформите субсидию на оплату жилищно-коммунальных услуг.' },
+                { title: 'Регистрация по месту жительства', text: 'Оформите постоянную или временную регистрацию онлайн.' }
             ]
         },
         transport: {
-            title: 'Транспорт',
-            icon: 'fa-car',
-            color: 'blue',
-            emoji: '🔥',
+            title: 'Транспорт', icon: 'fa-car', color: 'blue', emoji: '🔥',
             desc: 'Водительские права, регистрация автомобиля, штрафы ГИБДД, техосмотр.',
             info: [
-                { title: 'Водительские права', text: 'Запишитесь на экзамен в ГИБДД, получите или замените водительское удостоверение. Выберите удобное отделение и время.' },
-                { title: 'Регистрация авто', text: 'Зарегистрируйте транспортное средство или снимите его с учёта. Подайте заявление и запишитесь на осмотр автомобиля.' },
-                { title: 'Штрафы ГИБДД', text: 'Проверьте и оплатите штрафы за нарушение ПДД. При оплате в течение 20 дней действует скидка 50%.' }
+                { title: 'Водительские права', text: 'Запишитесь на экзамен в ГИБДД, получите или замените водительское удостоверение.' },
+                { title: 'Регистрация авто', text: 'Зарегистрируйте транспортное средство или снимите его с учёта.' },
+                { title: 'Штрафы ГИБДД', text: 'Проверьте и оплатите штрафы за нарушение ПДД со скидкой 50% при оплате в течение 20 дней.' }
             ]
         },
         passport: {
-            title: 'Паспорта',
-            icon: 'fa-passport',
-            color: 'red',
-            emoji: '👍',
+            title: 'Паспорта', icon: 'fa-passport', color: 'red', emoji: '👍',
             desc: 'Загранпаспорт нового и старого образца, замена паспорта РФ, регистрация.',
             info: [
-                { title: 'Загранпаспорт нового образца', text: 'Оформите биометрический загранпаспорт сроком на 10 лет. Потребуется сдать отпечатки пальцев и сфотографироваться в МФЦ.' },
-                { title: 'Загранпаспорт старого образца', text: 'Оформите загранпаспорт старого образца сроком на 5 лет. Можно подать заявление полностью онлайн.' },
-                { title: 'Замена паспорта РФ', text: 'Замените паспорт гражданина РФ при достижении 20 или 45 лет, а также при смене имени, пола или порче документа.' }
+                { title: 'Загранпаспорт нового образца', text: 'Оформите биометрический загранпаспорт сроком на 10 лет.' },
+                { title: 'Загранпаспорт старого образца', text: 'Оформите загранпаспорт старого образца сроком на 5 лет.' },
+                { title: 'Замена паспорта РФ', text: 'Замените паспорт гражданина РФ при достижении 20 или 45 лет.' }
             ]
         }
     };
 
-    const extraServices = {
+    var extraServices = {
         pension: { title: 'Пенсия', icon: 'fa-user-clock', color: 'green', emoji: '👴', desc: 'Назначение, перерасчёт, справки о пенсии' },
         family: { title: 'Семья', icon: 'fa-users', color: 'blue', emoji: '👨‍👩‍👧‍👦', desc: 'Пособия, материнский капитал, регистрация брака' },
         business: { title: 'Бизнес', icon: 'fa-briefcase', color: 'orange', emoji: '💼', desc: 'Регистрация ИП и ООО, лицензии, проверки' },
-        justice: { title: 'Правосудие', icon: 'fa-balance-scale', color: 'red', emoji: '⚖️', desc: 'Судебные задолженности, приставы, исполнительные производства' }
+        justice: { title: 'Правосудие', icon: 'fa-balance-scale', color: 'red', emoji: '⚖️', desc: 'Судебные задолженности, приставы' }
     };
 
-    const newsData = [
-        { icon: '🐱', label: 'Кот Мабой', text: 'Снова спрятался под машину — испугался выходить на улицу', date: 'сегодня', fullText: 'Кот Мабой снова спрятался под машину во дворе. По словам очевидцев, он испугался выходить на улицу из-за громкого звука газонокосилки. Соседи пытались выманить его колбасой, но Мабой лишь злобно шипел из-под днища автомобиля. Спасательная операция продолжается.' },
-        { icon: '🐱', label: 'Кот Мабой', text: 'Покусал курьера за палец, но потом извинился', date: 'вчера', fullText: 'Вчера кот Мабой покусал курьера службы доставки за указательный палец. Инцидент произошёл в подъезде дома №15. Курьер Пётр рассказал: "Я просто хотел погладить кота, а он как прыгнет!" После инцидента Мабой потёрся о ноги пострадавшего, что было расценено как извинение. Курьер сказал, что это лучший день в его жизни.' },
-        { icon: '🐱', label: 'Кот Мабой', text: 'Вышел на улицу, увидел голубя — убежал обратно в подъезд', date: '2 дня назад', fullText: 'Два дня назад кот Мабой совершил героическую попытку выйти на улицу. Он прошёл целых три метра от подъезда, но внезапно увидел голубя. Голубь посмотрел на Мабоя. Мабой посмотрел на голубя. Голубь моргнул. Мабой развернулся и с рекордной скоростью скрылся в подъезде. Голубь победил со счётом 1:0.' }
+    var newsData = [
+        { icon: '🐱', label: 'Кот Мабой', text: 'Снова спрятался под машину — испугался выходить на улицу', date: 'сегодня', fullText: 'Кот Мабой снова спрятался под машину во дворе. По словам очевидцев, он испугался выходить на улицу из-за громкого звука газонокосилки. Соседи пытались выманить его колбасой, но Мабой лишь злобно шипел из-под днища автомобиля.' },
+        { icon: '🐱', label: 'Кот Мабой', text: 'Покусал курьера за палец, но потом извинился', date: 'вчера', fullText: 'Вчера кот Мабой покусал курьера службы доставки за указательный палец. Курьер Пётр рассказал: "Я просто хотел погладить кота, а он как прыгнет!" После инцидента Мабой потёрся о ноги пострадавшего, что было расценено как извинение.' },
+        { icon: '🐱', label: 'Кот Мабой', text: 'Вышел на улицу, увидел голубя — убежал обратно в подъезд', date: '2 дня назад', fullText: 'Кот Мабой совершил героическую попытку выйти на улицу. Он прошёл целых три метра от подъезда, но внезапно увидел голубя. Голубь посмотрел на Мабоя. Мабой посмотрел на голубя. Голубь моргнул. Мабой развернулся и с рекордной скоростью скрылся в подъезде. Голубь победил со счётом 1:0.' }
     ];
+
+    var documentDetails = {
+        'passport-rf': { title: 'Паспорт РФ', icon: 'fa-passport', color: 'blue', text: 'Серия: 4510<br>Номер: 123456<br>Выдан: ОВД района "Крылатское" г. Москвы<br>Дата выдачи: 15.03.2018<br>Код подразделения: 770-045' },
+        'passport-int': { title: 'Загранпаспорт', icon: 'fa-globe', color: 'red', text: 'Серия: 75<br>Номер: 9876543<br>Тип: Биометрический<br>Выдан: МВД России<br>Действителен до: 20.05.2028' },
+        'snils': { title: 'СНИЛС', icon: 'fa-id-card', color: 'green', text: 'Номер: 123-456-789 00<br>Статус: Действующий<br>Дата регистрации: 01.01.2000' },
+        'oms': { title: 'Полис ОМС', icon: 'fa-file-medical', color: 'orange', text: 'Номер: 1234567890123456<br>Тип: Единый полис ОМС<br>Страховая компания: ООО "Росгосстрах-Медицина"<br>Действителен: постоянно' }
+    };
 
     // ============================================================
     // СОСТОЯНИЕ
     // ============================================================
-    let userName = localStorage.getItem('gosuslugi_userName') || '';
-    let currentPage = 'home';
+    var userName = localStorage.getItem('gosuslugi_userName') || '';
+    var isTatar = localStorage.getItem('gosuslugi_lang') === 'tt';
+    var darkMode = localStorage.getItem('theme') === 'dark';
+
+    // ============================================================
+    // ПЕРЕВОДЫ
+    // ============================================================
+    var translations = {
+        'logo-text': { ru: 'Госуслуги', tt: 'Дәүләт хезмәтләре' },
+        'top-home': { ru: 'Госуслуги', tt: 'Дәүләт хезмәтләре' },
+        'top-help': { ru: 'Помощь', tt: 'Ярдәм' },
+        'top-security': { ru: 'Безопасность', tt: 'Иминлек' },
+        'nav-home': { ru: 'Главная', tt: 'Баш бит' },
+        'nav-services': { ru: 'Все услуги', tt: 'Барлык хезмәтләр' },
+        'nav-apps': { ru: 'Заявления', tt: 'Гаризалар' },
+        'nav-pay': { ru: 'Платежи', tt: 'Түләүләр' },
+        'nav-docs': { ru: 'Документы', tt: 'Документлар' },
+        'hero-title': { ru: 'Добро пожаловать на Госуслуги', tt: 'Дәүләт хезмәтләренә рәхим итегез' },
+        'hero-desc': { ru: 'Получите государственные и муниципальные услуги быстро, удобно и безопасно. Более 1000 услуг доступны онлайн.', tt: 'Дәүләт һәм муниципаль хезмәтләрне тиз, уңайлы һәм имин алыгыз. 1000 нән артык хезмәт онлайн.' },
+        'popular-title': { ru: 'Популярные услуги', tt: 'Популяр хезмәтләр' },
+        'news-title': { ru: 'Новости кота Мабоя', tt: 'Мабой мәче яңалыклары' },
+        'all-services-title': { ru: 'Все услуги', tt: 'Барлык хезмәтләр' },
+        'apps-title': { ru: 'Мои заявления', tt: 'Минем гаризалар' },
+        'apps-desc': { ru: 'Здесь отображаются ваши поданные заявления и их статус.', tt: 'Биредә сезнең гаризалар һәм аларның статусы күрсәтелә.' },
+        'pay-title': { ru: 'Платежи', tt: 'Түләүләр' },
+        'pay-desc': { ru: 'Оплата госпошлин, налогов, штрафов и других начислений.', tt: 'Дәүләт пошлиналары, салымнар, штрафлар һәм башка түләүләр.' },
+        'docs-title': { ru: 'Документы', tt: 'Документлар' },
+        'docs-desc': { ru: 'Цифровые копии ваших документов, доступные всегда.', tt: 'Сезнең документларның цифрлы копияләре, һәрвакыт кул астында.' },
+        'footer-copy': { ru: '© Госуслуги РФ, 2026', tt: '© Дәүләт хезмәтләре РФ, 2026' },
+        'footer-help-text': { ru: 'Помощь', tt: 'Ярдәм' },
+        'footer-security-text': { ru: 'Безопасность', tt: 'Иминлек' },
+        'footer-cat-text': { ru: 'Кот Мабой', tt: 'Мабой мәче' },
+        'welcome-title': { ru: 'Добро пожаловать на Госуслуги!', tt: 'Дәүләт хезмәтләренә рәхим итегез!' },
+        'welcome-desc': { ru: 'Пожалуйста, представьтесь, чтобы мы знали, как к вам обращаться.', tt: 'Зинһар, үзегезне танытыгыз, без сезгә ничек мөрәҗәгать итәргә белик.' },
+        'welcome-label': { ru: 'Ваше имя', tt: 'Исемегез' },
+        'welcome-btn': { ru: 'Продолжить', tt: 'Дәвам итү' },
+        'welcome-error': { ru: 'Пожалуйста, введите ваше имя (минимум 2 символа).', tt: 'Зинһар, исемегезне кертегез (ким дигәндә 2 символ).' },
+    };
+
+    function t(key) {
+        var el = document.getElementById(key);
+        if (el && translations[key]) {
+            el.textContent = translations[key][isTatar ? 'tt' : 'ru'];
+        }
+    }
+
+    function translateAll() {
+        for (var key in translations) {
+            if (translations.hasOwnProperty(key)) {
+                t(key);
+            }
+        }
+        // Кнопка языка
+        var langBtn = document.getElementById('lang-toggle');
+        if (langBtn) {
+            langBtn.innerHTML = isTatar ? '🇹🇷 Татарча' : '🇷🇺 Русский';
+        }
+        // Обновляем placeholder поиска
+        var searchInput = document.getElementById('search-input');
+        if (searchInput) {
+            searchInput.placeholder = isTatar ? 'Хезмәтләр, ведомстволар, документлар эзләү...' : 'Поиск услуг, ведомств, документов...';
+        }
+        // Обновляем имя пользователя если гость
+        if (!userName) {
+            var userNameEl = document.getElementById('user-name');
+            if (userNameEl) userNameEl.textContent = isTatar ? 'Кунак' : 'Гость';
+        }
+        // Сохраняем выбор
+        localStorage.setItem('gosuslugi_lang', isTatar ? 'tt' : 'ru');
+    }
 
     // ============================================================
     // НАВИГАЦИЯ
     // ============================================================
     function navigateTo(pageName) {
-        currentPage = pageName;
-        // Скрываем все страницы
-        document.querySelectorAll('.page').forEach(function(p) {
-            p.classList.remove('active');
-        });
-        // Показываем нужную
+        document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
         var page = document.getElementById('page-' + pageName);
-        if (page) {
-            page.classList.add('active');
-        }
-        // Обновляем навигацию
+        if (page) page.classList.add('active');
         document.querySelectorAll('.nav-main a').forEach(function(a) {
             a.classList.remove('active');
-            if (a.getAttribute('data-page') === pageName) {
-                a.classList.add('active');
-            }
+            if (a.getAttribute('data-page') === pageName) a.classList.add('active');
         });
-        // Специальные действия
-        if (pageName === 'services-all') {
-            renderAllServices();
-        }
-        // Скролл вверх
+        if (pageName === 'services-all') renderAllServices();
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -1329,7 +1443,6 @@
     function openService(serviceKey) {
         var data = servicesData[serviceKey] || extraServices[serviceKey];
         if (!data) return;
-
         var detailPage = document.getElementById('page-service-detail');
         var content = document.getElementById('service-detail-content');
         if (!detailPage || !content) return;
@@ -1338,122 +1451,79 @@
             return '<div class="info-block"><h3>' + item.title + '</h3><p>' + item.text + '</p></div>';
         }).join('') : '<div class="info-block"><h3>' + data.title + '</h3><p>' + data.desc + '</p></div>';
 
-        content.innerHTML = 
-            '<button class="back-link" id="btn-back-home"><i class="fas fa-arrow-left"></i> Назад на главную</button>' +
+        content.innerHTML =
+            '<button class="back-link" id="btn-back-home"><i class="fas fa-arrow-left"></i> ' + (isTatar ? 'Баш биткә кайту' : 'Назад на главную') + '</button>' +
             '<h2><i class="fas ' + data.icon + '"></i> ' + data.title + '</h2>' +
             '<p>' + data.desc + '</p>' +
             infoBlocks +
-            '<button class="btn btn-primary" id="btn-submit-application" style="margin-top:8px;"><i class="fas fa-check-circle"></i> Подать заявление</button>' +
-            '<button class="btn btn-secondary" id="btn-my-applications" style="margin-left:8px;margin-top:8px;"><i class="fas fa-list"></i> Мои заявления</button>';
+            '<button class="btn btn-primary" id="btn-submit-application" style="margin-top:8px;"><i class="fas fa-check-circle"></i> ' + (isTatar ? 'Гариза бирү' : 'Подать заявление') + '</button>' +
+            '<button class="btn btn-secondary" id="btn-my-applications" style="margin-left:8px;margin-top:8px;"><i class="fas fa-list"></i> ' + (isTatar ? 'Минем гаризалар' : 'Мои заявления') + '</button>';
 
-        // Показываем страницу
         document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
         detailPage.classList.add('active');
         document.querySelectorAll('.nav-main a').forEach(function(a) { a.classList.remove('active'); });
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
-        // Навешиваем обработчики после обновления DOM
         setTimeout(function() {
             var backBtn = document.getElementById('btn-back-home');
             var submitBtn = document.getElementById('btn-submit-application');
             var myAppsBtn = document.getElementById('btn-my-applications');
-            
-            if (backBtn) {
-                backBtn.addEventListener('click', function() { navigateTo('home'); });
-            }
-            if (submitBtn) {
-                submitBtn.addEventListener('click', function() { 
-                    alert('Заявление на услугу "' + data.title + '" успешно подано!');
-                    navigateTo('applications');
-                });
-            }
-            if (myAppsBtn) {
-                myAppsBtn.addEventListener('click', function() { navigateTo('applications'); });
-            }
+            if (backBtn) backBtn.addEventListener('click', function() { navigateTo('home'); });
+            if (submitBtn) submitBtn.addEventListener('click', function() {
+                alert(isTatar ? 'Гариза кабул ителде!' : 'Заявление принято!');
+                navigateTo('applications');
+            });
+            if (myAppsBtn) myAppsBtn.addEventListener('click', function() { navigateTo('applications'); });
         }, 50);
     }
 
     // ============================================================
-    // ВСЕ УСЛУГИ
+    // РЕНДЕРЫ
     // ============================================================
     function renderAllServices() {
         var grid = document.getElementById('all-services-grid');
         if (!grid) return;
-
         var allServices = Object.entries(servicesData).concat(Object.entries(extraServices));
-        
         grid.innerHTML = allServices.map(function(entry) {
-            var key = entry[0];
-            var data = entry[1];
-            return '<div class="card" data-service="' + key + '" style="cursor:pointer;">' +
-                '<div class="card-icon ' + data.color + '"><i class="fas ' + data.icon + '"></i></div>' +
-                '<div class="card-badge">' + (data.emoji || '') + '</div>' +
-                '<div class="card-title">' + data.title + '</div>' +
-                '<div class="card-desc">' + data.desc + '</div>' +
-            '</div>';
+            var key = entry[0], data = entry[1];
+            return '<div class="card" data-service="' + key + '"><div class="card-icon ' + data.color + '"><i class="fas ' + data.icon + '"></i></div><div class="card-badge">' + (data.emoji || '') + '</div><div class="card-title">' + data.title + '</div><div class="card-desc">' + data.desc.substring(0, 40) + '...</div></div>';
         }).join('');
-
-        // Навешиваем обработчики
-        grid.querySelectorAll('.card').forEach(function(card) {
-            card.addEventListener('click', function() {
-                var serviceKey = this.getAttribute('data-service');
-                if (serviceKey) openService(serviceKey);
-            });
-        });
+        bindCardClicks(grid);
     }
 
-    // ============================================================
-    // ПОПУЛЯРНЫЕ УСЛУГИ НА ГЛАВНОЙ
-    // ============================================================
     function renderPopularServices() {
         var grid = document.getElementById('popular-services');
         if (!grid) return;
-
         var popular = ['medicine', 'education', 'taxes', 'housing', 'transport', 'passport'];
-        
         grid.innerHTML = popular.map(function(key) {
             var data = servicesData[key];
             if (!data) return '';
-            return '<div class="card" data-service="' + key + '" style="cursor:pointer;">' +
-                '<div class="card-icon ' + data.color + '"><i class="fas ' + data.icon + '"></i></div>' +
-                '<div class="card-badge">' + (data.emoji || '') + '</div>' +
-                '<div class="card-title">' + data.title + '</div>' +
-                '<div class="card-desc">' + data.desc.substring(0, 35) + '...</div>' +
-            '</div>';
+            return '<div class="card" data-service="' + key + '"><div class="card-icon ' + data.color + '"><i class="fas ' + data.icon + '"></i></div><div class="card-badge">' + (data.emoji || '') + '</div><div class="card-title">' + data.title + '</div><div class="card-desc">' + data.desc.substring(0, 35) + '...</div></div>';
         }).join('');
+        bindCardClicks(grid);
+    }
 
-        // Навешиваем обработчики
-        grid.querySelectorAll('.card').forEach(function(card) {
+    function renderNews() {
+        var grid = document.getElementById('news-grid');
+        if (!grid) return;
+        grid.innerHTML = newsData.map(function(news, index) {
+            return '<div class="news-card" data-news-index="' + index + '"><div class="news-icon">' + news.icon + '</div><div class="news-content"><div class="news-label">' + news.label + '</div><div class="news-text">' + news.text + '</div></div><div class="news-date">' + news.date + '</div></div>';
+        }).join('');
+        grid.querySelectorAll('.news-card').forEach(function(card) {
             card.addEventListener('click', function() {
-                var serviceKey = this.getAttribute('data-service');
-                if (serviceKey) openService(serviceKey);
+                var index = parseInt(this.getAttribute('data-news-index'));
+                if (!isNaN(index) && index >= 0 && index < newsData.length) {
+                    openModal('news-detail', index);
+                }
             });
         });
     }
 
-    // ============================================================
-    // НОВОСТИ НА ГЛАВНОЙ
-    // ============================================================
-    function renderNews() {
-        var grid = document.getElementById('news-grid');
-        if (!grid) return;
-
-        grid.innerHTML = newsData.map(function(news, index) {
-            return '<div class="news-card" data-news-index="' + index + '" style="cursor:pointer;">' +
-                '<div class="news-icon">' + news.icon + '</div>' +
-                '<div class="news-content">' +
-                    '<div class="news-label">' + news.label + '</div>' +
-                    '<div class="news-text">' + news.text + '</div>' +
-                '</div>' +
-                '<div class="news-date">' + news.date + '</div>' +
-            '</div>';
-        }).join('');
-
-        // Навешиваем обработчики
-        grid.querySelectorAll('.news-card').forEach(function(card) {
+    function bindCardClicks(container) {
+        container.querySelectorAll('.card').forEach(function(card) {
             card.addEventListener('click', function() {
-                var index = parseInt(this.getAttribute('data-news-index'));
-                openModal('news-detail', index);
+                var serviceKey = this.getAttribute('data-service');
+                if (serviceKey) openService(serviceKey);
             });
         });
     }
@@ -1464,16 +1534,9 @@
     function openModal(modalName, extraData) {
         var modal = document.getElementById('modal-' + modalName);
         if (!modal) return;
-        
-        // Сбрасываем сообщения
-        modal.querySelectorAll('.success-message, .error-message').forEach(function(el) {
-            el.classList.remove('show');
-        });
-        
+        modal.querySelectorAll('.success-message, .error-message').forEach(function(el) { el.classList.remove('show'); });
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
-
-        // Для новостей
         if (modalName === 'news-detail' && typeof extraData === 'number' && extraData >= 0 && extraData < newsData.length) {
             var news = newsData[extraData];
             var titleEl = document.getElementById('modal-news-title');
@@ -1481,11 +1544,16 @@
             if (titleEl) titleEl.textContent = news.label + ' — ' + news.date;
             if (textEl) textEl.textContent = news.fullText;
         }
-
-        // Для профиля — обновляем данные
         if (modalName === 'profile') {
             var profileName = document.getElementById('profile-name');
-            if (profileName) profileName.textContent = userName || 'Гость';
+            if (profileName) profileName.textContent = userName || (isTatar ? 'Кунак' : 'Гость');
+        }
+        if (modalName === 'document-detail' && extraData && documentDetails[extraData]) {
+            var doc = documentDetails[extraData];
+            var docTitle = document.getElementById('modal-doc-title');
+            var docContent = document.getElementById('modal-doc-content');
+            if (docTitle) docTitle.textContent = doc.title;
+            if (docContent) docContent.innerHTML = '<div style="text-align:center;margin-bottom:16px;"><i class="fas ' + doc.icon + '" style="font-size:48px;color:var(--color-' + doc.color + ');"></i></div><p style="line-height:2;">' + doc.text + '</p>';
         }
     }
 
@@ -1494,11 +1562,7 @@
         if (!modal) return;
         modal.classList.remove('active');
         document.body.style.overflow = '';
-        
-        // Сбрасываем сообщения
-        modal.querySelectorAll('.success-message, .error-message').forEach(function(el) {
-            el.classList.remove('show');
-        });
+        modal.querySelectorAll('.success-message, .error-message').forEach(function(el) { el.classList.remove('show'); });
     }
 
     // ============================================================
@@ -1508,9 +1572,7 @@
         userName = name;
         localStorage.setItem('gosuslugi_userName', name);
         var userNameEl = document.getElementById('user-name');
-        if (userNameEl) {
-            userNameEl.textContent = name;
-        }
+        if (userNameEl) userNameEl.textContent = name;
     }
 
     function showWelcomeModal() {
@@ -1518,52 +1580,41 @@
         if (modal) {
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
-            document.getElementById('welcome-name').focus();
+            var input = document.getElementById('welcome-name');
+            if (input) setTimeout(function() { input.focus(); }, 300);
         }
     }
 
     // ============================================================
     // ТЕМА
     // ============================================================
-    var themeToggle = document.getElementById('theme-toggle');
-    var darkMode = localStorage.getItem('theme') === 'dark';
-
     function applyTheme() {
         if (darkMode) {
             document.body.classList.add('dark');
         } else {
             document.body.classList.remove('dark');
         }
+        var themeToggle = document.getElementById('theme-toggle');
         if (themeToggle) {
             themeToggle.textContent = darkMode ? '☀️' : '🌙';
-            themeToggle.setAttribute('aria-label', darkMode ? 'Переключить на светлую тему' : 'Переключить на тёмную тему');
         }
         localStorage.setItem('theme', darkMode ? 'dark' : 'light');
-    }
-    applyTheme();
-
-    if (themeToggle) {
-        themeToggle.addEventListener('click', function() {
-            darkMode = !darkMode;
-            applyTheme();
-        });
     }
 
     // ============================================================
     // ИНИЦИАЛИЗАЦИЯ
     // ============================================================
     function init() {
-        // Рендерим главную
+        applyTheme();
         renderPopularServices();
         renderNews();
+        translateAll();
 
-        // Проверяем имя пользователя
         if (userName) {
             updateUserName(userName);
         } else {
-            updateUserName('Гость');
-            // Показываем приветствие с небольшой задержкой
-            setTimeout(showWelcomeModal, 500);
+            updateUserName(isTatar ? 'Кунак' : 'Гость');
+            setTimeout(showWelcomeModal, 600);
         }
 
         // Навигация
@@ -1575,81 +1626,53 @@
             });
         });
 
-        // Кнопка приветствия
-        var welcomeSubmit = document.getElementById('welcome-submit');
-        if (welcomeSubmit) {
-            welcomeSubmit.addEventListener('click', function() {
-                var input = document.getElementById('welcome-name');
-                var error = document.getElementById('welcome-error');
-                var name = input ? input.value.trim() : '';
-                
-                if (name.length >= 2) {
-                    updateUserName(name);
-                    closeModal('welcome');
-                } else {
-                    if (error) error.classList.add('show');
-                    if (input) input.focus();
-                }
-            });
-        }
+        // Логотип
+        document.getElementById('logo-click').addEventListener('click', function() { navigateTo('home'); });
 
-        // Enter в поле приветствия
-        var welcomeInput = document.getElementById('welcome-name');
-        if (welcomeInput) {
-            welcomeInput.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter') {
-                    var submit = document.getElementById('welcome-submit');
-                    if (submit) submit.click();
-                }
-            });
-        }
+        // Верхняя панель
+        document.getElementById('top-home').addEventListener('click', function() { navigateTo('home'); });
+        document.getElementById('top-help').addEventListener('click', function() { openModal('help'); });
+        document.getElementById('top-security').addEventListener('click', function() { openModal('security'); });
 
-        // Кнопка изменения имени
-        var changeNameSubmit = document.getElementById('change-name-submit');
-        if (changeNameSubmit) {
-            changeNameSubmit.addEventListener('click', function() {
-                var input = document.getElementById('change-name-input');
-                var error = document.getElementById('change-name-error');
-                var name = input ? input.value.trim() : '';
-                
-                if (name.length >= 2) {
-                    updateUserName(name);
-                    closeModal('change-name');
-                    // Обновляем профиль если открыт
-                    var profileName = document.getElementById('profile-name');
-                    if (profileName) profileName.textContent = name;
-                } else {
-                    if (error) error.classList.add('show');
-                    if (input) input.focus();
-                }
-            });
-        }
+        // Кнопки в шапке
+        document.getElementById('btn-notifications').addEventListener('click', function() { openModal('notifications'); });
+        document.getElementById('btn-profile').addEventListener('click', function() { openModal('profile'); });
 
-        // Кнопка оплаты
-        var paymentSubmit = document.getElementById('payment-submit');
-        if (paymentSubmit) {
-            paymentSubmit.addEventListener('click', function() {
-                var uin = document.getElementById('payment-uin');
-                var amount = document.getElementById('payment-amount');
-                var success = document.getElementById('payment-success');
-                var error = document.getElementById('payment-error');
-                
-                var uinVal = uin ? uin.value.trim() : '';
-                var amountVal = amount ? amount.value.trim() : '';
-                
-                if (uinVal && amountVal && parseFloat(amountVal) > 0) {
-                    if (success) success.classList.add('show');
-                    if (error) error.classList.remove('show');
-                    if (uin) uin.value = '';
-                    if (amount) amount.value = '';
-                } else {
-                    if (error) error.classList.add('show');
-                    if (success) success.classList.remove('show');
-                }
-            });
-        }
+        // Подвал
+        document.getElementById('footer-help').addEventListener('click', function() { openModal('help'); });
+        document.getElementById('footer-security').addEventListener('click', function() { openModal('security'); });
+        document.getElementById('footer-cat').addEventListener('click', function() { openModal('cat-info'); });
 
-        // Закрытие модалок по клику на оверлей
+        // Тема
+        document.getElementById('theme-toggle').addEventListener('click', function() {
+            darkMode = !darkMode;
+            applyTheme();
+        });
+
+        // Язык
+        document.getElementById('lang-toggle').addEventListener('click', function() {
+            isTatar = !isTatar;
+            translateAll();
+            updateUserName(userName || (isTatar ? 'Кунак' : 'Гость'));
+        });
+
+        // Закрытие модалок
+        document.querySelectorAll('.modal-close').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var modalName = this.getAttribute('data-close');
+                if (modalName) closeModal(modalName);
+            });
+        });
+        document.querySelectorAll('[data-close]').forEach(function(el) {
+            if (!el.classList.contains('modal-close')) {
+                el.addEventListener('click', function() {
+                    var modalName = this.getAttribute('data-close');
+                    if (modalName) closeModal(modalName);
+                });
+            }
+        });
+
+        // Закрытие по оверлею
         document.addEventListener('click', function(e) {
             if (e.target.classList.contains('modal-overlay')) {
                 e.target.classList.remove('active');
@@ -1657,31 +1680,92 @@
             }
         });
 
-        // Закрытие по Escape
+        // Escape
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
-                var activeModals = document.querySelectorAll('.modal-overlay.active');
-                if (activeModals.length > 0) {
-                    activeModals.forEach(function(m) {
-                        m.classList.remove('active');
-                    });
-                    document.body.style.overflow = '';
-                }
+                document.querySelectorAll('.modal-overlay.active').forEach(function(m) { m.classList.remove('active'); });
+                document.body.style.overflow = '';
             }
         });
 
-        console.log('✅ Госуслуги РФ готовы к работе.');
+        // Приветствие
+        document.getElementById('welcome-submit').addEventListener('click', function() {
+            var input = document.getElementById('welcome-name');
+            var error = document.getElementById('welcome-error');
+            var name = input ? input.value.trim() : '';
+            if (name.length >= 2) {
+                updateUserName(name);
+                closeModal('welcome');
+            } else {
+                if (error) error.classList.add('show');
+                if (input) input.focus();
+            }
+        });
+        document.getElementById('welcome-name').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') document.getElementById('welcome-submit').click();
+        });
+
+        // Изменить имя
+        document.getElementById('btn-change-name-modal').addEventListener('click', function() {
+            closeModal('profile');
+            setTimeout(function() { openModal('change-name'); }, 200);
+        });
+        document.getElementById('change-name-submit').addEventListener('click', function() {
+            var input = document.getElementById('change-name-input');
+            var error = document.getElementById('change-name-error');
+            var name = input ? input.value.trim() : '';
+            if (name.length >= 2) {
+                updateUserName(name);
+                closeModal('change-name');
+            } else {
+                if (error) error.classList.add('show');
+                if (input) input.focus();
+            }
+        });
+
+        // Платёж
+        document.getElementById('payment-submit').addEventListener('click', function() {
+            var uin = document.getElementById('payment-uin');
+            var amount = document.getElementById('payment-amount');
+            var success = document.getElementById('payment-success');
+            var error = document.getElementById('payment-error');
+            var uinVal = uin ? uin.value.trim() : '';
+            var amountVal = amount ? amount.value.trim() : '';
+            if (uinVal && amountVal && parseFloat(amountVal) > 0) {
+                if (success) success.classList.add('show');
+                if (error) error.classList.remove('show');
+                if (uin) uin.value = '';
+                if (amount) amount.value = '';
+            } else {
+                if (error) error.classList.add('show');
+                if (success) success.classList.remove('show');
+            }
+        });
+
+        // Платежи — карточки
+        document.querySelectorAll('#payments-grid .card').forEach(function(card) {
+            card.addEventListener('click', function() { openModal('payment-form'); });
+        });
+
+        // Документы — карточки
+        document.querySelectorAll('#documents-list .document-card').forEach(function(card) {
+            card.addEventListener('click', function() {
+                var docType = this.getAttribute('data-doc');
+                if (docType) openModal('document-detail', docType);
+            });
+        });
+
+        console.log('✅ Госуслуги РФ готовы.');
         console.log('👤 Пользователь:', userName || 'Гость');
+        console.log('🌐 Язык:', isTatar ? 'Татарский' : 'Русский');
         console.log('🐱 Кот Мабой на страже!');
     }
 
-    // Запуск после загрузки DOM
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
         init();
     }
-
 })();
 </script>
 
