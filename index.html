@@ -3,166 +3,315 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Госуслуги</title>
+    <title>Госуслуги | Главная</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* ===== CSS-ПЕРЕМЕННЫЕ ДЛЯ УПРОЩЕНИЯ ТЕМ ===== */
+        :root {
+            /* Основные цвета */
+            --color-primary: #0039a6;
+            --color-primary-hover: #002d82;
+            --color-secondary: #ffd700;
+            --color-cat-red: #8a1a1a;
+            --color-cat-blue: #1a3a6a;
+            --color-white: #ffffff;
+            --color-black: #0d1117;
+
+            /* Светлая тема (по умолчанию) */
+            --bg-body: #f0f4f8;
+            --bg-container: #ffffff;
+            --bg-header: #ffffff;
+            --bg-logo: transparent;
+            --bg-header-right: transparent;
+            --bg-nav: #ffffff;
+            --bg-banner: linear-gradient(135deg, #ffffff 0%, #e6edf6 100%);
+            --bg-services: #ffffff;
+            --bg-service-card: #f9fbfd;
+            --bg-news: #f7faff;
+            --bg-news-item: #ffffff;
+            --bg-footer: #0039a6;
+
+            --text-logo: #0039a6;
+            --text-logo-small: #1a2a4a;
+            --text-header: #1a2a4a;
+            --text-nav: #1a2a4a;
+            --text-nav-icon: #0039a6;
+            --text-banner-h1: #0039a6;
+            --text-banner-p: #1a2a4a;
+            --text-service-title: #0039a6;
+            --text-service-desc: #4a5568;
+            --text-news: #1a2a4a;
+            --text-footer: #b3cce6;
+            --text-footer-copy: #ffffff;
+
+            --border-nav: #0039a6;
+            --border-service: #e8edf4;
+            --border-news-item: #ffd700;
+            --border-footer: #ffd700;
+
+            --shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+            --shadow-hover: 0 4px 16px rgba(0, 57, 166, 0.12);
+
+            /* Общие стили */
+            --border-radius-sm: 8px;
+            --border-radius-md: 12px;
+            --border-radius-lg: 40px;
+            --transition-base: background 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.15s;
+        }
+
+        /* ===== ТЕМНАЯ ТЕМА ===== */
+        body.dark {
+            --bg-body: #0d1117;
+            --bg-container: #161b22;
+            --bg-header: linear-gradient(135deg, #0d1117 0%, #0d1117 33%, #1a3a6a 33%, #1a3a6a 66%, #8a1a1a 66%, #8a1a1a 100%);
+            --bg-logo: rgba(22, 27, 34, 0.95);
+            --bg-header-right: rgba(22, 27, 34, 0.95);
+            --bg-nav: #161b22;
+            --bg-banner: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+            --bg-services: #161b22;
+            --bg-service-card: #0d1117;
+            --bg-news: #0d1117;
+            --bg-news-item: #161b22;
+            --bg-footer: #0d1117;
+
+            --text-logo: #58a6ff;
+            --text-logo-small: #ff7b72;
+            --text-header: #c9d1d9;
+            --text-nav: #c9d1d9;
+            --text-nav-icon: #58a6ff;
+            --text-banner-h1: #58a6ff;
+            --text-banner-p: #c9d1d9;
+            --text-service-title: #58a6ff;
+            --text-service-desc: #8b949e;
+            --text-news: #c9d1d9;
+            --text-footer: #8b949e;
+            --text-footer-copy: #c9d1d9;
+
+            --border-nav: #1a3a6a;
+            --border-service: #21262d;
+            --border-news-item: #58a6ff;
+            --border-footer: #8a1a1a;
+
+            --shadow: 0 2px 12px rgba(0,0,0,0.6);
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.4);
+            --shadow-hover: 0 4px 16px rgba(88, 166, 255, 0.12);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', 'Roboto', sans-serif;
+            transition: var(--transition-base);
         }
 
         body {
-            background: #f0f4f8;
             display: flex;
             justify-content: center;
             padding: 20px 16px;
+            background: var(--bg-body);
         }
 
         .container {
             max-width: 1200px;
             width: 100%;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            border-radius: var(--border-radius-sm);
+            box-shadow: var(--shadow);
             overflow: hidden;
+            background: var(--bg-container);
         }
 
         /* ===== ШАПКА ===== */
         .header {
-            background: #0047ab;
-            padding: 12px 32px;
+            padding: 16px 32px;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 3px solid #ffd700;
+            background: var(--bg-header);
         }
 
         .logo {
             display: flex;
             align-items: center;
             gap: 12px;
+            padding: 6px 18px 6px 12px;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-sm);
+            background: var(--bg-logo);
+            cursor: default;
         }
 
         .logo i {
             font-size: 28px;
-            color: white;
+            color: var(--color-secondary);
         }
 
         .logo span {
-            color: white;
             font-size: 22px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
+            font-weight: 700;
+            color: var(--text-logo);
         }
 
         .logo small {
-            color: #b3d4ff;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 400;
-            margin-left: 6px;
+            color: var(--text-logo-small);
         }
 
         .header-right {
             display: flex;
             align-items: center;
-            gap: 24px;
-            color: rgba(255,255,255,0.9);
-            font-size: 14px;
+            gap: 20px;
+            padding: 6px 20px 6px 16px;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-sm);
+            flex-wrap: wrap;
+            background: var(--bg-header-right);
         }
 
         .header-right i {
-            margin-right: 6px;
+            margin-right: 4px;
+        }
+
+        .header-right span {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-header);
         }
 
         .header-right .user {
-            background: rgba(255,255,255,0.12);
-            padding: 6px 16px;
-            border-radius: 20px;
-            cursor: default;
+            font-weight: 600;
+            color: var(--text-logo-small);
+        }
+
+        .header-right .controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            border-left: 2px solid rgba(128,128,128,0.2);
+            padding-left: 14px;
+        }
+
+        .header-right .controls button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: 0.15s;
+            color: var(--text-nav-icon);
+            line-height: 1;
+        }
+
+        .header-right .controls button:hover {
+            background: rgba(128,128,128,0.15);
         }
 
         /* ===== НАВИГАЦИЯ ===== */
         .nav {
-            background: #f8fafc;
             padding: 0 32px;
             display: flex;
             flex-wrap: wrap;
-            gap: 8px 28px;
-            border-bottom: 1px solid #e2e8f0;
+            gap: 4px 24px;
             align-items: center;
             min-height: 52px;
+            background: var(--bg-nav);
+            border-bottom: 2px solid var(--border-nav);
         }
 
         .nav a {
-            color: #1a3a6b;
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;
-            padding: 14px 0;
+            padding: 14px 4px;
             border-bottom: 3px solid transparent;
             transition: 0.15s;
             display: flex;
             align-items: center;
             gap: 6px;
+            cursor: pointer;
+            color: var(--text-nav);
+            white-space: nowrap;
         }
 
         .nav a i {
-            color: #3b6a9e;
-            font-size: 15px;
+            color: var(--text-nav-icon);
         }
 
         .nav a:hover {
-            border-bottom-color: #0047ab;
+            border-bottom-color: var(--color-secondary);
         }
 
         .nav a.active {
-            border-bottom-color: #0047ab;
-            color: #0047ab;
+            border-bottom-color: var(--color-cat-red);
+            color: var(--color-cat-red);
         }
 
-        /* странные пункты — но выглядят как обычные */
-        .nav a.strange {
-            color: #1a3a6b;
+        .nav a.active i {
+            color: var(--color-cat-red);
         }
-        .nav a.strange i {
-            color: #3b6a9e;
+
+        .nav a.cat {
+            position: relative;
+        }
+        .nav a.cat i {
+            color: var(--color-cat-red);
+        }
+        .nav a.cat:hover::after {
+            content: "🐱 злой, но трусливый";
+            position: absolute;
+            top: 100%;
+            left: 0;
+            font-size: 11px;
+            padding: 4px 12px;
+            border-radius: 4px;
+            white-space: nowrap;
+            z-index: 10;
+            font-weight: 400;
+            background: var(--color-primary);
+            color: var(--color-white);
+        }
+        body.dark .nav a.cat:hover::after {
+            background: var(--color-cat-blue);
+            color: #c9d1d9;
         }
 
         /* ===== БАННЕР ===== */
         .banner {
-            background: linear-gradient(135deg, #e8f0fe, #d6e4f5);
             padding: 28px 32px;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #cbdae9;
+            background: var(--bg-banner);
+            border-bottom: 2px solid var(--color-cat-red);
+            border-top: 2px solid var(--color-cat-blue);
         }
 
         .banner h1 {
             font-size: 26px;
             font-weight: 700;
-            color: #002b5c;
+            color: var(--text-banner-h1);
         }
 
         .banner h1 i {
-            color: #f5a623;
             margin-right: 12px;
+            color: var(--color-cat-red);
         }
 
         .banner p {
             font-size: 15px;
-            color: #1f3f6b;
             margin-top: 6px;
             max-width: 550px;
+            color: var(--text-banner-p);
         }
 
         .banner .btn {
-            background: #0047ab;
-            color: white;
+            background: var(--color-primary);
+            color: var(--color-white);
             border: none;
             padding: 12px 32px;
             border-radius: 6px;
@@ -172,12 +321,19 @@
             transition: 0.15s;
             display: inline-block;
             margin-top: 12px;
-            box-shadow: 0 2px 6px rgba(0, 71, 171, 0.25);
+            box-shadow: 0 2px 6px rgba(0, 57, 166, 0.3);
+            text-decoration: none;
         }
 
         .banner .btn:hover {
-            background: #003a8f;
-            box-shadow: 0 4px 12px rgba(0, 71, 171, 0.35);
+            background: var(--color-primary-hover);
+        }
+        body.dark .banner .btn {
+            background: var(--color-cat-blue);
+            box-shadow: 0 2px 6px rgba(26, 58, 106, 0.5);
+        }
+        body.dark .banner .btn:hover {
+            background: #234a8a;
         }
 
         .banner .btn i {
@@ -185,62 +341,85 @@
         }
 
         .banner-emoji {
-            font-size: 48px;
-            background: rgba(255,255,255,0.5);
-            padding: 8px 28px;
-            border-radius: 40px;
-            border: 2px solid #f5c542;
+            font-size: 42px;
+            padding: 4px 24px;
+            border-radius: var(--border-radius-lg);
+            background: rgba(255,255,255,0.8);
+            border: 2px solid transparent;
+        }
+        body.dark .banner-emoji {
+            background: rgba(22, 27, 34, 0.8);
+            border-color: var(--color-cat-red);
         }
 
         /* ===== СЕТКА УСЛУГ ===== */
         .services {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
             gap: 20px;
             padding: 32px;
-            background: white;
+            background: var(--bg-services);
         }
 
         .service {
-            background: #f9fbfd;
-            border-radius: 12px;
+            background: var(--bg-service-card);
+            border: 2px solid var(--border-service);
+            border-radius: var(--border-radius-md);
             padding: 24px 12px 18px;
             text-align: center;
-            border: 1px solid #e8edf4;
-            transition: 0.15s;
+            transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s, background 0.3s;
             cursor: pointer;
+            position: relative;
         }
 
         .service:hover {
-            border-color: #0047ab;
-            background: #f4f8ff;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 71, 171, 0.08);
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-hover);
         }
 
         .service i {
             font-size: 32px;
-            color: #0047ab;
             margin-bottom: 10px;
         }
+        .service.blue i { color: #0039a6; }
+        .service.red i { color: #8a1a1a; }
+        .service.white i { color: #1a2a4a; }
+        body.dark .service.blue i { color: #58a6ff; }
+        body.dark .service.red i { color: #ff7b72; }
+        body.dark .service.white i { color: #c9d1d9; }
 
         .service .title {
             font-weight: 600;
             font-size: 14px;
-            color: #002b5c;
+            color: var(--text-service-title);
         }
 
         .service .desc {
             font-size: 12px;
-            color: #6b7f96;
             margin-top: 4px;
+            color: var(--text-service-desc);
+        }
+
+        .service .cat-hint {
+            position: absolute;
+            bottom: -6px;
+            right: -6px;
+            font-size: 16px;
+            opacity: 0;
+            transition: 0.2s;
+            pointer-events: none;
+        }
+        .service:hover .cat-hint {
+            opacity: 1;
         }
 
         /* ===== НОВОСТИ ===== */
         .news {
-            background: #f7faff;
             padding: 20px 32px 28px;
-            border-top: 1px solid #e2e8f0;
+            background: var(--bg-news);
+            border-top: 2px solid var(--color-cat-blue);
+            border-bottom: 2px solid var(--color-cat-red);
         }
 
         .news-header {
@@ -252,82 +431,87 @@
 
         .news-header h3 {
             font-size: 18px;
-            color: #002b5c;
             font-weight: 600;
+            color: var(--text-banner-h1);
         }
 
         .news-header h3 i {
             margin-right: 10px;
-            color: #f5a623;
+            color: var(--color-cat-red);
         }
 
         .news-header a {
-            color: #0047ab;
             font-size: 14px;
             text-decoration: none;
             font-weight: 500;
+            cursor: pointer;
+            color: var(--text-logo);
         }
 
         .news-item {
-            background: white;
+            background: var(--bg-news-item);
             padding: 14px 20px;
-            border-radius: 8px;
+            border-radius: var(--border-radius-sm);
             display: flex;
             align-items: center;
             gap: 14px;
-            border-left: 4px solid #0047ab;
+            border-left: 4px solid var(--border-news-item);
             margin-bottom: 8px;
             box-shadow: 0 1px 4px rgba(0,0,0,0.03);
-            transition: 0.1s;
+            transition: background 0.1s;
             cursor: default;
         }
 
         .news-item:hover {
-            background: #fafcff;
+            background: #f0f4f8;
+        }
+        body.dark .news-item:hover {
+            background: #1a1f2a;
         }
 
         .news-item i {
-            color: #0047ab;
             width: 22px;
             font-size: 16px;
+            color: var(--text-nav-icon);
         }
 
         .news-item .label {
             font-weight: 600;
-            color: #002b5c;
             font-size: 14px;
             min-width: 70px;
+            color: var(--text-nav-icon);
         }
 
         .news-item .text {
-            color: #2d4a6e;
             font-size: 14px;
+            color: var(--text-news);
         }
 
         .news-item .date {
             margin-left: auto;
-            color: #8a9bb0;
             font-size: 13px;
+            color: var(--text-service-desc);
         }
 
         /* ===== ПОДВАЛ ===== */
         .footer {
-            background: #002b5c;
-            color: #b3cce6;
             padding: 20px 32px;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
             font-size: 13px;
-            border-top: 3px solid #ffd700;
+            background: var(--bg-footer);
+            color: var(--text-footer);
+            border-top: 4px solid var(--border-footer);
         }
 
         .footer a {
-            color: #f5c542;
             text-decoration: none;
             margin-left: 20px;
             cursor: pointer;
+            color: var(--color-secondary);
+            transition: 0.15s;
         }
 
         .footer a:hover {
@@ -338,12 +522,13 @@
             display: flex;
             align-items: center;
             gap: 6px;
+            color: var(--text-footer-copy);
         }
 
         /* ===== АДАПТИВ ===== */
         @media (max-width: 700px) {
             .header { flex-direction: column; align-items: start; gap: 10px; padding: 16px; }
-            .nav { padding: 8px 16px; gap: 6px 16px; }
+            .nav { padding: 8px 16px; gap: 4px 12px; }
             .banner { flex-direction: column; align-items: start; gap: 16px; padding: 20px; }
             .banner-emoji { align-self: center; }
             .services { grid-template-columns: 1fr 1fr; padding: 16px; gap: 12px; }
@@ -352,126 +537,307 @@
             .news-item .date { margin-left: 0; }
             .footer { flex-direction: column; gap: 12px; align-items: start; }
             .footer a { margin-left: 0; margin-right: 16px; }
+            .nav a.cat:hover::after { display: none; }
+            .header-right .controls { border-left: none; padding-left: 0; }
         }
 
         @media (max-width: 480px) {
             .services { grid-template-columns: 1fr; }
-            .header-right { flex-wrap: wrap; gap: 10px; }
+            .header-right { flex-wrap: wrap; gap: 8px; }
         }
     </style>
 </head>
-<body>
+<body class="light">
 
 <div class="container">
 
     <!-- ===== ШАПКА ===== -->
     <header class="header">
         <div class="logo">
-            <i class="fas fa-landmark"></i>
-            <span>Госуслуги <small>· 1 апреля</small></span>
+            <i class="fas fa-landmark" aria-hidden="true"></i>
+            <span>
+                <span id="logo-text">Госуслуги</span>
+                <small id="logo-small">РФ</small>
+            </span>
         </div>
         <div class="header-right">
-            <span><i class="fas fa-bell"></i> 12</span>
-            <span class="user"><i class="fas fa-user-circle"></i> Иванов И.</span>
+            <span><i class="fas fa-bell" aria-hidden="true"></i> <span id="notif-count" aria-label="Уведомлений: 8">8</span></span>
+            <span class="user"><i class="fas fa-user-circle" aria-hidden="true"></i> <span id="user-name">Иванов И.</span></span>
+            <div class="controls">
+                <button id="theme-toggle" title="Сменить тему" aria-label="Переключить на тёмную тему">🌙</button>
+                <button id="lang-toggle" title="Сменить язык" aria-label="Switch language to Tatar">🇷🇺</button>
+            </div>
         </div>
     </header>
 
     <!-- ===== НАВИГАЦИЯ ===== -->
-    <nav class="nav">
-        <a href="#" class="active"><i class="fas fa-home"></i> Главная</a>
-        <a href="#"><i class="fas fa-file-alt"></i> Заявления</a>
-        <a href="#"><i class="fas fa-credit-card"></i> Платежи</a>
-        <a href="#"><i class="fas fa-id-card"></i> Документы</a>
-        <!-- странные пункты — выглядят как обычные -->
-        <a href="#" class="strange"><i class="fas fa-fish"></i> Рыбный день</a>
-        <a href="#" class="strange"><i class="fas fa-cow"></i> Выдача слонов</a>
+    <nav class="nav" aria-label="Основное меню">
+        <a href="#" class="active" id="nav-home"><i class="fas fa-home" aria-hidden="true"></i> <span>Главная</span></a>
+        <a href="#" id="nav-apps"><i class="fas fa-file-alt" aria-hidden="true"></i> <span>Заявления</span></a>
+        <a href="#" id="nav-pay"><i class="fas fa-credit-card" aria-hidden="true"></i> <span>Платежи</span></a>
+        <a href="#" id="nav-docs"><i class="fas fa-id-card" aria-hidden="true"></i> <span>Документы</span></a>
+        <a href="#" class="cat" id="nav-cat"><i class="fas fa-cat" aria-hidden="true"></i> <span>Кот Мабой</span></a>
     </nav>
 
     <!-- ===== БАННЕР ===== -->
-    <div class="banner">
+    <section class="banner" aria-label="Приветственный баннер">
         <div>
-            <h1><i class="fas fa-star"></i> 1 апреля — особенный день</h1>
-            <p>В честь праздника все услуги временно удваиваются. Успейте воспользоваться!</p>
-            <button class="btn" onclick="alert('🎉 Скидка 200% активирована! (шутка)')">
-                <i class="fas fa-gift"></i> Получить бонус
+            <h1 id="banner-title"><i class="fas fa-star" aria-hidden="true"></i> Добро пожаловать!</h1>
+            <p id="banner-desc">Получите государственные услуги быстро и удобно. Все сервисы работают в штатном режиме.</p>
+            <button class="btn" id="banner-btn" aria-label="Перейти ко всем услугам">
+                <i class="fas fa-arrow-right" aria-hidden="true"></i> <span>Все услуги</span>
             </button>
         </div>
-        <div class="banner-emoji">🎭 1.04</div>
-    </div>
+        <div class="banner-emoji" aria-hidden="true">🇷🇺</div>
+    </section>
 
     <!-- ===== УСЛУГИ ===== -->
-    <div class="services">
-        <div class="service" onclick="alert('📄 Заявление на невесомость принято!')">
-            <i class="fas fa-paper-plane"></i>
-            <div class="title">Заказать невесомость</div>
-            <div class="desc">с 12:00 до 12:01</div>
-        </div>
-        <div class="service" onclick="alert('🤖 Робот-чиновник уже пишет стихи...')">
-            <i class="fas fa-robot"></i>
-            <div class="title">Робот-чиновник</div>
-            <div class="desc">отвечает стихами</div>
-        </div>
-        <div class="service" onclick="alert('☀️ Погода по желанию активирована!')">
-            <i class="fas fa-cloud-sun"></i>
-            <div class="title">Погода по желанию</div>
-            <div class="desc">+ дождь из конфет</div>
-        </div>
-        <div class="service" onclick="alert('🍕 Пицца по полису заказана!')">
-            <i class="fas fa-pizza-slice"></i>
-            <div class="title">Пицца по полису</div>
-            <div class="desc">ОМС + ананас</div>
-        </div>
-        <div class="service" onclick="alert('🐉 Лицензия на дракона оформлена!')">
-            <i class="fas fa-dragon"></i>
-            <div class="title">Лицензия на дракона</div>
-            <div class="desc">огнеопасно</div>
-        </div>
-        <div class="service" onclick="alert('✒️ Перьевая ручка выдана!')">
-            <i class="fas fa-feather"></i>
-            <div class="title">Перьевая ручка</div>
-            <div class="desc">для подписей</div>
-        </div>
-    </div>
+    <section class="services" id="services" aria-label="Популярные услуги">
+        <article class="service blue" tabindex="0" role="button" aria-label="Медицина: Больницы, поликлиники, запись" data-href="https://yandex.ru/maps/?text=%D0%B1%D0%BB%D0%B8%D0%B6%D0%B0%D0%B9%D1%88%D0%B0%D1%8F%20%D0%B1%D0%BE%D0%BB%D1%8C%D0%BD%D0%B8%D1%86%D0%B0">
+            <i class="fas fa-hospital" aria-hidden="true"></i>
+            <h3 class="title" id="serv1-title">Медицина</h3>
+            <p class="desc" id="serv1-desc">Больницы, поликлиники, запись</p>
+            <span class="cat-hint" aria-hidden="true">❤️</span>
+        </article>
+
+        <article class="service red" tabindex="0" role="button" aria-label="Образование: Школы, вузы, курсы" data-href="https://www.gosuslugi.ru/600426/1/form">
+            <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+            <h3 class="title" id="serv2-title">Образование</h3>
+            <p class="desc" id="serv2-desc">Школы, вузы, курсы</p>
+            <span class="cat-hint" aria-hidden="true">🔥</span>
+        </article>
+
+        <article class="service white" tabindex="0" role="button" aria-label="Налоги: Декларации, вычеты" data-href="https://lkfl2.nalog.ru/lkfl/">
+            <i class="fas fa-calculator" aria-hidden="true"></i>
+            <h3 class="title" id="serv3-title">Налоги</h3>
+            <p class="desc" id="serv3-desc">Декларации, вычеты</p>
+            <span class="cat-hint" aria-hidden="true">👍</span>
+        </article>
+
+        <article class="service blue" tabindex="0" role="button" aria-label="ЖКХ: Платежи, показания" data-href="https://www.gosuslugi.ru/600368/1/form">
+            <i class="fas fa-home" aria-hidden="true"></i>
+            <h3 class="title" id="serv4-title">ЖКХ</h3>
+            <p class="desc" id="serv4-desc">Платежи, показания</p>
+            <span class="cat-hint" aria-hidden="true">❤️</span>
+        </article>
+
+        <article class="service red" tabindex="0" role="button" aria-label="Транспорт: Права, авто, штрафы" data-href="https://www.gosuslugi.ru/600321/1/form">
+            <i class="fas fa-car" aria-hidden="true"></i>
+            <h3 class="title" id="serv5-title">Транспорт</h3>
+            <p class="desc" id="serv5-desc">Права, авто, штрафы</p>
+            <span class="cat-hint" aria-hidden="true">🔥</span>
+        </article>
+
+        <article class="service white" tabindex="0" role="button" aria-label="Загранпаспорт: Оформление, замена" data-href="https://www.gosuslugi.ru/600102/1/form">
+            <i class="fas fa-passport" aria-hidden="true"></i>
+            <h3 class="title" id="serv6-title">Загранпаспорт</h3>
+            <p class="desc" id="serv6-desc">Оформление, замена</p>
+            <span class="cat-hint" aria-hidden="true">👍</span>
+        </article>
+    </section>
 
     <!-- ===== НОВОСТИ ===== -->
-    <div class="news">
+    <section class="news" aria-label="Новости кота Мабоя">
         <div class="news-header">
-            <h3><i class="fas fa-newspaper"></i> Новости ведомства</h3>
-            <a href="#">Все новости</a>
+            <h3 id="news-title"><i class="fas fa-newspaper" aria-hidden="true"></i> Новости</h3>
+            <a href="#" id="news-all" aria-label="Посмотреть все новости">Все новости</a>
         </div>
-        <div class="news-item">
-            <i class="fas fa-crown"></i>
-            <span class="label">Указ</span>
-            <span class="text">Чиновники переходят на костюмы супергероев</span>
-            <span class="date">1 апр</span>
-        </div>
-        <div class="news-item">
-            <i class="fas fa-coffee"></i>
-            <span class="label">Сервис</span>
-            <span class="text">Заявки теперь принимаются через эспрессо-машину</span>
-            <span class="date">1 апр</span>
-        </div>
-        <div class="news-item">
-            <i class="fas fa-guitar"></i>
-            <span class="label">Культура</span>
-            <span class="text">Гимн РФ разрешили исполнять на балалайке онлайн</span>
-            <span class="date">1 апр</span>
-        </div>
-    </div>
+
+        <article class="news-item">
+            <i class="fas fa-cat" aria-hidden="true"></i>
+            <span class="label" id="news1-label">Кот Мабой</span>
+            <span class="text" id="news1-text">Снова спрятался под машину — испугался выходить на улицу</span>
+            <time class="date" id="news1-date" datetime="2026-06-18">сегодня</time>
+        </article>
+
+        <article class="news-item">
+            <i class="fas fa-cat" aria-hidden="true"></i>
+            <span class="label" id="news2-label">Кот Мабой</span>
+            <span class="text" id="news2-text">Покусал курьера за палец, но потом извинился</span>
+            <time class="date" id="news2-date" datetime="2026-06-17">вчера</time>
+        </article>
+
+        <article class="news-item">
+            <i class="fas fa-cat" aria-hidden="true"></i>
+            <span class="label" id="news3-label">Кот Мабой</span>
+            <span class="text" id="news3-text">Вышел на улицу, увидел голубя — убежал обратно в подъезд</span>
+            <time class="date" id="news3-date" datetime="2026-06-16">2 дня назад</time>
+        </article>
+    </section>
 
     <!-- ===== ПОДВАЛ ===== -->
     <footer class="footer">
         <div class="copy">
-            <i class="fas fa-smile-wink"></i> © Госуслуги, 2026
+            <i class="fas fa-cat" aria-hidden="true"></i> <span id="footer-copy">© Госуслуги РФ, 2026</span>
         </div>
-        <div>
-            <a href="#"><i class="fas fa-question-circle"></i> Помощь</a>
-            <a href="#"><i class="fas fa-shield-alt"></i> Безопасность</a>
-            <a href="#"><i class="fas fa-cookie-bite"></i> Печенье</a>
-        </div>
+        <nav aria-label="Дополнительные ссылки">
+            <a href="#" id="footer-help"><i class="fas fa-question-circle" aria-hidden="true"></i> Помощь</a>
+            <a href="#" id="footer-security"><i class="fas fa-shield-alt" aria-hidden="true"></i> Безопасность</a>
+            <a href="#" id="footer-cat"><i class="fas fa-cat" aria-hidden="true"></i> Кот Мабой</a>
+        </nav>
     </footer>
 
 </div>
+
+<script>
+    (function() {
+        'use strict';
+
+        // ============================================================
+        // 1. ТЕМНАЯ / СВЕТЛАЯ ТЕМА (с сохранением в localStorage)
+        // ============================================================
+        const themeToggle = document.getElementById('theme-toggle');
+        let darkMode = localStorage.getItem('theme') === 'dark';
+
+        function applyTheme() {
+            document.body.className = darkMode ? 'dark' : 'light';
+            themeToggle.textContent = darkMode ? '☀️' : '🌙';
+            themeToggle.setAttribute('aria-label', darkMode ? 'Переключить на светлую тему' : 'Переключить на тёмную тему');
+            localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+        }
+
+        // Применяем тему сразу при загрузке
+        applyTheme();
+
+        themeToggle.addEventListener('click', () => {
+            darkMode = !darkMode;
+            applyTheme();
+        });
+
+        // ============================================================
+        // 2. ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА (РУССКИЙ / ТАТАРСКИЙ)
+        // ============================================================
+        const langToggle = document.getElementById('lang-toggle');
+        let isTatar = localStorage.getItem('lang') === 'tt';
+
+        const translations = {
+            // Шапка
+            'logo-text': { ru: 'Госуслуги', tt: 'Дәүләт хезмәтләре' },
+            'logo-small': { ru: 'РФ', tt: 'РФ' },
+            'user-name': { ru: 'Иванов И.', tt: 'Иванов И.' },
+            'notif-count': { ru: '8', tt: '8' },
+
+            // Навигация
+            'nav-home': { ru: 'Главная', tt: 'Баш бит' },
+            'nav-apps': { ru: 'Заявления', tt: 'Гаризалар' },
+            'nav-pay': { ru: 'Платежи', tt: 'Түләүләр' },
+            'nav-docs': { ru: 'Документы', tt: 'Документлар' },
+            'nav-cat': { ru: 'Кот Мабой', tt: 'Мабой мәче' },
+
+            // Баннер
+            'banner-title': { ru: 'Добро пожаловать!', tt: 'Рәхим итегез!' },
+            'banner-desc': { ru: 'Получите государственные услуги быстро и удобно. Все сервисы работают в штатном режиме.', tt: 'Дәүләт хезмәтләрен тиз һәм уңайлы алыгыз. Барлык сервислар гади режимда эшли.' },
+            'banner-btn': { ru: 'Все услуги', tt: 'Барлык хезмәтләр' },
+
+            // Услуги
+            'serv1-title': { ru: 'Медицина', tt: 'Медицина' },
+            'serv1-desc': { ru: 'Больницы, поликлиники, запись', tt: 'Шифаханәләр, поликлиникалар, язылу' },
+            'serv2-title': { ru: 'Образование', tt: 'Мәгариф' },
+            'serv2-desc': { ru: 'Школы, вузы, курсы', tt: 'Мәктәпләр, югары уку йортлары, курслар' },
+            'serv3-title': { ru: 'Налоги', tt: 'Салымнар' },
+            'serv3-desc': { ru: 'Декларации, вычеты', tt: 'Декларацияләр, кичектерүләр' },
+            'serv4-title': { ru: 'ЖКХ', tt: 'ТКХ' },
+            'serv4-desc': { ru: 'Платежи, показания', tt: 'Түләүләр, күрсәткечләр' },
+            'serv5-title': { ru: 'Транспорт', tt: 'Транспорт' },
+            'serv5-desc': { ru: 'Права, авто, штрафы', tt: 'Хокуклар, авто, штрафлар' },
+            'serv6-title': { ru: 'Загранпаспорт', tt: 'Чит ил паспорты' },
+            'serv6-desc': { ru: 'Оформление, замена', tt: 'Рәсмиләштерү, алмаштыру' },
+
+            // Новости
+            'news-title': { ru: 'Новости', tt: 'Яңалыклар' },
+            'news-all': { ru: 'Все новости', tt: 'Барлык яңалыклар' },
+            'news1-label': { ru: 'Кот Мабой', tt: 'Мабой мәче' },
+            'news1-text': { ru: 'Снова спрятался под машину — испугался выходить на улицу', tt: 'Тагын машина астына качты — урамга чыгарга куркып' },
+            'news1-date': { ru: 'сегодня', tt: 'бүген' },
+            'news2-label': { ru: 'Кот Мабой', tt: 'Мабой мәче' },
+            'news2-text': { ru: 'Покусал курьера за палец, но потом извинился', tt: 'Курьерның бармагын тешләде, ләкин соңыннан гафу үтенде' },
+            'news2-date': { ru: 'вчера', tt: 'кичә' },
+            'news3-label': { ru: 'Кот Мабой', tt: 'Мабой мәче' },
+            'news3-text': { ru: 'Вышел на улицу, увидел голубя — убежал обратно в подъезд', tt: 'Урамга чыкты, күгәрчен күрде — подъездка кире качты' },
+            'news3-date': { ru: '2 дня назад', tt: '2 көн элек' },
+
+            // Подвал
+            'footer-copy': { ru: '© Госуслуги РФ, 2026', tt: '© Дәүләт хезмәтләре РФ, 2026' },
+            'footer-help': { ru: 'Помощь', tt: 'Ярдәм' },
+            'footer-security': { ru: 'Безопасность', tt: 'Иминлек' },
+            'footer-cat': { ru: 'Кот Мабой', tt: 'Мабой мәче' },
+        };
+
+        function updateLanguage(lang) {
+            // Обновляем текст по ID
+            for (const [id, text] of Object.entries(translations)) {
+                const el = document.getElementById(id);
+                if (!el) continue;
+
+                if (id === 'banner-btn') {
+                    // Сохраняем иконку и обновляем текст
+                    const icon = el.querySelector('i.fa-arrow-right');
+                    el.innerHTML = '';
+                    if (icon) el.appendChild(icon);
+                    el.appendChild(document.createTextNode(' ' + text[lang]));
+                } else if (id.startsWith('nav-')) {
+                    // Обновляем span внутри ссылки навигации
+                    const span = el.querySelector('span');
+                    if (span) span.textContent = text[lang];
+                } else {
+                    el.textContent = text[lang];
+                }
+            }
+
+            // Обновляем атрибуты lang и aria-label
+            document.documentElement.lang = lang === 'tt' ? 'tt' : 'ru';
+            langToggle.textContent = isTatar ? '🇹🇷' : '🇷🇺';
+            langToggle.setAttribute('aria-label', isTatar ? 'Switch language to Russian' : 'Телне татарчага күчерү');
+            
+            // Сохраняем выбор
+            localStorage.setItem('lang', lang);
+        }
+
+        function applyInitialLanguage() {
+            updateLanguage(isTatar ? 'tt' : 'ru');
+        }
+
+        applyInitialLanguage();
+
+        langToggle.addEventListener('click', () => {
+            isTatar = !isTatar;
+            updateLanguage(isTatar ? 'tt' : 'ru');
+        });
+
+        // ============================================================
+        // 3. ДЕЛЕГИРОВАНИЕ СОБЫТИЙ ДЛЯ КАРТОЧЕК УСЛУГ
+        // ============================================================
+        const servicesContainer = document.getElementById('services');
+        if (servicesContainer) {
+            servicesContainer.addEventListener('click', (event) => {
+                const serviceCard = event.target.closest('.service');
+                if (serviceCard && serviceCard.dataset.href) {
+                    window.open(serviceCard.dataset.href, '_blank', 'noopener,noreferrer');
+                }
+            });
+
+            // Добавляем поддержку клавиатуры (Enter/Space)
+            servicesContainer.addEventListener('keydown', (event) => {
+                const serviceCard = event.target.closest('.service');
+                if (serviceCard && (event.key === 'Enter' || event.key === ' ')) {
+                    event.preventDefault();
+                    if (serviceCard.dataset.href) {
+                        window.open(serviceCard.dataset.href, '_blank', 'noopener,noreferrer');
+                    }
+                }
+            });
+        }
+
+        // Делаем кнопку "Все услуги" в баннере рабочей
+        const bannerBtn = document.getElementById('banner-btn');
+        if (bannerBtn) {
+            bannerBtn.addEventListener('click', () => {
+                document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+
+    })();
+</script>
 
 </body>
 </html>
