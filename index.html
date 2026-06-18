@@ -231,18 +231,18 @@
                 w: 28,
                 h: 28,
                 vy: 0,
-                gravity: 0.38,
-                jumpPower: -10.5,
+                gravity: 0.42,
+                jumpPower: -11.2,
                 grounded: false,
                 rotation: 0,
-                rotSpeed: 0.075,
+                rotSpeed: 0.085,
                 isJumping: false
             };
 
             // --- FLAPPY ---
             const flappy = {
-                gravity: 0.2,
-                jumpPower: -6.0,
+                gravity: 0.25,
+                jumpPower: -6.8,
                 pipeWidth: 0,
                 pipeGap: 0,
                 pipes: [],
@@ -272,14 +272,14 @@
             function spawnJumpParticles(x, y) {
                 for (let i = 0; i < 15; i++) {
                     const angle = Math.random() * Math.PI * 2;
-                    const speed2 = Math.random() * 3 + 1;
+                    const speed2 = Math.random() * 4 + 1.5;
                     particles.push({
                         x: x,
                         y: y,
                         vx: Math.cos(angle) * speed2,
-                        vy: Math.sin(angle) * speed2 - 2,
+                        vy: Math.sin(angle) * speed2 - 2.5,
                         life: 1,
-                        decay: Math.random() * 0.02 + 0.01,
+                        decay: Math.random() * 0.025 + 0.015,
                         size: Math.random() * 4 + 2,
                         color: `rgba(255, 255, 255, ${0.3 + Math.random() * 0.3})`
                     });
@@ -289,13 +289,13 @@
             let obstacles = [];
             let score = 0;
             let frameCounter = 0;
-            let speed = 4.5;
-            const MIN_GAP = 90;
-            const MAX_GAP = 160;
-            let nextObstacleCounter = 80;
+            let speed = 5.5;
+            const MIN_GAP = 70;
+            const MAX_GAP = 130;
+            let nextObstacleCounter = 60;
             let modeSwitchCooldown = 0;
             let flappyDuration = 0;
-            const FLAPPY_DURATION = 600;
+            const FLAPPY_DURATION = 500;
             let flappyTimer = 0;
             let gameSpeedMultiplier = 1;
             let isGameActive = false;
@@ -313,7 +313,7 @@
                 GROUND_Y = H - Math.min(H * 0.16, 90);
                 PLAYER_SIZE = Math.min(W * 0.055, 48, H * 0.09);
                 if (PLAYER_SIZE < 22) PLAYER_SIZE = 22;
-                BASE_SPEED = Math.max(3.2, W * 0.0065);
+                BASE_SPEED = Math.max(4.5, W * 0.009);
                 player.x = Math.min(W * 0.12, 100);
                 player.y = GROUND_Y - PLAYER_SIZE;
                 player.w = PLAYER_SIZE;
@@ -348,7 +348,7 @@
                 frameCounter = 0;
                 gameSpeedMultiplier = 1;
                 speed = BASE_SPEED;
-                nextObstacleCounter = Math.floor(Math.random() * 60) + 50;
+                nextObstacleCounter = Math.floor(Math.random() * 40) + 30;
                 flappyActive = false;
                 flappyTimer = 0;
                 flappyDuration = 0;
@@ -370,12 +370,12 @@
                 isGameActive = false;
                 for (let i = 0; i < 30; i++) {
                     const angle = Math.random() * Math.PI * 2;
-                    const speed2 = Math.random() * 6 + 2;
+                    const speed2 = Math.random() * 8 + 3;
                     particles.push({
                         x: player.x + PLAYER_SIZE / 2,
                         y: player.y + PLAYER_SIZE / 2,
                         vx: Math.cos(angle) * speed2,
-                        vy: Math.sin(angle) * speed2 - 3,
+                        vy: Math.sin(angle) * speed2 - 4,
                         life: 1,
                         decay: Math.random() * 0.015 + 0.005,
                         size: Math.random() * 6 + 2,
@@ -443,10 +443,10 @@
                 flappyDuration = FLAPPY_DURATION;
                 flappyStartScore = Math.floor(score);
                 
-                gameSpeedMultiplier = 0.35;
+                gameSpeedMultiplier = 0.4;
                 speed = BASE_SPEED * gameSpeedMultiplier;
                 player.y = GROUND_Y - PLAYER_SIZE * 4.5;
-                player.vy = -1.5;
+                player.vy = -2;
                 player.grounded = false;
                 justExitedFlappy = false;
                 updateModeIndicator();
@@ -454,7 +454,7 @@
                 modeSwitchCooldown = 30;
                 for (let i = 0; i < 20; i++) {
                     const angle = Math.random() * Math.PI * 2;
-                    const speed2 = Math.random() * 5 + 2;
+                    const speed2 = Math.random() * 6 + 2;
                     particles.push({
                         x: W / 2,
                         y: H / 2,
@@ -482,14 +482,14 @@
                 player.vy = 0;
                 player.grounded = true;
                 justExitedFlappy = true;
-                exitFlappyCooldown = 90;
+                exitFlappyCooldown = 70;
                 updateModeIndicator();
                 updateScoreDisplay();
                 modeSwitchCooldown = 60;
                 obstacles = [];
                 for (let i = 0; i < 20; i++) {
                     const angle = Math.random() * Math.PI * 2;
-                    const speed2 = Math.random() * 5 + 2;
+                    const speed2 = Math.random() * 6 + 2;
                     particles.push({
                         x: W / 2,
                         y: H / 2,
@@ -595,14 +595,14 @@
                     const p = particles[i];
                     p.x += p.vx;
                     p.y += p.vy;
-                    p.vy += 0.05;
+                    p.vy += 0.08;
                     p.life -= p.decay;
                     if (p.life <= 0) {
                         particles.splice(i, 1);
                     }
                 }
 
-                groundOffset = (groundOffset + speed * 0.5) % 80;
+                groundOffset = (groundOffset + speed * 0.6) % 80;
 
                 if (currentMode === MODE.FLAPPY) {
                     // --- FLAPPY ФИЗИКА ---
@@ -610,9 +610,9 @@
                     player.y += player.vy;
 
                     if (player.vy < -1) {
-                        player.rotation -= 0.03;
+                        player.rotation -= 0.035;
                     } else if (player.vy > 1) {
-                        player.rotation += 0.02;
+                        player.rotation += 0.025;
                     }
                     if (player.rotation > 0.4) player.rotation = 0.4;
                     if (player.rotation < -0.6) player.rotation = -0.6;
@@ -638,7 +638,7 @@
 
                         const px = player.x, py = player.y, sz = PLAYER_SIZE;
                         const pw = flappy.pipeWidth;
-                        const tolerance = 4;
+                        const tolerance = 3;
                         if (px + sz - tolerance > pipe.x && px + tolerance < pipe.x + pw) {
                             if (py + tolerance < pipe.topHeight || py + sz - tolerance > pipe.bottomY) {
                                 gameOver();
@@ -655,7 +655,7 @@
 
                     if (--nextObstacleCounter <= 0) {
                         spawnFlappyPipe();
-                        nextObstacleCounter = Math.floor(Math.random() * 60) + 80;
+                        nextObstacleCounter = Math.floor(Math.random() * 50) + 60;
                     }
 
                     flappyTimer++;
@@ -688,7 +688,7 @@
                         const target = Math.round(player.rotation / Math.PI) * Math.PI;
                         const diff = target - player.rotation;
                         if (Math.abs(diff) > 0.01) {
-                            player.rotation += diff * 0.12;
+                            player.rotation += diff * 0.15;
                         } else {
                             player.rotation = target;
                         }
@@ -700,7 +700,7 @@
 
                         if (ob.x + ob.w < 0) {
                             obstacles.splice(i, 1);
-                            score += 10;
+                            score += 15;
                             updateScoreDisplay();
                             continue;
                         }
@@ -717,18 +717,18 @@
                     if (--nextObstacleCounter <= 0) {
                         let canSpawn = true;
                         for (let ob of obstacles) {
-                            if (ob.x > W - 180) { canSpawn = false; break; }
+                            if (ob.x > W - 160) { canSpawn = false; break; }
                         }
                         if (canSpawn) {
                             spawnObstacle();
                             nextObstacleCounter = Math.floor(Math.random() * (MAX_GAP - MIN_GAP + 1)) + MIN_GAP;
-                            if (speed < 8) speed += 0.04;
+                            if (speed < 11) speed += 0.06;
                         } else {
-                            nextObstacleCounter = Math.floor(Math.random() * 18) + 8;
+                            nextObstacleCounter = Math.floor(Math.random() * 14) + 6;
                         }
                     }
 
-                    if (frameCounter % 3 === 0) {
+                    if (frameCounter % 2 === 0) {
                         score += 1;
                         updateScoreDisplay();
                     }
