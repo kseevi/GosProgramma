@@ -3,468 +3,475 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Госуслуги 1 апреля</title>
+    <title>Госуслуги</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
         }
 
         body {
             background: #f0f4f8;
             display: flex;
             justify-content: center;
-            padding: 2rem 1rem;
+            padding: 20px 16px;
         }
 
         .container {
             max-width: 1200px;
             width: 100%;
             background: white;
-            border-radius: 32px 32px 24px 24px;
-            box-shadow: 0 20px 40px rgba(0, 20, 40, 0.12);
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
             overflow: hidden;
-            border: 1px solid rgba(0, 70, 150, 0.08);
         }
 
+        /* ===== ШАПКА ===== */
         .header {
-            background: linear-gradient(145deg, #0a2a5e, #1a3f7a);
-            padding: 1rem 2rem;
+            background: #0047ab;
+            padding: 12px 32px;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 4px solid #ffd966;
+            border-bottom: 3px solid #ffd700;
         }
 
-        .logo-area {
+        .logo {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 12px;
         }
 
-        .logo-icon {
-            font-size: 2.2rem;
-            color: #ffd966;
-            background: rgba(255, 255, 255, 0.06);
-            padding: 0.3rem 0.6rem;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-        }
-
-        .logo-text {
+        .logo i {
+            font-size: 28px;
             color: white;
-            font-weight: 600;
-            font-size: 1.5rem;
-            letter-spacing: 0.3px;
         }
-        .logo-text span {
-            font-weight: 300;
-            color: #b6d0f0;
-            font-size: 0.9rem;
+
+        .logo span {
+            color: white;
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .logo small {
+            color: #b3d4ff;
+            font-size: 13px;
+            font-weight: 400;
             margin-left: 6px;
         }
 
-        .header-actions {
+        .header-right {
             display: flex;
             align-items: center;
-            gap: 1.5rem;
-            color: rgba(255,255,255,0.8);
-            font-size: 0.95rem;
+            gap: 24px;
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
         }
 
-        .header-actions i {
+        .header-right i {
             margin-right: 6px;
         }
 
-        .april-badge {
-            background: #e63e3e;
-            color: white;
-            font-weight: 700;
-            padding: 0.3rem 1.2rem;
-            border-radius: 40px;
-            font-size: 0.9rem;
-            box-shadow: 0 0 0 2px #ffb3b3;
-            animation: blink 1.8s infinite;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        .header-right .user {
+            background: rgba(255,255,255,0.12);
+            padding: 6px 16px;
+            border-radius: 20px;
+            cursor: default;
         }
 
-        @keyframes blink {
-            0% { background: #c92a2a; }
-            50% { background: #ff6b6b; box-shadow: 0 0 12px #ff8787; }
-            100% { background: #c92a2a; }
-        }
-
-        .nav-bar {
-            background: #eef3fa;
-            padding: 0.7rem 2rem;
+        /* ===== НАВИГАЦИЯ ===== */
+        .nav {
+            background: #f8fafc;
+            padding: 0 32px;
             display: flex;
             flex-wrap: wrap;
-            gap: 1.5rem 2.5rem;
-            border-bottom: 1px solid #cddae9;
+            gap: 8px 28px;
+            border-bottom: 1px solid #e2e8f0;
             align-items: center;
+            min-height: 52px;
         }
 
-        .nav-item {
+        .nav a {
+            color: #1a3a6b;
+            text-decoration: none;
+            font-size: 14px;
             font-weight: 500;
-            color: #1f3a6b;
-            cursor: default;
+            padding: 14px 0;
+            border-bottom: 3px solid transparent;
+            transition: 0.15s;
             display: flex;
             align-items: center;
             gap: 6px;
-            padding: 0.3rem 0.1rem;
-            border-bottom: 2px solid transparent;
-            transition: 0.1s;
-        }
-        .nav-item i {
-            color: #2b4f8a;
-            width: 1.2rem;
-        }
-        .nav-item:hover {
-            border-bottom-color: #ffb347;
-            color: #0b1d3a;
-        }
-        .nav-item.joke {
-            background: #ffe1b0;
-            padding: 0.2rem 1rem;
-            border-radius: 30px;
-            border-bottom: none;
-            color: #7a4a1a;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-        .nav-item.joke i {
-            color: #c76b1a;
         }
 
+        .nav a i {
+            color: #3b6a9e;
+            font-size: 15px;
+        }
+
+        .nav a:hover {
+            border-bottom-color: #0047ab;
+        }
+
+        .nav a.active {
+            border-bottom-color: #0047ab;
+            color: #0047ab;
+        }
+
+        /* странные пункты — но выглядят как обычные */
+        .nav a.strange {
+            color: #1a3a6b;
+        }
+        .nav a.strange i {
+            color: #3b6a9e;
+        }
+
+        /* ===== БАННЕР ===== */
         .banner {
-            background: linear-gradient(135deg, #dce6f5, #c2d6ed);
-            padding: 2rem 2.5rem;
+            background: linear-gradient(135deg, #e8f0fe, #d6e4f5);
+            padding: 28px 32px;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px dashed #3b6aa5;
+            border-bottom: 1px solid #cbdae9;
         }
 
-        .banner-text h1 {
-            font-size: 2rem;
+        .banner h1 {
+            font-size: 26px;
             font-weight: 700;
-            color: #0a2652;
+            color: #002b5c;
         }
-        .banner-text h1 i {
-            color: #d45a1a;
+
+        .banner h1 i {
+            color: #f5a623;
             margin-right: 12px;
         }
-        .banner-text p {
-            font-size: 1.1rem;
+
+        .banner p {
+            font-size: 15px;
             color: #1f3f6b;
-            max-width: 500px;
             margin-top: 6px;
+            max-width: 550px;
         }
-        .banner-text .fake-btn {
-            background: #f5c542;
-            color: #1d3b5e;
+
+        .banner .btn {
+            background: #0047ab;
+            color: white;
             border: none;
-            padding: 0.8rem 2.2rem;
-            border-radius: 60px;
-            font-weight: 700;
-            font-size: 1rem;
-            margin-top: 16px;
+            padding: 12px 32px;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.15s;
             display: inline-block;
-            box-shadow: 0 4px 0 #b37b2a;
-            transition: 0.05s linear;
-            cursor: default;
+            margin-top: 12px;
+            box-shadow: 0 2px 6px rgba(0, 71, 171, 0.25);
         }
-        .banner-text .fake-btn i {
-            margin-right: 10px;
+
+        .banner .btn:hover {
+            background: #003a8f;
+            box-shadow: 0 4px 12px rgba(0, 71, 171, 0.35);
         }
-        .banner-text .fake-btn:active {
-            transform: translateY(4px);
-            box-shadow: none;
+
+        .banner .btn i {
+            margin-right: 8px;
         }
 
         .banner-emoji {
-            font-size: 4.5rem;
-            background: rgba(255,255,240,0.5);
-            padding: 0.5rem 2rem;
-            border-radius: 120px;
-            backdrop-filter: blur(2px);
-            border: 2px solid #f7d97e;
+            font-size: 48px;
+            background: rgba(255,255,255,0.5);
+            padding: 8px 28px;
+            border-radius: 40px;
+            border: 2px solid #f5c542;
         }
 
-        .grid {
+        /* ===== СЕТКА УСЛУГ ===== */
+        .services {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1.8rem;
-            padding: 2.5rem 2rem;
-            background: #fafcfd;
-        }
-
-        .card {
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+            padding: 32px;
             background: white;
-            border-radius: 24px;
-            padding: 1.8rem 0.8rem 1.2rem;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0, 30, 50, 0.06);
-            border: 1px solid #dfe9f2;
-            transition: all 0.15s;
-            cursor: default;
-            position: relative;
-        }
-        .card:hover {
-            transform: translateY(-4px);
-            border-color: #f5b342;
-            box-shadow: 0 12px 24px rgba(0, 40, 70, 0.08);
-        }
-        .card i {
-            font-size: 2.8rem;
-            color: #1d4b7a;
-            margin-bottom: 0.5rem;
-        }
-        .card .title {
-            font-weight: 600;
-            font-size: 1rem;
-            color: #0b2b4f;
-        }
-        .card .sub {
-            font-size: 0.75rem;
-            color: #576f8b;
-            margin-top: 6px;
-            border-top: 1px dashed #cbdae7;
-            padding-top: 8px;
-        }
-        .card .tag {
-            position: absolute;
-            top: -10px;
-            right: -6px;
-            background: #f03e3e;
-            color: white;
-            font-size: 0.6rem;
-            font-weight: 700;
-            padding: 0.2rem 0.8rem;
-            border-radius: 30px;
-            transform: rotate(6deg);
-            box-shadow: 0 2px 8px rgba(200, 0, 0, 0.2);
         }
 
+        .service {
+            background: #f9fbfd;
+            border-radius: 12px;
+            padding: 24px 12px 18px;
+            text-align: center;
+            border: 1px solid #e8edf4;
+            transition: 0.15s;
+            cursor: pointer;
+        }
+
+        .service:hover {
+            border-color: #0047ab;
+            background: #f4f8ff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 71, 171, 0.08);
+        }
+
+        .service i {
+            font-size: 32px;
+            color: #0047ab;
+            margin-bottom: 10px;
+        }
+
+        .service .title {
+            font-weight: 600;
+            font-size: 14px;
+            color: #002b5c;
+        }
+
+        .service .desc {
+            font-size: 12px;
+            color: #6b7f96;
+            margin-top: 4px;
+        }
+
+        /* ===== НОВОСТИ ===== */
         .news {
-            background: #e8eff8;
-            padding: 1.8rem 2rem;
-            border-top: 1px solid #b8cee6;
-            border-bottom: 1px solid #b8cee6;
+            background: #f7faff;
+            padding: 20px 32px 28px;
+            border-top: 1px solid #e2e8f0;
         }
 
         .news-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.2rem;
+            margin-bottom: 16px;
         }
+
         .news-header h3 {
-            color: #0e2f57;
+            font-size: 18px;
+            color: #002b5c;
             font-weight: 600;
-            font-size: 1.3rem;
         }
+
         .news-header h3 i {
-            color: #c95b1a;
             margin-right: 10px;
+            color: #f5a623;
         }
-        .news-header .fake-link {
-            color: #2d6a9f;
+
+        .news-header a {
+            color: #0047ab;
+            font-size: 14px;
+            text-decoration: none;
             font-weight: 500;
-            border-bottom: 1px dotted #7fa3c9;
+        }
+
+        .news-item {
+            background: white;
+            padding: 14px 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            border-left: 4px solid #0047ab;
+            margin-bottom: 8px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+            transition: 0.1s;
             cursor: default;
         }
 
-        .news-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-        }
-        .news-item {
-            background: white;
-            padding: 0.7rem 1.2rem;
-            border-radius: 60px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border-left: 6px solid #edb13b;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.02);
-        }
-        .news-item i {
-            color: #cc6b2b;
-            width: 1.6rem;
-        }
-        .news-item .label {
-            font-weight: 600;
-            color: #043162;
-        }
-        .news-item .snippet {
-            color: #334e6e;
-            font-size: 0.9rem;
-        }
-        .news-item .badge {
-            margin-left: auto;
-            background: #f7d7a0;
-            padding: 0.1rem 1rem;
-            border-radius: 50px;
-            font-size: 0.7rem;
-            color: #4f2e0a;
-            font-weight: 600;
+        .news-item:hover {
+            background: #fafcff;
         }
 
+        .news-item i {
+            color: #0047ab;
+            width: 22px;
+            font-size: 16px;
+        }
+
+        .news-item .label {
+            font-weight: 600;
+            color: #002b5c;
+            font-size: 14px;
+            min-width: 70px;
+        }
+
+        .news-item .text {
+            color: #2d4a6e;
+            font-size: 14px;
+        }
+
+        .news-item .date {
+            margin-left: auto;
+            color: #8a9bb0;
+            font-size: 13px;
+        }
+
+        /* ===== ПОДВАЛ ===== */
         .footer {
-            background: #0d2447;
-            color: #b6cee8;
-            padding: 1.8rem 2rem;
+            background: #002b5c;
+            color: #b3cce6;
+            padding: 20px 32px;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.9rem;
-            border-top: 4px solid #f5b342;
-        }
-        .footer a {
-            color: #fad47a;
-            text-decoration: none;
-            border-bottom: 1px dotted #735e2e;
-            cursor: default;
-        }
-        .footer .april-foot {
-            background: #2b4a70;
-            padding: 0.2rem 1.4rem;
-            border-radius: 60px;
-            color: #f9eec1;
-            font-weight: 500;
+            font-size: 13px;
+            border-top: 3px solid #ffd700;
         }
 
-        @media (max-width: 700px) {
-            .header { flex-direction: column; align-items: start; gap: 12px; }
-            .banner { flex-direction: column; align-items: start; gap: 20px; }
-            .banner-emoji { align-self: center; }
-            .grid { grid-template-columns: 1fr 1fr; }
-            .news-item { flex-wrap: wrap; border-radius: 20px; }
+        .footer a {
+            color: #f5c542;
+            text-decoration: none;
+            margin-left: 20px;
+            cursor: pointer;
         }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer .copy {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* ===== АДАПТИВ ===== */
+        @media (max-width: 700px) {
+            .header { flex-direction: column; align-items: start; gap: 10px; padding: 16px; }
+            .nav { padding: 8px 16px; gap: 6px 16px; }
+            .banner { flex-direction: column; align-items: start; gap: 16px; padding: 20px; }
+            .banner-emoji { align-self: center; }
+            .services { grid-template-columns: 1fr 1fr; padding: 16px; gap: 12px; }
+            .news { padding: 16px; }
+            .news-item { flex-wrap: wrap; }
+            .news-item .date { margin-left: 0; }
+            .footer { flex-direction: column; gap: 12px; align-items: start; }
+            .footer a { margin-left: 0; margin-right: 16px; }
+        }
+
         @media (max-width: 480px) {
-            .grid { grid-template-columns: 1fr; }
+            .services { grid-template-columns: 1fr; }
+            .header-right { flex-wrap: wrap; gap: 10px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <div class="logo-area">
-                <div class="logo-icon"><i class="fas fa-landmark"></i></div>
-                <div class="logo-text">Госуслуги <span>· 1 апреля</span></div>
-            </div>
-            <div class="header-actions">
-                <span><i class="fas fa-user-circle"></i> Иванов И.И.</span>
-                <span><i class="fas fa-bell"></i> 12</span>
-                <div class="april-badge"><i class="fas fa-grin-squint-tears"></i> Шутка дня</div>
-            </div>
-        </header>
 
-        <nav class="nav-bar">
-            <span class="nav-item"><i class="fas fa-home"></i> Главная</span>
-            <span class="nav-item"><i class="fas fa-file-alt"></i> Заявления</span>
-            <span class="nav-item"><i class="fas fa-credit-card"></i> Платежи</span>
-            <span class="nav-item"><i class="fas fa-id-card"></i> Документы</span>
-            <span class="nav-item joke"><i class="fas fa-fish"></i> Рыбный день</span>
-            <span class="nav-item joke"><i class="fas fa-cow"></i> Выдача слонов</span>
-        </nav>
+<div class="container">
 
-        <div class="banner">
-            <div class="banner-text">
-                <h1><i class="fas fa-hat-wizard"></i> Внимание!</h1>
-                <p>С 1 апреля все услуги удваиваются. А ещё мы запустили <strong>«Госуслуги-Лайт»</strong> с голосовым управлением через чайник.</p>
-                <div class="fake-btn"><i class="fas fa-arrow-right"></i> Получить скидку 200%</div>
-            </div>
-            <div class="banner-emoji">🤡 1.04</div>
+    <!-- ===== ШАПКА ===== -->
+    <header class="header">
+        <div class="logo">
+            <i class="fas fa-landmark"></i>
+            <span>Госуслуги <small>· 1 апреля</small></span>
         </div>
-
-        <div class="grid">
-            <div class="card">
-                <i class="fas fa-paper-plane"></i>
-                <div class="title">Заказать невесомость</div>
-                <div class="sub">с 12:00 до 12:01</div>
-                <span class="tag">шутка</span>
-            </div>
-            <div class="card">
-                <i class="fas fa-robot"></i>
-                <div class="title">Робот-чиновник</div>
-                <div class="sub">отвечает стихами</div>
-                <span class="tag">🤖</span>
-            </div>
-            <div class="card">
-                <i class="fas fa-cloud-sun"></i>
-                <div class="title">Погода по желанию</div>
-                <div class="sub">+ дождь из конфет</div>
-                <span class="tag">🍬</span>
-            </div>
-            <div class="card">
-                <i class="fas fa-pizza-slice"></i>
-                <div class="title">Пицца по полису</div>
-                <div class="sub">ОМС + ананас</div>
-                <span class="tag">🍕</span>
-            </div>
-            <div class="card">
-                <i class="fas fa-dragon"></i>
-                <div class="title">Лицензия на дракона</div>
-                <div class="sub">огнеопасно</div>
-                <span class="tag">🐉</span>
-            </div>
-            <div class="card">
-                <i class="fas fa-feather"></i>
-                <div class="title">Перьевая ручка</div>
-                <div class="sub">для подписей</div>
-                <span class="tag">✒️</span>
-            </div>
+        <div class="header-right">
+            <span><i class="fas fa-bell"></i> 12</span>
+            <span class="user"><i class="fas fa-user-circle"></i> Иванов И.</span>
         </div>
+    </header>
 
-        <div class="news">
-            <div class="news-header">
-                <h3><i class="fas fa-newspaper"></i> Новости ведомства</h3>
-                <span class="fake-link"><i class="fas fa-calendar-day"></i> 1 апреля 2026</span>
-            </div>
-            <div class="news-list">
-                <div class="news-item">
-                    <i class="fas fa-crown"></i>
-                    <span class="label">Указ:</span>
-                    <span class="snippet">Все чиновники обязаны ходить в костюмах супергероев</span>
-                    <span class="badge">розыгрыш</span>
-                </div>
-                <div class="news-item">
-                    <i class="fas fa-coffee"></i>
-                    <span class="label">Сервис:</span>
-                    <span class="snippet">Кофейный портал — заявки принимаются через эспрессо</span>
-                    <span class="badge">1 апреля</span>
-                </div>
-                <div class="news-item">
-                    <i class="fas fa-guitar"></i>
-                    <span class="label">Культура:</span>
-                    <span class="snippet">Гимн России теперь можно исполнить на балалайке онлайн</span>
-                    <span class="badge">шутка</span>
-                </div>
-            </div>
+    <!-- ===== НАВИГАЦИЯ ===== -->
+    <nav class="nav">
+        <a href="#" class="active"><i class="fas fa-home"></i> Главная</a>
+        <a href="#"><i class="fas fa-file-alt"></i> Заявления</a>
+        <a href="#"><i class="fas fa-credit-card"></i> Платежи</a>
+        <a href="#"><i class="fas fa-id-card"></i> Документы</a>
+        <!-- странные пункты — выглядят как обычные -->
+        <a href="#" class="strange"><i class="fas fa-fish"></i> Рыбный день</a>
+        <a href="#" class="strange"><i class="fas fa-cow"></i> Выдача слонов</a>
+    </nav>
+
+    <!-- ===== БАННЕР ===== -->
+    <div class="banner">
+        <div>
+            <h1><i class="fas fa-star"></i> 1 апреля — особенный день</h1>
+            <p>В честь праздника все услуги временно удваиваются. Успейте воспользоваться!</p>
+            <button class="btn" onclick="alert('🎉 Скидка 200% активирована! (шутка)')">
+                <i class="fas fa-gift"></i> Получить бонус
+            </button>
         </div>
-
-        <footer class="footer">
-            <div>
-                <i class="fas fa-smile-wink"></i> © Госуслуги, 1 апреля 
-                <span style="margin-left: 10px; opacity:0.6;"><i class="fas fa-pepper-hot"></i> осторожно, юмор</span>
-            </div>
-            <div>
-                <span class="april-foot"><i class="fas fa-face-smile-tears"></i> Всё по-настоящему</span>
-                <span style="margin-left: 20px;"><a href="#"><i class="fas fa-question-circle"></i> Помощь</a></span>
-                <span style="margin-left: 12px;"><a href="#"><i class="fas fa-shield-alt"></i> Верификация</a></span>
-            </div>
-        </footer>
+        <div class="banner-emoji">🎭 1.04</div>
     </div>
+
+    <!-- ===== УСЛУГИ ===== -->
+    <div class="services">
+        <div class="service" onclick="alert('📄 Заявление на невесомость принято!')">
+            <i class="fas fa-paper-plane"></i>
+            <div class="title">Заказать невесомость</div>
+            <div class="desc">с 12:00 до 12:01</div>
+        </div>
+        <div class="service" onclick="alert('🤖 Робот-чиновник уже пишет стихи...')">
+            <i class="fas fa-robot"></i>
+            <div class="title">Робот-чиновник</div>
+            <div class="desc">отвечает стихами</div>
+        </div>
+        <div class="service" onclick="alert('☀️ Погода по желанию активирована!')">
+            <i class="fas fa-cloud-sun"></i>
+            <div class="title">Погода по желанию</div>
+            <div class="desc">+ дождь из конфет</div>
+        </div>
+        <div class="service" onclick="alert('🍕 Пицца по полису заказана!')">
+            <i class="fas fa-pizza-slice"></i>
+            <div class="title">Пицца по полису</div>
+            <div class="desc">ОМС + ананас</div>
+        </div>
+        <div class="service" onclick="alert('🐉 Лицензия на дракона оформлена!')">
+            <i class="fas fa-dragon"></i>
+            <div class="title">Лицензия на дракона</div>
+            <div class="desc">огнеопасно</div>
+        </div>
+        <div class="service" onclick="alert('✒️ Перьевая ручка выдана!')">
+            <i class="fas fa-feather"></i>
+            <div class="title">Перьевая ручка</div>
+            <div class="desc">для подписей</div>
+        </div>
+    </div>
+
+    <!-- ===== НОВОСТИ ===== -->
+    <div class="news">
+        <div class="news-header">
+            <h3><i class="fas fa-newspaper"></i> Новости ведомства</h3>
+            <a href="#">Все новости</a>
+        </div>
+        <div class="news-item">
+            <i class="fas fa-crown"></i>
+            <span class="label">Указ</span>
+            <span class="text">Чиновники переходят на костюмы супергероев</span>
+            <span class="date">1 апр</span>
+        </div>
+        <div class="news-item">
+            <i class="fas fa-coffee"></i>
+            <span class="label">Сервис</span>
+            <span class="text">Заявки теперь принимаются через эспрессо-машину</span>
+            <span class="date">1 апр</span>
+        </div>
+        <div class="news-item">
+            <i class="fas fa-guitar"></i>
+            <span class="label">Культура</span>
+            <span class="text">Гимн РФ разрешили исполнять на балалайке онлайн</span>
+            <span class="date">1 апр</span>
+        </div>
+    </div>
+
+    <!-- ===== ПОДВАЛ ===== -->
+    <footer class="footer">
+        <div class="copy">
+            <i class="fas fa-smile-wink"></i> © Госуслуги, 2026
+        </div>
+        <div>
+            <a href="#"><i class="fas fa-question-circle"></i> Помощь</a>
+            <a href="#"><i class="fas fa-shield-alt"></i> Безопасность</a>
+            <a href="#"><i class="fas fa-cookie-bite"></i> Печенье</a>
+        </div>
+    </footer>
+
+</div>
+
 </body>
 </html>
