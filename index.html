@@ -105,37 +105,197 @@
     }
     .login-btn:active { transform: scale(0.96); }
     .login-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+    /* ============ МОБИЛЬНАЯ ВЕРСИЯ ============ */
     .mobile-layout {
       width: 100%; max-width: 420px; background: var(--bg-primary);
-      border-radius: 48px; padding: 36px 24px 28px;
+      border-radius: 48px; padding: 24px 20px 100px;
       box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.05);
-      display: flex; flex-direction: column; gap: 28px; position: relative;
+      display: flex; flex-direction: column; gap: 20px; position: relative;
+      min-height: 700px; max-height: 90vh; overflow-y: auto;
     }
-    .mobile-header { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .mobile-header { display: flex; flex-direction: column; align-items: center; gap: 8px; }
     .mobile-card {
-      background: var(--card-bg); border-radius: 24px; padding: 22px 20px;
+      background: var(--card-bg); border-radius: 24px; padding: 18px 16px;
       box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-subtle); display: flex; flex-direction: column; gap: 20px;
+      border: 1px solid var(--border-subtle); display: flex; flex-direction: column; gap: 16px;
     }
     .balance-label {
-      color: var(--text-secondary); font-size: 13px; font-weight: 500;
+      color: var(--text-secondary); font-size: 12px; font-weight: 500;
       text-transform: uppercase; letter-spacing: 0.8px;
     }
     .balance-amount {
-      font-size: 40px; font-weight: 700; color: var(--text-primary);
+      font-size: 36px; font-weight: 700; color: var(--text-primary);
       letter-spacing: -1px; transition: transform 0.1s ease;
     }
     .balance-amount.pop { transform: scale(1.08); }
-    .balance-amount small { font-size: 20px; font-weight: 500; color: rgba(255, 255, 255, 0.6); }
+    .balance-amount small { font-size: 18px; font-weight: 500; color: rgba(255, 255, 255, 0.6); }
     .card-footer { display: flex; justify-content: space-between; align-items: center; }
-    .card-masked { color: var(--text-muted); font-size: 15px; letter-spacing: 2px; }
-    .zero-state-hint { color: var(--text-secondary); font-size: 14px; font-weight: 400; margin-top: -8px; }
-    .mobile-actions { display: flex; gap: 10px; }
-    .mobile-actions .btn { flex: 1; text-align: center; }
-    .decor-circle {
-      position: absolute; bottom: -10px; right: -10px; width: 130px; height: 130px;
-      border: 1px solid rgba(255, 215, 0, 0.12); border-radius: 50%; opacity: 0.5; pointer-events: none;
+    .card-masked { color: var(--text-muted); font-size: 14px; letter-spacing: 2px; }
+    .zero-state-hint { color: var(--text-secondary); font-size: 13px; font-weight: 400; margin-top: -6px; }
+    .mobile-actions { display: flex; gap: 8px; }
+    .mobile-actions .btn { flex: 1; text-align: center; padding: 12px 16px; font-size: 14px; }
+
+    /* Мобильная навигация */
+    .mobile-nav {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: var(--bg-primary); border-top: 1px solid var(--border-subtle);
+      display: flex; justify-content: space-around; padding: 12px 8px 24px;
+      border-radius: 0 0 48px 48px;
     }
+    .mobile-nav-item {
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      cursor: pointer; color: var(--text-muted); transition: 0.2s;
+      font-size: 10px; font-weight: 500; padding: 6px 8px; border-radius: 12px;
+      min-width: 55px; text-align: center;
+    }
+    .mobile-nav-item.active { color: var(--accent); }
+    .mobile-nav-item .nav-icon { font-size: 20px; }
+    .mobile-page {
+      display: none; flex-direction: column; gap: 20px;
+    }
+    .mobile-page.active { display: flex; }
+
+    /* Мобильное казино */
+    .mobile-casino-panel {
+      background: linear-gradient(145deg, #1c1c1c, #141414); border-radius: 20px;
+      padding: 20px; border: 1px solid rgba(255,255,255,0.06);
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .mobile-casino-panel h3 { color: white; font-size: 18px; font-weight: 650; text-align: center; }
+    .casino-inputs { display: flex; gap: 10px; }
+    .casino-input-group { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+    .casino-input-group label { color: var(--text-secondary); font-size: 11px; text-transform: uppercase; }
+    .casino-input-group input {
+      padding: 12px; border-radius: 12px; background: #111;
+      border: 1px solid rgba(255,255,255,0.08); color: white;
+      font-size: 16px; font-weight: 600; font-family: inherit; outline: none; text-align: center;
+    }
+    .casino-slider {
+      -webkit-appearance: none; width: 100%; height: 6px; border-radius: 3px;
+      background: linear-gradient(90deg, #ff5252, #ff9800, #FFD700, #4caf50); outline: none;
+    }
+    .casino-slider::-webkit-slider-thumb {
+      -webkit-appearance: none; width: 24px; height: 24px; border-radius: 50%;
+      background: white; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      border: 3px solid var(--accent);
+    }
+    .casino-info {
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(255,255,255,0.03); padding: 10px 14px; border-radius: 12px;
+    }
+    .casino-info-label { color: var(--text-secondary); font-size: 13px; }
+    .casino-info-value { color: white; font-weight: 700; font-size: 16px; }
+    .casino-multiplier {
+      font-size: 28px; font-weight: 800; text-align: center;
+      background: var(--accent-gradient); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .btn-casino {
+      padding: 14px; border-radius: 16px; font-weight: 700; font-size: 16px;
+      cursor: pointer; border: none; transition: 0.2s;
+      background: linear-gradient(135deg, #ff5252, #c62828); color: white;
+      box-shadow: 0 8px 20px rgba(255, 82, 82, 0.3);
+    }
+    .btn-casino:disabled { opacity: 0.4; cursor: not-allowed; }
+    .casino-result { text-align: center; font-size: 18px; font-weight: 700; min-height: 30px; }
+    .casino-result.win { color: var(--green); animation: winPulse 0.5s ease; }
+    .casino-result.lose { color: var(--red); animation: shake 0.5s ease; }
+    @keyframes winPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+    @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
+    .casino-stats-row { display: flex; gap: 8px; }
+    .casino-stat-card {
+      flex: 1; background: rgba(255,255,255,0.03); padding: 10px; border-radius: 12px; text-align: center;
+    }
+    .casino-stat-value { font-size: 18px; font-weight: 700; color: white; }
+    .casino-stat-label { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+    .casino-history {
+      background: linear-gradient(145deg, #1c1c1c, #141414); border-radius: 16px;
+      padding: 16px; border: 1px solid rgba(255,255,255,0.06);
+      display: flex; flex-direction: column; gap: 8px; max-height: 180px; overflow-y: auto;
+    }
+    .casino-history h3 { color: white; font-size: 14px; font-weight: 650; }
+    .casino-history-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 6px 10px; background: rgba(255,255,255,0.02); border-radius: 10px; font-size: 12px;
+    }
+    .result-win { color: var(--green); font-weight: 700; }
+    .result-lose { color: var(--red); font-weight: 700; }
+
+    /* Мобильные карточки халявы */
+    .free-money-grid {
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .free-card {
+      background: linear-gradient(145deg, #1c1c1c, #141414); border-radius: 18px;
+      padding: 16px; border: 1px solid rgba(255,255,255,0.06);
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .free-card.active-invest {
+      border: 1px solid rgba(255, 215, 0, 0.5); box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+    }
+    .free-card-header { display: flex; justify-content: space-between; align-items: flex-start; }
+    .free-card-icon { font-size: 24px; }
+    .free-card-badge {
+      background: var(--accent-gradient); color: #0a0a0a;
+      font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 8px;
+    }
+    .free-card-title { color: white; font-weight: 650; font-size: 14px; }
+    .free-card-desc { color: var(--text-secondary); font-size: 12px; line-height: 1.3; }
+    .free-card-stats { display: flex; gap: 8px; font-size: 12px; }
+    .free-stat {
+      display: flex; flex-direction: column; gap: 2px; background: rgba(255,255,255,0.03);
+      padding: 6px 10px; border-radius: 8px; flex: 1; min-width: 60px;
+    }
+    .free-stat-label { color: var(--text-muted); font-size: 10px; }
+    .free-stat-value { color: white; font-weight: 600; font-size: 13px; }
+    .free-card-progress {
+      width: 100%; height: 3px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden;
+    }
+    .free-card-progress-fill {
+      height: 100%; background: var(--accent-gradient); border-radius: 3px; animation: pulse 1s infinite;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    .free-card-earned { color: var(--green); font-weight: 600; font-size: 12px; text-align: right; }
+    .free-card-btn {
+      padding: 10px 14px; border-radius: 12px; font-weight: 600; font-size: 13px;
+      cursor: pointer; border: none; transition: 0.2s;
+      background: var(--accent-gradient); color: #0a0a0a; width: 100%;
+    }
+    .free-card-btn:disabled { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.3); cursor: not-allowed; }
+    .btn-stop { background: var(--red) !important; color: white !important; }
+    .free-card-controls { display: flex; gap: 6px; }
+    .free-card-controls .free-card-btn { flex: 1; }
+    .free-card-timer { color: var(--accent); font-weight: 600; font-size: 11px; text-align: center; }
+
+    /* Мобильные настройки */
+    .settings-container { display: flex; flex-direction: column; gap: 16px; }
+    .settings-panel {
+      background: linear-gradient(145deg, #1c1c1c, #141414); border-radius: 20px;
+      padding: 20px; border: 1px solid rgba(255,255,255,0.06);
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .settings-panel h3 { color: white; font-size: 16px; font-weight: 650; }
+    .theme-buttons { display: flex; gap: 10px; }
+    .theme-btn {
+      flex: 1; padding: 14px; border-radius: 14px; font-weight: 600;
+      font-size: 13px; cursor: pointer; border: 2px solid transparent;
+      transition: 0.2s; text-align: center; color: white;
+    }
+    .theme-btn.yellow { background: linear-gradient(135deg, #3a3000, #1a1a00); }
+    .theme-btn.yellow.active { border-color: #FFD700; box-shadow: 0 0 15px rgba(255, 215, 0, 0.3); }
+    .theme-btn.pink { background: linear-gradient(135deg, #3a0030, #1a0018); }
+    .theme-btn.pink.active { border-color: #FF69B4; box-shadow: 0 0 15px rgba(255, 105, 180, 0.3); }
+    .theme-label { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+    .lang-buttons { display: flex; gap: 6px; flex-wrap: wrap; }
+    .lang-btn {
+      padding: 10px 16px; border-radius: 12px; font-weight: 600; font-size: 13px;
+      cursor: pointer; border: 2px solid transparent; transition: 0.2s;
+      background: rgba(255,255,255,0.05); color: var(--text-secondary);
+    }
+    .lang-btn.active { border-color: var(--accent); color: white; background: rgba(255,255,255,0.1); }
+
+    /* ============ ДЕСКТОП / ПЛАНШЕТ ============ */
     .desktop-layout {
       width: 100%; max-width: 1100px; background: var(--bg-primary);
       border-radius: 40px; box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05);
@@ -192,137 +352,6 @@
     .tx-plus { color: var(--green); }
     .tx-minus { color: var(--red); }
     .empty-state { color: var(--text-secondary); font-size: 14px; text-align: center; padding: 20px 0; }
-    .free-money-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
-    .free-card {
-      background: linear-gradient(145deg, #1c1c1c, #141414); border-radius: 20px;
-      padding: 20px; border: 1px solid rgba(255,255,255,0.06);
-      display: flex; flex-direction: column; gap: 12px;
-    }
-    .free-card.active-invest {
-      border: 1px solid rgba(255, 215, 0, 0.5); box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
-    }
-    .free-card-header { display: flex; justify-content: space-between; align-items: flex-start; }
-    .free-card-icon { font-size: 28px; }
-    .free-card-badge {
-      background: var(--accent-gradient); color: #0a0a0a;
-      font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 10px;
-    }
-    .free-card-title { color: white; font-weight: 650; font-size: 16px; }
-    .free-card-desc { color: var(--text-secondary); font-size: 13px; line-height: 1.4; }
-    .free-card-stats { display: flex; gap: 12px; font-size: 13px; flex-wrap: wrap; }
-    .free-stat {
-      display: flex; flex-direction: column; gap: 2px; background: rgba(255,255,255,0.03);
-      padding: 8px 12px; border-radius: 10px; flex: 1; min-width: 70px;
-    }
-    .free-stat-label { color: var(--text-muted); font-size: 11px; }
-    .free-stat-value { color: white; font-weight: 600; font-size: 14px; }
-    .free-card-progress {
-      width: 100%; height: 4px; background: rgba(255,255,255,0.08);
-      border-radius: 4px; overflow: hidden;
-    }
-    .free-card-progress-fill {
-      height: 100%; background: var(--accent-gradient);
-      border-radius: 4px; animation: pulse 1s infinite;
-    }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-    .free-card-earned { color: var(--green); font-weight: 600; font-size: 14px; text-align: right; }
-    .free-card-btn {
-      padding: 12px 16px; border-radius: 14px; font-weight: 600; font-size: 14px;
-      cursor: pointer; border: none; transition: 0.2s;
-      background: var(--accent-gradient); color: #0a0a0a; width: 100%;
-    }
-    .free-card-btn:disabled { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.3); cursor: not-allowed; }
-    .btn-stop { background: var(--red) !important; color: white !important; }
-    .free-card-controls { display: flex; gap: 8px; }
-    .free-card-controls .free-card-btn { flex: 1; }
-    .free-card-timer { color: var(--accent); font-weight: 600; font-size: 12px; text-align: center; }
-    .casino-container { display: flex; flex-direction: column; gap: 24px; }
-    .casino-panel {
-      background: linear-gradient(145deg, #1c1c1c, #141414); border-radius: 24px;
-      padding: 28px; border: 1px solid rgba(255,255,255,0.06);
-      display: flex; flex-direction: column; gap: 20px;
-    }
-    .casino-panel h3 { color: white; font-size: 20px; font-weight: 650; text-align: center; }
-    .casino-inputs { display: flex; gap: 16px; flex-wrap: wrap; }
-    .casino-input-group { flex: 1; min-width: 180px; display: flex; flex-direction: column; gap: 8px; }
-    .casino-input-group label {
-      color: var(--text-secondary); font-size: 13px; font-weight: 500; text-transform: uppercase;
-    }
-    .casino-input-group input {
-      padding: 14px 16px; border-radius: 14px; background: #111;
-      border: 1px solid rgba(255,255,255,0.08); color: white;
-      font-size: 18px; font-weight: 600; font-family: inherit; outline: none; text-align: center;
-    }
-    .casino-slider {
-      -webkit-appearance: none; width: 100%; height: 8px; border-radius: 4px;
-      background: linear-gradient(90deg, #ff5252, #ff9800, #FFD700, #4caf50); outline: none;
-    }
-    .casino-slider::-webkit-slider-thumb {
-      -webkit-appearance: none; width: 28px; height: 28px; border-radius: 50%;
-      background: white; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-      border: 3px solid var(--accent);
-    }
-    .casino-info {
-      display: flex; justify-content: space-between; align-items: center;
-      background: rgba(255,255,255,0.03); padding: 14px 18px; border-radius: 14px;
-    }
-    .casino-info-label { color: var(--text-secondary); font-size: 14px; }
-    .casino-info-value { color: white; font-weight: 700; font-size: 18px; }
-    .casino-multiplier {
-      font-size: 32px; font-weight: 800; text-align: center;
-      background: var(--accent-gradient); -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent; background-clip: text;
-    }
-    .btn-casino {
-      padding: 18px; border-radius: 18px; font-weight: 700; font-size: 18px;
-      cursor: pointer; border: none; transition: 0.2s;
-      background: linear-gradient(135deg, #ff5252, #c62828); color: white;
-      box-shadow: 0 10px 25px rgba(255, 82, 82, 0.3);
-    }
-    .casino-result { text-align: center; font-size: 22px; font-weight: 700; min-height: 36px; }
-    .casino-result.win { color: var(--green); animation: winPulse 0.5s ease; }
-    .casino-result.lose { color: var(--red); animation: shake 0.5s ease; }
-    @keyframes winPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
-    @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
-    .casino-history {
-      background: linear-gradient(145deg, #1c1c1c, #141414); border-radius: 24px;
-      padding: 24px; border: 1px solid rgba(255,255,255,0.06);
-      display: flex; flex-direction: column; gap: 12px; max-height: 250px; overflow-y: auto;
-    }
-    .casino-stats-row { display: flex; gap: 12px; flex-wrap: wrap; }
-    .casino-stat-card {
-      flex: 1; min-width: 100px; background: rgba(255,255,255,0.03);
-      padding: 14px; border-radius: 14px; text-align: center;
-    }
-    .casino-stat-value { font-size: 22px; font-weight: 700; color: white; }
-    .casino-stat-label { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
-    .settings-container { display: flex; flex-direction: column; gap: 24px; }
-    .settings-panel {
-      background: linear-gradient(145deg, #1c1c1c, #141414); border-radius: 24px;
-      padding: 28px; border: 1px solid rgba(255,255,255,0.06);
-      display: flex; flex-direction: column; gap: 20px;
-    }
-    .settings-panel h3 { color: white; font-size: 18px; font-weight: 650; }
-    .theme-buttons { display: flex; gap: 12px; }
-    .theme-btn {
-      flex: 1; padding: 16px; border-radius: 16px; font-weight: 600;
-      font-size: 15px; cursor: pointer; border: 2px solid transparent;
-      transition: 0.2s; text-align: center; color: white;
-    }
-    .theme-btn.yellow { background: linear-gradient(135deg, #3a3000, #1a1a00); }
-    .theme-btn.yellow.active { border-color: #FFD700; box-shadow: 0 0 15px rgba(255, 215, 0, 0.3); }
-    .theme-btn.pink { background: linear-gradient(135deg, #3a0030, #1a0018); }
-    .theme-btn.pink.active { border-color: #FF69B4; box-shadow: 0 0 15px rgba(255, 105, 180, 0.3); }
-    .theme-btn:hover { transform: scale(1.02); }
-    .theme-label { font-size: 14px; color: var(--text-secondary); margin-top: 4px; }
-    .lang-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
-    .lang-btn {
-      padding: 12px 20px; border-radius: 14px; font-weight: 600; font-size: 14px;
-      cursor: pointer; border: 2px solid transparent; transition: 0.2s;
-      background: rgba(255,255,255,0.05); color: var(--text-secondary);
-    }
-    .lang-btn.active { border-color: var(--accent); color: white; background: rgba(255,255,255,0.1); }
-    .lang-btn:hover { background: rgba(255,255,255,0.08); color: white; }
     .toast {
       position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
       background: #4caf50; color: white; padding: 12px 28px; border-radius: 30px;
@@ -331,9 +360,17 @@
       pointer-events: none; box-shadow: 0 10px 30px rgba(76, 175, 80, 0.4);
     }
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(10px); }
-    .mobile-layout, .desktop-layout { display: none; }
-    @media (max-width: 768px) { .mobile-layout { display: flex; } }
-    @media (min-width: 769px) { .desktop-layout { display: flex; } }
+
+    /* Адаптивность */
+    .mobile-layout { display: none; }
+    .desktop-layout { display: none; }
+    @media (max-width: 768px) {
+      .mobile-layout { display: flex; }
+      body { align-items: flex-start; padding: 8px; }
+    }
+    @media (min-width: 769px) {
+      .desktop-layout { display: flex; }
+    }
   </style>
 </head>
 <body>
@@ -356,30 +393,125 @@
 
   <div class="toast" id="toast">+50 ₽</div>
 
+  <!-- ============ МОБИЛЬНАЯ ВЕРСИЯ ============ -->
   <div class="mobile-layout" id="mobileLayout">
     <div class="mobile-header">
       <div class="protractor-icon"><div class="protractor-needle"></div></div>
       <div>
         <div class="brand-name">Транспортир <span>Банк</span></div>
-        <div style="color: rgba(255,255,255,0.45); font-size: 14px;" id="mobileUserName">Отмеряй финансы точно</div>
+        <div style="color: rgba(255,255,255,0.45); font-size: 13px;" id="mobileUserName">Отмеряй финансы точно</div>
       </div>
     </div>
-    <div class="mobile-card">
-      <div class="balance-label" data-key="my_account">Мой счёт</div>
-      <div class="balance-amount" id="mobileBalance">0 <small>₽</small></div>
-      <div class="zero-state-hint" id="mobileHint" data-key="empty_account">Счёт пока пуст. Самое время начать!</div>
-      <div class="card-footer">
-        <span class="card-masked">•••• 4520</span>
-        <div class="protractor-icon" style="width:32px; height:32px;"></div>
+
+    <!-- Главная -->
+    <div class="mobile-page active" id="mobilePageMain">
+      <div class="mobile-card">
+        <div class="balance-label" data-key="my_account">Мой счёт</div>
+        <div class="balance-amount" id="mobileBalance">0 <small>₽</small></div>
+        <div class="zero-state-hint" id="mobileHint" data-key="empty_account">Счёт пока пуст. Самое время начать!</div>
+        <div class="card-footer">
+          <span class="card-masked">•••• 4520</span>
+          <div class="protractor-icon" style="width:28px; height:28px;"></div>
+        </div>
+      </div>
+      <div class="mobile-actions">
+        <button class="btn btn-primary" id="addFundsMobile" data-key="add_50">Пополнить +50 ₽</button>
+        <button class="btn btn-ghost" data-key="demo">Демо</button>
+      </div>
+      <div class="mobile-card">
+        <div style="color:white; font-weight:600; margin-bottom:4px;" data-key="last_operations">Последние операции</div>
+        <div class="transactions-list" id="mobileTransactionsContainer">
+          <div class="empty-state" id="mobileEmptyTransactions" data-key="no_transactions">У вас пока нет операций.</div>
+        </div>
       </div>
     </div>
-    <div class="mobile-actions">
-      <button class="btn btn-primary" id="addFundsMobile" data-key="add_50">Пополнить +50 ₽</button>
-      <button class="btn btn-ghost" data-key="demo">Демо</button>
+
+    <!-- Халява -->
+    <div class="mobile-page" id="mobilePageFree">
+      <div class="welcome-text">
+        <h2 style="font-size:20px;">🔥 <span data-key="nav_free">Халява деньги в минуту</span></h2>
+        <p style="font-size:12px;" data-key="free_desc">Покупай сколько хочешь раз — доход суммируется!</p>
+      </div>
+      <span id="mobileFreeBalanceDisplay" style="color:white; font-weight:700; font-size:16px;" data-key="balance">Баланс: 0 ₽</span>
+      <div class="free-money-grid" id="mobileFreeCardsContainer"></div>
     </div>
-    <div class="decor-circle"></div>
+
+    <!-- Казино -->
+    <div class="mobile-page" id="mobilePageCasino">
+      <div class="mobile-casino-panel">
+        <h3>🎰 <span data-key="casino_title">Транспортир Казино</span></h3>
+        <div class="casino-inputs">
+          <div class="casino-input-group">
+            <label data-key="bet_amount">Сумма ставки</label>
+            <input type="number" id="mobileBetAmount" value="100" min="1">
+          </div>
+          <div class="casino-input-group">
+            <label data-key="win_chance">Шанс выигрыша</label>
+            <input type="number" id="mobileWinChance" value="50" min="1" max="99">
+          </div>
+        </div>
+        <input type="range" class="casino-slider" id="mobileChanceSlider" min="5" max="95" value="50" step="1">
+        <div class="casino-info">
+          <span class="casino-info-label" data-key="multiplier">Множитель:</span>
+          <span class="casino-multiplier" id="mobileMultiplierDisplay">×2.00</span>
+        </div>
+        <div class="casino-info">
+          <span class="casino-info-label" data-key="potential_win">Возможный выигрыш:</span>
+          <span class="casino-info-value" id="mobilePotentialWin">200 ₽</span>
+        </div>
+        <button class="btn-casino" id="mobileSpinBtn" data-key="spin">🎲 КРУТИТЬ</button>
+        <div class="casino-result" id="mobileCasinoResult"></div>
+      </div>
+      <div class="casino-stats-row">
+        <div class="casino-stat-card"><div class="casino-stat-value" id="mobileTotalBets">0</div><div class="casino-stat-label" data-key="total_bets">Всего ставок</div></div>
+        <div class="casino-stat-card"><div class="casino-stat-value" id="mobileTotalWins">0</div><div class="casino-stat-label" data-key="total_wins">Выигрышей</div></div>
+        <div class="casino-stat-card"><div class="casino-stat-value" id="mobileTotalProfit" style="color:#4caf50;">0 ₽</div><div class="casino-stat-label" data-key="profit">Прибыль</div></div>
+      </div>
+      <div class="casino-history" id="mobileCasinoHistory">
+        <h3>📋 <span data-key="game_history">История игр</span></h3>
+        <div class="empty-state" id="mobileEmptyCasinoHistory" data-key="no_games">Пока нет сыгранных игр.</div>
+      </div>
+    </div>
+
+    <!-- Настройки -->
+    <div class="mobile-page" id="mobilePageSettings">
+      <div class="settings-container">
+        <div class="settings-panel">
+          <h3 data-key="theme_settings">🎨 Тема оформления</h3>
+          <div class="theme-buttons">
+            <div class="theme-btn yellow active" data-theme="yellow" id="mobileThemeYellow">🟡 <div class="theme-label" data-key="theme_yellow">Чёрно-жёлтая</div></div>
+            <div class="theme-btn pink" data-theme="pink" id="mobileThemePink">🩷 <div class="theme-label" data-key="theme_pink">Чёрно-розовая</div></div>
+          </div>
+        </div>
+        <div class="settings-panel">
+          <h3 data-key="lang_settings">🌐 Язык / Тел / Language</h3>
+          <div class="lang-buttons">
+            <div class="lang-btn active" data-lang="ru" id="mobileLangRu">🇷🇺 Русский</div>
+            <div class="lang-btn" data-lang="tt" id="mobileLangTt">🇹🇹 Татарча</div>
+            <div class="lang-btn" data-lang="en" id="mobileLangEn">🇬🇧 English</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Нижняя навигация -->
+    <div class="mobile-nav">
+      <div class="mobile-nav-item active" data-mobile-page="main">
+        <span class="nav-icon">🏠</span> <span data-key="nav_main">Главная</span>
+      </div>
+      <div class="mobile-nav-item" data-mobile-page="free">
+        <span class="nav-icon">💸</span> <span data-key="nav_free">Халява</span>
+      </div>
+      <div class="mobile-nav-item" data-mobile-page="casino">
+        <span class="nav-icon">🎰</span> <span data-key="nav_casino">Казино</span>
+      </div>
+      <div class="mobile-nav-item" data-mobile-page="settings">
+        <span class="nav-icon">⚙️</span> <span data-key="nav_settings">Настройки</span>
+      </div>
+    </div>
   </div>
 
+  <!-- ============ ДЕСКТОПНАЯ ВЕРСИЯ ============ -->
   <div class="desktop-layout" id="desktopLayout">
     <div class="sidebar">
       <div class="sidebar-brand">
@@ -442,66 +574,36 @@
           </div>
           <span id="freeBalanceDisplay" style="color:white; font-weight:700; font-size:18px;" data-key="balance">Баланс: 0 ₽</span>
         </div>
-        <div class="free-money-grid" id="freeCardsContainer"></div>
+        <div class="free-money-grid" id="freeCardsContainer" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));"></div>
       </div>
 
       <div class="page" id="pageCasino">
-        <div class="casino-container">
-          <div class="casino-panel">
-            <h3>🎰 <span data-key="casino_title">Транспортир Казино</span></h3>
-            <div class="casino-inputs">
-              <div class="casino-input-group">
-                <label data-key="bet_amount">Сумма ставки</label>
-                <input type="number" id="betAmount" value="100" min="1">
-              </div>
-              <div class="casino-input-group">
-                <label data-key="win_chance">Шанс выигрыша</label>
-                <input type="number" id="winChance" value="50" min="1" max="99">
-              </div>
+        <div class="casino-container" style="display:flex; flex-direction:column; gap:24px;">
+          <div class="casino-panel" style="background:linear-gradient(145deg, #1c1c1c, #141414); border-radius:24px; padding:28px; border:1px solid rgba(255,255,255,0.06); display:flex; flex-direction:column; gap:20px;">
+            <h3 style="color:white; font-size:20px; font-weight:650; text-align:center;">🎰 <span data-key="casino_title">Транспортир Казино</span></h3>
+            <div class="casino-inputs" style="display:flex; gap:16px;">
+              <div class="casino-input-group" style="flex:1;"><label data-key="bet_amount">Сумма ставки</label><input type="number" id="betAmount" value="100" min="1"></div>
+              <div class="casino-input-group" style="flex:1;"><label data-key="win_chance">Шанс выигрыша</label><input type="number" id="winChance" value="50" min="1" max="99"></div>
             </div>
-            <div class="casino-slider-container">
-              <input type="range" class="casino-slider" id="chanceSlider" min="5" max="95" value="50" step="1">
-            </div>
-            <div class="casino-info">
-              <span class="casino-info-label" data-key="multiplier">Множитель выигрыша:</span>
-              <span class="casino-multiplier" id="multiplierDisplay">×2.00</span>
-            </div>
-            <div class="casino-info">
-              <span class="casino-info-label" data-key="potential_win">Возможный выигрыш:</span>
-              <span class="casino-info-value" id="potentialWin">200 ₽</span>
-            </div>
-            <button class="btn-casino" id="spinBtn" data-key="spin">🎲 КРУТИТЬ</button>
+            <input type="range" class="casino-slider" id="chanceSlider" min="5" max="95" value="50" step="1" style="width:100%;">
+            <div class="casino-info"><span class="casino-info-label" data-key="multiplier">Множитель выигрыша:</span><span class="casino-multiplier" id="multiplierDisplay">×2.00</span></div>
+            <div class="casino-info"><span class="casino-info-label" data-key="potential_win">Возможный выигрыш:</span><span class="casino-info-value" id="potentialWin">200 ₽</span></div>
+            <button class="btn-casino" id="spinBtn" data-key="spin" style="padding:18px; border-radius:18px; font-weight:700; font-size:18px; cursor:pointer; border:none; background:linear-gradient(135deg, #ff5252, #c62828); color:white;">🎲 КРУТИТЬ</button>
             <div class="casino-result" id="casinoResult"></div>
           </div>
-          <div class="casino-stats-row">
-            <div class="casino-stat-card"><div class="casino-stat-value" id="totalBets">0</div><div class="casino-stat-label" data-key="total_bets">Всего ставок</div></div>
-            <div class="casino-stat-card"><div class="casino-stat-value" id="totalWins">0</div><div class="casino-stat-label" data-key="total_wins">Выигрышей</div></div>
-            <div class="casino-stat-card"><div class="casino-stat-value" id="totalProfit" style="color:#4caf50;">0 ₽</div><div class="casino-stat-label" data-key="profit">Прибыль</div></div>
+          <div class="casino-stats-row" style="display:flex; gap:12px;">
+            <div class="casino-stat-card" style="flex:1; background:rgba(255,255,255,0.03); padding:14px; border-radius:14px; text-align:center;"><div class="casino-stat-value" id="totalBets">0</div><div class="casino-stat-label" data-key="total_bets">Всего ставок</div></div>
+            <div class="casino-stat-card" style="flex:1; background:rgba(255,255,255,0.03); padding:14px; border-radius:14px; text-align:center;"><div class="casino-stat-value" id="totalWins">0</div><div class="casino-stat-label" data-key="total_wins">Выигрышей</div></div>
+            <div class="casino-stat-card" style="flex:1; background:rgba(255,255,255,0.03); padding:14px; border-radius:14px; text-align:center;"><div class="casino-stat-value" id="totalProfit" style="color:#4caf50;">0 ₽</div><div class="casino-stat-label" data-key="profit">Прибыль</div></div>
           </div>
-          <div class="casino-history" id="casinoHistory">
-            <h3>📋 <span data-key="game_history">История игр</span></h3>
-            <div class="empty-state" id="emptyCasinoHistory" data-key="no_games">Пока нет сыгранных игр.</div>
-          </div>
+          <div class="casino-history" id="casinoHistory" style="background:linear-gradient(145deg, #1c1c1c, #141414); border-radius:24px; padding:24px; border:1px solid rgba(255,255,255,0.06);"><h3>📋 <span data-key="game_history">История игр</span></h3><div class="empty-state" id="emptyCasinoHistory" data-key="no_games">Пока нет сыгранных игр.</div></div>
         </div>
       </div>
 
       <div class="page" id="pageSettings">
-        <div class="settings-container">
-          <div class="settings-panel">
-            <h3 data-key="theme_settings">🎨 Тема оформления</h3>
-            <div class="theme-buttons">
-              <div class="theme-btn yellow active" data-theme="yellow" id="themeYellow">🟡 <div class="theme-label" data-key="theme_yellow">Чёрно-жёлтая</div></div>
-              <div class="theme-btn pink" data-theme="pink" id="themePink">🩷 <div class="theme-label" data-key="theme_pink">Чёрно-розовая</div></div>
-            </div>
-          </div>
-          <div class="settings-panel">
-            <h3 data-key="lang_settings">🌐 Язык / Тел / Language</h3>
-            <div class="lang-buttons">
-              <div class="lang-btn active" data-lang="ru" id="langRu">🇷🇺 Русский</div>
-              <div class="lang-btn" data-lang="tt" id="langTt">🇹🇹 Татарча</div>
-              <div class="lang-btn" data-lang="en" id="langEn">🇬🇧 English</div>
-            </div>
-          </div>
+        <div class="settings-container" style="display:flex; flex-direction:column; gap:24px;">
+          <div class="settings-panel" style="background:linear-gradient(145deg, #1c1c1c, #141414); border-radius:24px; padding:28px; border:1px solid rgba(255,255,255,0.06);"><h3 data-key="theme_settings">🎨 Тема оформления</h3><div class="theme-buttons" style="display:flex; gap:12px;"><div class="theme-btn yellow active" data-theme="yellow" id="themeYellow">🟡 <div class="theme-label" data-key="theme_yellow">Чёрно-жёлтая</div></div><div class="theme-btn pink" data-theme="pink" id="themePink">🩷 <div class="theme-label" data-key="theme_pink">Чёрно-розовая</div></div></div></div>
+          <div class="settings-panel" style="background:linear-gradient(145deg, #1c1c1c, #141414); border-radius:24px; padding:28px; border:1px solid rgba(255,255,255,0.06);"><h3 data-key="lang_settings">🌐 Язык / Тел / Language</h3><div class="lang-buttons" style="display:flex; gap:8px;"><div class="lang-btn active" data-lang="ru" id="langRu">🇷🇺 Русский</div><div class="lang-btn" data-lang="tt" id="langTt">🇹🇹 Татарча</div><div class="lang-btn" data-lang="en" id="langEn">🇬🇧 English</div></div></div>
         </div>
       </div>
     </div>
@@ -515,11 +617,9 @@
       let currentTheme = 'yellow';
       let currentLang = 'ru';
       let casinoStats = { totalBets: 0, totalWins: 0, totalProfit: 0 };
-
-      // Секретные эффекты
       let zamanInterval = null;
       let isZamanActive = false;
-      let isZamanTextPhase = false; // true = показываем "Заман", false = обычный текст
+      let isZamanTextPhase = false;
       let adelyaMode = false;
 
       const translations = {
@@ -528,7 +628,7 @@
           first_name: 'Имя', last_name: 'Фамилия', login_btn: 'Войти',
           my_account: 'Мой счёт', empty_account: 'Счёт пока пуст. Самое время начать!',
           add_50: 'Пополнить +50 ₽', demo: 'Демо',
-          nav_main: 'Главная', nav_free: 'Халява деньги в минуту', nav_casino: 'Казино', nav_settings: 'Настройки',
+          nav_main: 'Главная', nav_free: 'Халява', nav_casino: 'Казино', nav_settings: 'Настройки',
           welcome_sub: 'Ваш транспортир финансов в действии',
           main_account: 'Основной счёт', savings_account: 'Накопительный', open_savings: 'Откройте накопительный счёт',
           weekly_expenses: 'Расходы за неделю', no_operations: 'Нет операций за этот период',
@@ -536,7 +636,7 @@
           top_up_hint: 'Пополните счёт, чтобы начать пользоваться банком.',
           balance: 'Баланс:', free_desc: 'Покупай сколько хочешь раз — доход суммируется!',
           casino_title: 'Транспортир Казино', bet_amount: 'Сумма ставки', win_chance: 'Шанс выигрыша',
-          multiplier: 'Множитель выигрыша:', potential_win: 'Возможный выигрыш:', spin: '🎲 КРУТИТЬ',
+          multiplier: 'Множитель:', potential_win: 'Возможный выигрыш:', spin: '🎲 КРУТИТЬ',
           total_bets: 'Всего ставок', total_wins: 'Выигрышей', profit: 'Прибыль',
           game_history: 'История игр', no_games: 'Пока нет сыгранных игр.',
           theme_settings: '🎨 Тема оформления', theme_yellow: 'Чёрно-жёлтая', theme_pink: 'Чёрно-розовая',
@@ -554,7 +654,7 @@
           first_name: 'Исем', last_name: 'Фамилия', login_btn: 'Керү',
           my_account: 'Минем счет', empty_account: 'Счет әлегә буш. Башларга вакыт!',
           add_50: 'Тулыландырырга +50 ₽', demo: 'Демо',
-          nav_main: 'Баш бит', nav_free: 'Бушка акча минутта', nav_casino: 'Казино', nav_settings: 'Көйләүләр',
+          nav_main: 'Баш бит', nav_free: 'Бушка', nav_casino: 'Казино', nav_settings: 'Көйләүләр',
           welcome_sub: 'Сезнең финанс транспортиры эштә',
           main_account: 'Төп счет', savings_account: 'Җыю счеты', open_savings: 'Җыю счетын ачыгыз',
           weekly_expenses: 'Атнадагы чыгымнар', no_operations: 'Бу чорда операцияләр юк',
@@ -562,7 +662,7 @@
           top_up_hint: 'Банкны куллана башлау өчен счетны тулыландырыгыз.',
           balance: 'Баланс:', free_desc: 'Теләсә ничә тапкыр сатып ал — керем суммалана!',
           casino_title: 'Транспортир Казиносы', bet_amount: 'Ставка суммасы', win_chance: 'Оту ихтималы',
-          multiplier: 'Оту тапкырлаучысы:', potential_win: 'Мөмкин булган отыш:', spin: '🎲 БОРУ',
+          multiplier: 'Тапкырлаучы:', potential_win: 'Мөмкин булган отыш:', spin: '🎲 БОРУ',
           total_bets: 'Барлык ставкалар', total_wins: 'Отышлар', profit: 'Табыш',
           game_history: 'Уеннар тарихы', no_games: 'Әлегә уйналган уеннар юк.',
           theme_settings: '🎨 Бизәлеш темасы', theme_yellow: 'Кара-сары', theme_pink: 'Кара-алсу',
@@ -580,7 +680,7 @@
           first_name: 'First Name', last_name: 'Last Name', login_btn: 'Sign In',
           my_account: 'My Account', empty_account: 'Account is empty. Time to start!',
           add_50: 'Top up +50 ₽', demo: 'Demo',
-          nav_main: 'Home', nav_free: 'Free Money per Minute', nav_casino: 'Casino', nav_settings: 'Settings',
+          nav_main: 'Home', nav_free: 'Free', nav_casino: 'Casino', nav_settings: 'Settings',
           welcome_sub: 'Your financial protractor in action',
           main_account: 'Main Account', savings_account: 'Savings', open_savings: 'Open a savings account',
           weekly_expenses: 'Weekly Expenses', no_operations: 'No operations for this period',
@@ -588,11 +688,11 @@
           top_up_hint: 'Top up your account to start using the bank.',
           balance: 'Balance:', free_desc: 'Buy as many times as you want — income stacks!',
           casino_title: 'Transporter Casino', bet_amount: 'Bet Amount', win_chance: 'Win Chance',
-          multiplier: 'Win Multiplier:', potential_win: 'Potential Win:', spin: '🎲 SPIN',
+          multiplier: 'Multiplier:', potential_win: 'Potential Win:', spin: '🎲 SPIN',
           total_bets: 'Total Bets', total_wins: 'Wins', profit: 'Profit',
           game_history: 'Game History', no_games: 'No games played yet.',
           theme_settings: '🎨 Theme', theme_yellow: 'Black & Yellow', theme_pink: 'Black & Pink',
-          lang_settings: '🌐 Language / Тел / Язык', greeting: 'Good afternoon',
+          lang_settings: '🌐 Language', greeting: 'Good afternoon',
           casino_win: '🎉 WIN!', casino_lose: '💔 LOSE!',
           casino_bet_desc: 'Casino bet', casino_win_desc: 'Casino win',
           purchase: 'Purchase:', income: 'Income:', total_income: 'Total income:',
@@ -622,10 +722,31 @@
       const firstNameInput = document.getElementById('firstNameInput');
       const lastNameInput = document.getElementById('lastNameInput');
       const loginBtn = document.getElementById('loginBtn');
-      const loginError = document.getElementById('loginError');
+      const toast = document.getElementById('toast');
+
+      // Мобильные элементы
       const mobileBalance = document.getElementById('mobileBalance');
       const mobileHint = document.getElementById('mobileHint');
       const mobileUserName = document.getElementById('mobileUserName');
+      const mobileTransactionsContainer = document.getElementById('mobileTransactionsContainer');
+      const mobileEmptyTransactions = document.getElementById('mobileEmptyTransactions');
+      const mobileFreeCardsContainer = document.getElementById('mobileFreeCardsContainer');
+      const mobileFreeBalanceDisplay = document.getElementById('mobileFreeBalanceDisplay');
+      const addFundsMobile = document.getElementById('addFundsMobile');
+      const mobileBetAmountInput = document.getElementById('mobileBetAmount');
+      const mobileWinChanceInput = document.getElementById('mobileWinChance');
+      const mobileChanceSlider = document.getElementById('mobileChanceSlider');
+      const mobileMultiplierDisplay = document.getElementById('mobileMultiplierDisplay');
+      const mobilePotentialWin = document.getElementById('mobilePotentialWin');
+      const mobileSpinBtn = document.getElementById('mobileSpinBtn');
+      const mobileCasinoResult = document.getElementById('mobileCasinoResult');
+      const mobileCasinoHistory = document.getElementById('mobileCasinoHistory');
+      const mobileEmptyCasinoHistory = document.getElementById('mobileEmptyCasinoHistory');
+      const mobileTotalBetsEl = document.getElementById('mobileTotalBets');
+      const mobileTotalWinsEl = document.getElementById('mobileTotalWins');
+      const mobileTotalProfitEl = document.getElementById('mobileTotalProfit');
+
+      // Десктопные элементы
       const desktopMainBalance = document.getElementById('desktopMainBalance');
       const desktopMainHint = document.getElementById('desktopMainHint');
       const desktopGreeting = document.getElementById('desktopGreeting');
@@ -635,8 +756,6 @@
       const transactionsHint = document.getElementById('transactionsHint');
       const freeCardsContainer = document.getElementById('freeCardsContainer');
       const freeBalanceDisplay = document.getElementById('freeBalanceDisplay');
-      const toast = document.getElementById('toast');
-      const addFundsMobile = document.getElementById('addFundsMobile');
       const addFundsDesktop = document.getElementById('addFundsDesktop');
       const betAmountInput = document.getElementById('betAmount');
       const winChanceInput = document.getElementById('winChance');
@@ -656,190 +775,6 @@
         return translations[currentLang]?.[key] || translations['ru'][key] || key;
       }
 
-      function clearAllSecretEffects() {
-        if (zamanInterval) { clearInterval(zamanInterval); zamanInterval = null; }
-        isZamanActive = false;
-        isZamanTextPhase = false;
-        adelyaMode = false;
-        updateTopUpButtonText();
-        updateAllTexts();
-        buildFreeCards();
-      }
-
-      function applyAllTextsAsZaman() {
-        document.querySelectorAll('[data-key]').forEach(el => { el.textContent = 'Заман'; });
-        document.querySelectorAll('[data-key-placeholder]').forEach(el => { el.placeholder = 'Заман'; });
-        document.querySelectorAll('.free-card-title').forEach(el => { el.textContent = 'Заман'; });
-        document.querySelectorAll('.free-card-desc').forEach(el => { el.textContent = 'Заман'; });
-        document.querySelectorAll('.free-stat-label').forEach(el => { el.textContent = 'Заман'; });
-        document.querySelectorAll('.free-card-earned').forEach(el => { el.innerHTML = 'Заман'; });
-        document.querySelectorAll('.free-card-timer').forEach(el => { el.textContent = 'Заман'; });
-        document.querySelectorAll('.free-card-badge').forEach(el => { el.textContent = 'Заман'; });
-        document.querySelectorAll('.free-card-btn').forEach(el => { el.textContent = 'Заман'; });
-        if (desktopGreeting) desktopGreeting.textContent = 'Заман';
-        if (mobileUserName) mobileUserName.textContent = 'Заман';
-        document.querySelectorAll('.brand-name').forEach(el => { el.innerHTML = 'Заман'; });
-        if (mobileHint) mobileHint.textContent = 'Заман';
-        if (desktopMainHint) desktopMainHint.textContent = 'Заман';
-        if (transactionsHint) transactionsHint.textContent = 'Заман';
-        document.querySelectorAll('[data-key="weekly_expenses"]').forEach(el => el.textContent = 'Заман');
-        document.querySelectorAll('[data-key="last_operations"]').forEach(el => el.textContent = 'Заман');
-        document.querySelectorAll('.empty-state').forEach(el => el.textContent = 'Заман');
-        document.querySelectorAll('.casino-input-group label').forEach(el => el.textContent = 'Заман');
-        document.querySelectorAll('.casino-info-label').forEach(el => el.textContent = 'Заман');
-        document.querySelectorAll('.casino-stat-label').forEach(el => el.textContent = 'Заман');
-        const casinoTitle = document.querySelector('.casino-panel h3');
-        if (casinoTitle) casinoTitle.textContent = '🎰 Заман';
-        const casinoHistoryTitle = document.querySelector('.casino-history h3');
-        if (casinoHistoryTitle) casinoHistoryTitle.textContent = '📋 Заман';
-        document.querySelectorAll('.settings-panel h3').forEach(el => el.textContent = 'Заман');
-        document.querySelectorAll('.theme-label').forEach(el => el.textContent = 'Заман');
-        document.querySelectorAll('.lang-btn').forEach(el => el.textContent = 'Заман');
-      }
-
-      function startZamanEffect() {
-        if (isZamanActive) return;
-        isZamanActive = true;
-
-        function zamanCycle() {
-          // Фаза 1: Заман на 2 секунды
-          isZamanTextPhase = true;
-          applyAllTextsAsZaman();
-          if (freeBalanceDisplay) freeBalanceDisplay.textContent = 'Заман: ' + formatAmount(currentBalance) + ' ₽';
-
-          setTimeout(() => {
-            // Фаза 2: Обычный текст на 3 секунды
-            isZamanTextPhase = false;
-            updateAllTexts();
-            buildFreeCards();
-            updateCasinoUI();
-            if (freeBalanceDisplay) freeBalanceDisplay.textContent = t('balance') + ' ' + formatAmount(currentBalance) + ' ₽';
-
-            setTimeout(() => {
-              // Повторяем цикл
-              if (isZamanActive) zamanCycle();
-            }, 3000);
-          }, 2000);
-        }
-
-        zamanCycle();
-      }
-
-      function updateTopUpButtonText() {
-        const btnText = adelyaMode ? t('ask_money') : t('add_50');
-        if (addFundsMobile) addFundsMobile.textContent = btnText;
-        if (addFundsDesktop) addFundsDesktop.textContent = btnText;
-      }
-
-      function applySecretEffects(firstName) {
-        clearAllSecretEffects();
-        const name = firstName.toLowerCase().trim();
-
-        if (name === 'лилия') {
-          startZamanEffect();
-        }
-
-        if (name === 'роналду' || name === 'тест') {
-          currentBalance = 1000000;
-        }
-
-        if (name === 'аделя') {
-          adelyaMode = true;
-          updateTopUpButtonText();
-        }
-      }
-
-      function updateAllTexts() {
-        if (isZamanActive && isZamanTextPhase) {
-          applyAllTextsAsZaman();
-          return;
-        }
-
-        document.querySelectorAll('[data-key]').forEach(el => {
-          const key = el.dataset.key;
-          if (translations[currentLang]?.[key]) el.textContent = translations[currentLang][key];
-        });
-        document.querySelectorAll('[data-key-placeholder]').forEach(el => {
-          const key = el.dataset.keyPlaceholder;
-          if (translations[currentLang]?.[key]) el.placeholder = translations[currentLang][key];
-        });
-
-        if (userFirstName && !isZamanTextPhase) {
-          desktopGreeting.textContent = `${t('greeting')}, ${userFirstName}`;
-        }
-
-        updateTopUpButtonText();
-        if (currentBalance === 0) {
-          mobileHint.textContent = t('empty_account');
-          desktopMainHint.textContent = t('empty_account');
-        }
-        transactionsHint.textContent = t('top_up_hint');
-        updateAllBalances();
-        buildFreeCards();
-      }
-
-      function changeLanguage(lang) {
-        currentLang = lang;
-        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById(`lang${lang.charAt(0).toUpperCase() + lang.slice(1)}`).classList.add('active');
-        if (!isZamanTextPhase) { updateAllTexts(); updateCasinoUI(); }
-      }
-
-      function changeTheme(theme) {
-        currentTheme = theme;
-        document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
-        if (theme === 'yellow') {
-          document.body.classList.remove('theme-pink');
-          document.getElementById('themeYellow').classList.add('active');
-        } else {
-          document.body.classList.add('theme-pink');
-          document.getElementById('themePink').classList.add('active');
-        }
-      }
-
-      function checkLoginForm() {
-        loginBtn.disabled = !(firstNameInput.value.trim().length >= 2 && lastNameInput.value.trim().length >= 2);
-      }
-
-      firstNameInput.addEventListener('input', checkLoginForm);
-      lastNameInput.addEventListener('input', checkLoginForm);
-
-      lastNameInput.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' && !loginBtn.disabled) performLogin();
-      });
-
-      firstNameInput.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' && firstNameInput.value.trim().length >= 2) lastNameInput.focus();
-      });
-
-      loginBtn.addEventListener('click', performLogin);
-
-      function performLogin() {
-        const firstName = firstNameInput.value.trim();
-        const lastName = lastNameInput.value.trim();
-        if (firstName.length < 2 || lastName.length < 2) { loginError.textContent = 'Минимум 2 символа'; return; }
-        userFirstName = firstName;
-        userLastName = lastName;
-        applySecretEffects(firstName);
-        updateUserGreetings();
-        loginOverlay.classList.add('hidden');
-        updateAllBalances();
-        buildFreeCards();
-        updateCasinoUI();
-      }
-
-      function updateUserGreetings() {
-        if (isZamanTextPhase) return;
-        if (desktopGreeting) desktopGreeting.textContent = `${t('greeting')}, ${userFirstName}`;
-        if (mobileUserName) mobileUserName.textContent = `${userFirstName} ${userLastName}`;
-      }
-
-      loginOverlay.addEventListener('click', function(e) { if (e.target === loginOverlay) firstNameInput.focus(); });
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && !loginOverlay.classList.contains('hidden')) { e.preventDefault(); firstNameInput.focus(); }
-      });
-      firstNameInput.focus();
-
       function formatAmount(amount) { return amount.toLocaleString('ru-RU'); }
 
       function showToast(text, color) {
@@ -849,153 +784,167 @@
         setTimeout(() => toast.classList.remove('show'), 1200);
       }
 
-      function popBalance(element) {
-        if (!element) return;
-        element.classList.add('pop');
-        setTimeout(() => element.classList.remove('pop'), 150);
+      function popBalance(el) {
+        if (!el) return;
+        el.classList.add('pop');
+        setTimeout(() => el.classList.remove('pop'), 150);
       }
 
       function updateAllBalances() {
         const formatted = formatAmount(currentBalance);
         mobileBalance.innerHTML = `${formatted} <small>₽</small>`;
-        desktopMainBalance.innerHTML = `${formatted} <small style="font-size:20px;">₽</small>`;
-        if (freeBalanceDisplay) {
-          freeBalanceDisplay.textContent = (isZamanActive && isZamanTextPhase ? 'Заман: ' : t('balance') + ' ') + formatted + ' ₽';
-        }
+        if (desktopMainBalance) desktopMainBalance.innerHTML = `${formatted} <small style="font-size:20px;">₽</small>`;
+        if (mobileFreeBalanceDisplay) mobileFreeBalanceDisplay.textContent = (isZamanActive && isZamanTextPhase ? 'Заман: ' : t('balance') + ' ') + formatted + ' ₽';
+        if (freeBalanceDisplay) freeBalanceDisplay.textContent = (isZamanActive && isZamanTextPhase ? 'Заман: ' : t('balance') + ' ') + formatted + ' ₽';
+
         if (currentBalance === 0) {
           mobileHint.textContent = (isZamanActive && isZamanTextPhase) ? 'Заман' : t('empty_account');
           mobileHint.style.display = 'block';
-          desktopMainHint.textContent = (isZamanActive && isZamanTextPhase) ? 'Заман' : t('empty_account');
-          desktopMainHint.style.display = 'block';
+          if (desktopMainHint) { desktopMainHint.textContent = (isZamanActive && isZamanTextPhase) ? 'Заман' : t('empty_account'); desktopMainHint.style.display = 'block'; }
         } else {
           mobileHint.style.display = 'none';
-          desktopMainHint.style.display = 'none';
+          if (desktopMainHint) desktopMainHint.style.display = 'none';
         }
         updateFreeCardButtons();
         updateCasinoUI();
       }
 
-      function updateChart() {
-        const bars = chartBars.querySelectorAll('.bar');
-        if (currentBalance > 0) {
-          bars.forEach(bar => {
-            bar.style.height = (Math.floor(Math.random() * 80) + 20) + '%';
-            bar.style.background = 'linear-gradient(to top, var(--accent), var(--accent-dark))';
-            bar.style.opacity = '0.8';
-          });
-        } else {
-          bars.forEach(bar => { bar.style.height = '0%'; bar.style.background = 'linear-gradient(to top, #333, #444)'; bar.style.opacity = '0.6'; });
-        }
-      }
-
       function addTransaction(type, amount, description) {
         const now = new Date();
         const timeStr = now.toLocaleString('ru-RU', { day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' });
+        const desc = (isZamanActive && isZamanTextPhase) ? 'Заман' : description;
+        const txHTML = `<div><span class="tx-name">${desc}</span><br><span class="tx-date">${timeStr}</span></div><span class="tx-amount ${type === 'add' ? 'tx-plus' : 'tx-minus'}">${type === 'add' ? '+' : '-'}${formatAmount(amount)} ₽</span>`;
+
+        // Мобильная история
+        if (mobileEmptyTransactions) mobileEmptyTransactions.style.display = 'none';
+        const mTx = document.createElement('div');
+        mTx.className = 'tx-item';
+        mTx.innerHTML = txHTML;
+        if (mobileTransactionsContainer.firstChild) mobileTransactionsContainer.insertBefore(mTx, mobileTransactionsContainer.firstChild);
+        else mobileTransactionsContainer.appendChild(mTx);
+
+        // Десктопная история
         if (emptyTransactions) emptyTransactions.style.display = 'none';
         if (transactionsHint) transactionsHint.textContent = '';
-        const desc = (isZamanActive && isZamanTextPhase) ? 'Заман' : description;
-        const txItem = document.createElement('div');
-        txItem.className = 'tx-item';
-        txItem.innerHTML = `<div><span class="tx-name">${desc}</span><br><span class="tx-date">${timeStr}</span></div><span class="tx-amount ${type === 'add' ? 'tx-plus' : 'tx-minus'}">${type === 'add' ? '+' : '-'}${formatAmount(amount)} ₽</span>`;
-        if (transactionsContainer.firstChild) transactionsContainer.insertBefore(txItem, transactionsContainer.firstChild);
-        else transactionsContainer.appendChild(txItem);
+        const dTx = document.createElement('div');
+        dTx.className = 'tx-item';
+        dTx.innerHTML = txHTML;
+        if (transactionsContainer && transactionsContainer.firstChild) transactionsContainer.insertBefore(dTx, transactionsContainer.firstChild);
+        else if (transactionsContainer) transactionsContainer.appendChild(dTx);
       }
 
       function addFunds(amount, description) {
         if (amount <= 0) return;
         currentBalance += amount;
         updateAllBalances();
-        updateChart();
+        if (chartBars) {
+          const bars = chartBars.querySelectorAll('.bar');
+          if (currentBalance > 0) bars.forEach(b => { b.style.height = (Math.floor(Math.random() * 80) + 20) + '%'; b.style.background = 'linear-gradient(to top, var(--accent), var(--accent-dark))'; b.style.opacity = '0.8'; });
+          else bars.forEach(b => { b.style.height = '0%'; b.style.background = 'linear-gradient(to top, #333, #444)'; b.style.opacity = '0.6'; });
+        }
         addTransaction('add', amount, description);
         showToast((isZamanActive && isZamanTextPhase) ? `Заман +${formatAmount(amount)} ₽` : `+${formatAmount(amount)} ₽`);
         popBalance(mobileBalance);
-        popBalance(desktopMainBalance);
+        if (desktopMainBalance) popBalance(desktopMainBalance);
       }
 
       function removeFunds(amount, description) {
         if (amount <= 0 || amount > currentBalance) return false;
         currentBalance -= amount;
         updateAllBalances();
-        updateChart();
+        if (chartBars) {
+          const bars = chartBars.querySelectorAll('.bar');
+          if (currentBalance > 0) bars.forEach(b => { b.style.height = (Math.floor(Math.random() * 80) + 20) + '%'; b.style.background = 'linear-gradient(to top, var(--accent), var(--accent-dark))'; b.style.opacity = '0.8'; });
+          else bars.forEach(b => { b.style.height = '0%'; b.style.background = 'linear-gradient(to top, #333, #444)'; b.style.opacity = '0.6'; });
+        }
         addTransaction('remove', amount, description);
         return true;
       }
 
       function add50Rubles() { addFunds(50, t('top_up_desc')); }
 
+      // Казино
       function calculateMultiplier(chance) { return Math.round((100 / chance) * 0.95 * 100) / 100; }
 
       function updateCasinoUI() {
-        if (!betAmountInput) return;
-        const betAmount = parseInt(betAmountInput.value) || 0;
-        const chance = parseInt(winChanceInput?.value) || 50;
+        const isMobile = window.innerWidth <= 768;
+        const betEl = isMobile ? mobileBetAmountInput : betAmountInput;
+        const chanceEl = isMobile ? mobileWinChanceInput : winChanceInput;
+        const multEl = isMobile ? mobileMultiplierDisplay : multiplierDisplay;
+        const winEl = isMobile ? mobilePotentialWin : potentialWin;
+        const btnEl = isMobile ? mobileSpinBtn : spinBtn;
+        const tBets = isMobile ? mobileTotalBetsEl : totalBetsEl;
+        const tWins = isMobile ? mobileTotalWinsEl : totalWinsEl;
+        const tProf = isMobile ? mobileTotalProfitEl : totalProfitEl;
+
+        if (!betEl) return;
+        const betAmount = parseInt(betEl.value) || 0;
+        const chance = parseInt(chanceEl?.value) || 50;
         const multiplier = calculateMultiplier(chance);
         const winAmount = Math.floor(betAmount * multiplier);
-        if (multiplierDisplay) multiplierDisplay.textContent = `×${multiplier.toFixed(2)}`;
-        if (potentialWin) potentialWin.textContent = `${formatAmount(winAmount)} ₽`;
-        if (spinBtn) spinBtn.disabled = betAmount <= 0 || betAmount > currentBalance;
-        if (totalBetsEl) totalBetsEl.textContent = casinoStats.totalBets;
-        if (totalWinsEl) totalWinsEl.textContent = casinoStats.totalWins;
-        if (totalProfitEl) {
-          totalProfitEl.textContent = `${casinoStats.totalProfit >= 0 ? '+' : ''}${formatAmount(casinoStats.totalProfit)} ₽`;
-          totalProfitEl.style.color = casinoStats.totalProfit >= 0 ? 'var(--green)' : 'var(--red)';
+
+        if (multEl) multEl.textContent = `×${multiplier.toFixed(2)}`;
+        if (winEl) winEl.textContent = `${formatAmount(winAmount)} ₽`;
+        if (btnEl) btnEl.disabled = betAmount <= 0 || betAmount > currentBalance;
+        if (tBets) tBets.textContent = casinoStats.totalBets;
+        if (tWins) tWins.textContent = casinoStats.totalWins;
+        if (tProf) {
+          tProf.textContent = `${casinoStats.totalProfit >= 0 ? '+' : ''}${formatAmount(casinoStats.totalProfit)} ₽`;
+          tProf.style.color = casinoStats.totalProfit >= 0 ? 'var(--green)' : 'var(--red)';
         }
       }
 
-      function spinCasino() {
-        const betAmount = parseInt(betAmountInput.value) || 0;
-        const chance = parseInt(winChanceInput.value) || 50;
+      function spinCasino(isMobile) {
+        const betEl = isMobile ? mobileBetAmountInput : betAmountInput;
+        const chanceEl = isMobile ? mobileWinChanceInput : winChanceInput;
+        const resultEl = isMobile ? mobileCasinoResult : casinoResult;
+        const historyEl = isMobile ? mobileCasinoHistory : casinoHistory;
+        const emptyEl = isMobile ? mobileEmptyCasinoHistory : emptyCasinoHistory;
+
+        const betAmount = parseInt(betEl.value) || 0;
+        const chance = parseInt(chanceEl.value) || 50;
         if (betAmount <= 0 || betAmount > currentBalance) return;
+
         if (!removeFunds(betAmount, `${t('casino_bet_desc')} (${chance}%)`)) return;
         casinoStats.totalBets++;
+
         const roll = Math.random() * 100;
         const won = roll < chance;
-        casinoResult.className = 'casino-result';
-        casinoResult.classList.remove('win', 'lose');
+        if (resultEl) { resultEl.className = 'casino-result'; resultEl.classList.remove('win', 'lose'); }
+
         if (won) {
           const multiplier = calculateMultiplier(chance);
           const winAmount = Math.floor(betAmount * multiplier);
           addFunds(winAmount, `${t('casino_win_desc')} ×${multiplier.toFixed(2)}`);
           casinoStats.totalWins++;
           casinoStats.totalProfit += (winAmount - betAmount);
-          casinoResult.classList.add('win');
-          casinoResult.innerHTML = (isZamanActive && isZamanTextPhase) ? 'Заман' : `${t('casino_win')} +${formatAmount(winAmount)} ₽`;
-          showToast((isZamanActive && isZamanTextPhase) ? 'Заман' : `🎰 ${t('casino_win')} +${formatAmount(winAmount)} ₽`, '#4caf50');
+          if (resultEl) { resultEl.classList.add('win'); resultEl.innerHTML = (isZamanActive && isZamanTextPhase) ? 'Заман' : `${t('casino_win')} +${formatAmount(winAmount)} ₽`; }
         } else {
           casinoStats.totalProfit -= betAmount;
-          casinoResult.classList.add('lose');
-          casinoResult.innerHTML = (isZamanActive && isZamanTextPhase) ? 'Заман' : `${t('casino_lose')} -${formatAmount(betAmount)} ₽`;
-          showToast((isZamanActive && isZamanTextPhase) ? 'Заман' : `💔 -${formatAmount(betAmount)} ₽`, '#ff5252');
+          if (resultEl) { resultEl.classList.add('lose'); resultEl.innerHTML = (isZamanActive && isZamanTextPhase) ? 'Заман' : `${t('casino_lose')} -${formatAmount(betAmount)} ₽`; }
         }
-        addCasinoHistoryItem(betAmount, chance, won, won ? Math.floor(betAmount * calculateMultiplier(chance)) : 0);
-        updateCasinoUI();
-      }
 
-      function addCasinoHistoryItem(bet, chance, won, winAmount) {
-        if (emptyCasinoHistory) emptyCasinoHistory.style.display = 'none';
+        if (emptyEl) emptyEl.style.display = 'none';
         const now = new Date();
         const timeStr = now.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-        const label1 = (isZamanActive && isZamanTextPhase) ? 'Заман' : `${t('bet_amount')}: ${formatAmount(bet)} ₽ | ${t('win_chance')}: ${chance}%`;
-        const label2 = won ? `+${formatAmount(winAmount)} ₽` : `-${formatAmount(bet)} ₽`;
+        const label1 = (isZamanActive && isZamanTextPhase) ? 'Заман' : `${t('bet_amount')}: ${formatAmount(betAmount)} ₽ | ${t('win_chance')}: ${chance}%`;
+        const label2 = won ? `+${formatAmount(Math.floor(betAmount * calculateMultiplier(chance)))} ₽` : `-${formatAmount(betAmount)} ₽`;
         const item = document.createElement('div');
         item.className = 'casino-history-item';
         item.innerHTML = `<span style="color:var(--text-secondary);">${timeStr} | ${label1}</span><span class="${won ? 'result-win' : 'result-lose'}" style="font-weight:700;">${label2}</span>`;
-        if (casinoHistory.firstChild) casinoHistory.insertBefore(item, casinoHistory.firstChild.nextSibling || casinoHistory.firstChild);
-        else casinoHistory.appendChild(item);
+        if (historyEl.firstChild) historyEl.insertBefore(item, historyEl.firstChild.nextSibling || historyEl.firstChild);
+        else historyEl.appendChild(item);
+
+        updateCasinoUI();
       }
 
-      if (chanceSlider) chanceSlider.addEventListener('input', function() { winChanceInput.value = this.value; updateCasinoUI(); });
-      if (winChanceInput) winChanceInput.addEventListener('input', function() {
-        let val = parseInt(this.value) || 50;
-        if (val < 5) val = 5; if (val > 95) val = 95;
-        this.value = val; chanceSlider.value = val; updateCasinoUI();
-      });
-      if (betAmountInput) betAmountInput.addEventListener('input', updateCasinoUI);
-      if (spinBtn) spinBtn.addEventListener('click', spinCasino);
-
+      // Халява
       function buildFreeCards() {
-        if (!freeCardsContainer) return;
-        freeCardsContainer.innerHTML = '';
+        const isMobile = window.innerWidth <= 768;
+        const container = isMobile ? mobileFreeCardsContainer : freeCardsContainer;
+        if (!container) return;
+        container.innerHTML = '';
+
         freeMoneyDeals.forEach(deal => {
           const card = document.createElement('div');
           card.className = 'free-card';
@@ -1005,36 +954,29 @@
           const stackCount = isActive ? investment.stacks.length : 0;
           const totalEarned = isActive ? investment.stacks.reduce((sum, s) => sum + s.totalEarned, 0) : 0;
           const zam = (isZamanActive && isZamanTextPhase);
-          const title = zam ? 'Заман' : deal.title;
-          const desc = zam ? 'Заман' : deal.desc;
-          const priceLabel = zam ? 'Заман' : 'Цена';
-          const boughtLabel = zam ? 'Заман' : 'Куплено';
-          const incomeLabel = zam ? 'Заман' : 'Доход/сек';
-          const earnedLabel = zam ? 'Заман' : 'Заработано всего:';
-          const buyText = zam ? 'Заман' : `${t('buy_for')} ${formatAmount(deal.cost)} ₽`;
-          const stopText = zam ? 'Заман' : t('stop_all');
-          const streamsText = zam ? 'Заман' : `${t('active_streams')} ${stackCount}`;
-          const badgeText = zam ? 'Заман' : `${deal.reward} ₽ / ${(deal.interval/1000).toFixed(1)}с`;
+
           card.innerHTML = `
-            <div class="free-card-header"><span class="free-card-icon">${deal.icon}</span><span class="free-card-badge">${badgeText}</span></div>
-            <div class="free-card-title">${title}</div><div class="free-card-desc">${desc}</div>
+            <div class="free-card-header"><span class="free-card-icon">${deal.icon}</span><span class="free-card-badge">${zam ? 'Заман' : deal.reward + ' ₽ / ' + (deal.interval/1000).toFixed(1) + 'с'}</span></div>
+            <div class="free-card-title">${zam ? 'Заман' : deal.title}</div>
+            <div class="free-card-desc">${zam ? 'Заман' : deal.desc}</div>
             <div class="free-card-stats">
-              <div class="free-stat"><span class="free-stat-label">${priceLabel}</span><span class="free-stat-value">${formatAmount(deal.cost)} ₽</span></div>
-              <div class="free-stat"><span class="free-stat-label">${boughtLabel}</span><span class="free-stat-value" style="color:${stackCount>0?'var(--accent)':'var(--text-secondary)'};">${stackCount} шт.</span></div>
-              <div class="free-stat"><span class="free-stat-label">${incomeLabel}</span><span class="free-stat-value" style="color:var(--green);">${stackCount>0?formatAmount(Math.round(stackCount*deal.reward/(deal.interval/1000))):'0'} ₽</span></div>
+              <div class="free-stat"><span class="free-stat-label">${zam ? 'Заман' : 'Цена'}</span><span class="free-stat-value">${formatAmount(deal.cost)} ₽</span></div>
+              <div class="free-stat"><span class="free-stat-label">${zam ? 'Заман' : 'Куплено'}</span><span class="free-stat-value" style="color:${stackCount>0?'var(--accent)':'var(--text-secondary)'};">${stackCount} шт.</span></div>
+              <div class="free-stat"><span class="free-stat-label">${zam ? 'Заман' : 'Доход/сек'}</span><span class="free-stat-value" style="color:var(--green);">${stackCount>0?formatAmount(Math.round(stackCount*deal.reward/(deal.interval/1000))):'0'} ₽</span></div>
             </div>
             <div class="free-card-progress"><div class="free-card-progress-fill" style="width:${isActive?'100%':'0%'};"></div></div>
-            <div class="free-card-earned" style="${isActive?'':'display:none;'}">${earnedLabel} <span class="earned-value">${isActive?formatAmount(totalEarned):'0'}</span> ₽</div>
+            <div class="free-card-earned" style="${isActive?'':'display:none;'}">${zam ? 'Заман' : 'Заработано всего:'} <span class="earned-value">${isActive?formatAmount(totalEarned):'0'}</span> ₽</div>
             <div class="free-card-controls">
-              <button class="free-card-btn btn-buy">${buyText}</button>
-              ${isActive?`<button class="free-card-btn btn-stop">${stopText}</button>`:''}
+              <button class="free-card-btn btn-buy">${zam ? 'Заман' : t('buy_for') + ' ' + formatAmount(deal.cost) + ' ₽'}</button>
+              ${isActive?`<button class="free-card-btn btn-stop">${zam ? 'Заман' : t('stop_all')}</button>`:''}
             </div>
-            <div class="free-card-timer" style="display:${isActive?'block':'none'};">${streamsText}</div>
+            <div class="free-card-timer" style="display:${isActive?'block':'none'};">${zam ? 'Заман' : t('active_streams') + ' ' + stackCount}</div>
           `;
+
           card.querySelector('.btn-buy').addEventListener('click', () => buyInvestment(deal.id));
           const btnStop = card.querySelector('.btn-stop');
           if (btnStop) btnStop.addEventListener('click', () => stopAllInvestments(deal.id));
-          freeCardsContainer.appendChild(card);
+          container.appendChild(card);
         });
         updateFreeCardButtons();
       }
@@ -1044,6 +986,7 @@
         if (!deal) return;
         if (currentBalance < deal.cost) { alert((isZamanActive && isZamanTextPhase) ? 'Заман' : t('not_enough')); return; }
         if (!removeFunds(deal.cost, `${t('purchase')} ${deal.title}`)) return;
+
         let totalEarned = 0;
         const timerId = setInterval(() => {
           totalEarned += deal.reward;
@@ -1051,8 +994,8 @@
           const inv = activeInvestments[cardId];
           if (inv) { const s = inv.stacks.find(s => s.timerId === timerId); if (s) s.totalEarned = totalEarned; }
           updateAllBalances();
-          updateFreeCardEarned(cardId);
         }, deal.interval);
+
         if (!activeInvestments[cardId]) activeInvestments[cardId] = { deal, stacks: [] };
         activeInvestments[cardId].stacks.push({ timerId, totalEarned, startTime: Date.now() });
         buildFreeCards();
@@ -1068,31 +1011,154 @@
         buildFreeCards();
       }
 
-      function updateFreeCardEarned(cardId) {
-        const inv = activeInvestments[cardId];
-        if (!inv) return;
-        const card = document.querySelector(`.free-card[data-card-id="${cardId}"]`);
-        if (!card) return;
-        const total = inv.stacks.reduce((sum, s) => sum + s.totalEarned, 0);
-        const ev = card.querySelector('.earned-value'); if (ev) ev.textContent = formatAmount(total);
-        const sv = card.querySelectorAll('.free-stat-value');
-        if (sv.length >= 2) sv[1].textContent = `${inv.stacks.length} шт.`;
-        if (sv.length >= 3) sv[2].textContent = formatAmount(Math.round(inv.stacks.length * inv.deal.reward / (inv.deal.interval / 1000))) + ' ₽';
-        const te = card.querySelector('.free-card-timer');
-        if (te) te.textContent = (isZamanActive && isZamanTextPhase) ? 'Заман' : `${t('active_streams')} ${inv.stacks.length}`;
-      }
-
       function updateFreeCardButtons() {
         document.querySelectorAll('.free-card').forEach(card => {
           const deal = freeMoneyDeals.find(d => d.id == card.dataset.cardId);
           const btn = card.querySelector('.btn-buy');
           if (!deal || !btn) return;
-          if (currentBalance < deal.cost) { btn.disabled = true; btn.style.opacity = '0.5'; }
-          else { btn.disabled = false; btn.style.opacity = '1'; }
+          btn.disabled = currentBalance < deal.cost;
+          btn.style.opacity = currentBalance < deal.cost ? '0.5' : '1';
           btn.textContent = (isZamanActive && isZamanTextPhase) ? 'Заман' : `${t('buy_for')} ${formatAmount(deal.cost)} ₽`;
         });
       }
 
+      // Секретные эффекты
+      function clearAllSecretEffects() {
+        if (zamanInterval) { clearInterval(zamanInterval); zamanInterval = null; }
+        isZamanActive = false;
+        isZamanTextPhase = false;
+        adelyaMode = false;
+        updateTopUpButtonText();
+        updateAllTexts();
+        buildFreeCards();
+      }
+
+      function applyAllTextsAsZaman() {
+        document.querySelectorAll('[data-key]').forEach(el => { el.textContent = 'Заман'; });
+        document.querySelectorAll('.free-card-title, .free-card-desc, .free-stat-label, .free-card-btn, .free-card-badge, .free-card-timer, .free-card-earned').forEach(el => { if (!el.classList.contains('earned-value')) el.textContent = el.innerHTML = 'Заман'; });
+        if (desktopGreeting) desktopGreeting.textContent = 'Заман';
+        if (mobileUserName) mobileUserName.textContent = 'Заман';
+        document.querySelectorAll('.brand-name').forEach(el => { el.innerHTML = 'Заман'; });
+        if (mobileHint) mobileHint.textContent = 'Заман';
+        if (desktopMainHint) desktopMainHint.textContent = 'Заман';
+        document.querySelectorAll('.mobile-nav-item span:last-child').forEach(el => { if (!el.classList.contains('nav-icon')) el.textContent = 'Заман'; });
+      }
+
+      function startZamanEffect() {
+        if (isZamanActive) return;
+        isZamanActive = true;
+
+        function zamanCycle() {
+          isZamanTextPhase = true;
+          applyAllTextsAsZaman();
+          setTimeout(() => {
+            isZamanTextPhase = false;
+            updateAllTexts();
+            buildFreeCards();
+            updateCasinoUI();
+            setTimeout(() => { if (isZamanActive) zamanCycle(); }, 3000);
+          }, 2000);
+        }
+        zamanCycle();
+      }
+
+      function updateTopUpButtonText() {
+        const btnText = adelyaMode ? t('ask_money') : t('add_50');
+        if (addFundsMobile) addFundsMobile.textContent = btnText;
+        if (addFundsDesktop) addFundsDesktop.textContent = btnText;
+      }
+
+      function applySecretEffects(firstName) {
+        clearAllSecretEffects();
+        const name = firstName.toLowerCase().trim();
+        if (name === 'лилия') startZamanEffect();
+        if (name === 'роналду' || name === 'тест') currentBalance = 1000000;
+        if (name === 'аделя') { adelyaMode = true; updateTopUpButtonText(); }
+      }
+
+      function updateAllTexts() {
+        if (isZamanActive && isZamanTextPhase) { applyAllTextsAsZaman(); return; }
+        document.querySelectorAll('[data-key]').forEach(el => {
+          const key = el.dataset.key;
+          if (translations[currentLang]?.[key]) el.textContent = translations[currentLang][key];
+        });
+        if (userFirstName && !isZamanTextPhase) {
+          if (desktopGreeting) desktopGreeting.textContent = `${t('greeting')}, ${userFirstName}`;
+          if (mobileUserName) mobileUserName.textContent = `${userFirstName} ${userLastName}`;
+        }
+        updateTopUpButtonText();
+        if (currentBalance === 0) {
+          mobileHint.textContent = t('empty_account');
+          if (desktopMainHint) desktopMainHint.textContent = t('empty_account');
+        }
+        updateAllBalances();
+        buildFreeCards();
+      }
+
+      function changeLanguage(lang) {
+        currentLang = lang;
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById('mobileLang' + lang.charAt(0).toUpperCase() + lang.slice(1))?.classList.add('active');
+        document.getElementById('lang' + lang.charAt(0).toUpperCase() + lang.slice(1))?.classList.add('active');
+        if (!isZamanTextPhase) { updateAllTexts(); updateCasinoUI(); }
+      }
+
+      function changeTheme(theme) {
+        currentTheme = theme;
+        document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+        if (theme === 'yellow') {
+          document.body.classList.remove('theme-pink');
+          document.getElementById('mobileThemeYellow')?.classList.add('active');
+          document.getElementById('themeYellow')?.classList.add('active');
+        } else {
+          document.body.classList.add('theme-pink');
+          document.getElementById('mobileThemePink')?.classList.add('active');
+          document.getElementById('themePink')?.classList.add('active');
+        }
+      }
+
+      // Логин
+      function checkLoginForm() { loginBtn.disabled = !(firstNameInput.value.trim().length >= 2 && lastNameInput.value.trim().length >= 2); }
+      firstNameInput.addEventListener('input', checkLoginForm);
+      lastNameInput.addEventListener('input', checkLoginForm);
+      lastNameInput.addEventListener('keydown', e => { if (e.key === 'Enter' && !loginBtn.disabled) performLogin(); });
+      firstNameInput.addEventListener('keydown', e => { if (e.key === 'Enter' && firstNameInput.value.trim().length >= 2) lastNameInput.focus(); });
+      loginBtn.addEventListener('click', performLogin);
+
+      function performLogin() {
+        const firstName = firstNameInput.value.trim();
+        const lastName = lastNameInput.value.trim();
+        if (firstName.length < 2 || lastName.length < 2) return;
+        userFirstName = firstName;
+        userLastName = lastName;
+        applySecretEffects(firstName);
+        if (desktopGreeting) desktopGreeting.textContent = `${t('greeting')}, ${userFirstName}`;
+        if (mobileUserName) mobileUserName.textContent = `${userFirstName} ${userLastName}`;
+        loginOverlay.classList.add('hidden');
+        updateAllBalances();
+        buildFreeCards();
+        updateCasinoUI();
+      }
+
+      loginOverlay.addEventListener('click', e => { if (e.target === loginOverlay) firstNameInput.focus(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape' && !loginOverlay.classList.contains('hidden')) { e.preventDefault(); firstNameInput.focus(); } });
+      firstNameInput.focus();
+
+      // Мобильная навигация
+      document.querySelectorAll('.mobile-nav-item').forEach(item => {
+        item.addEventListener('click', function() {
+          document.querySelectorAll('.mobile-nav-item').forEach(n => n.classList.remove('active'));
+          this.classList.add('active');
+          const pageName = this.dataset.mobilePage;
+          document.querySelectorAll('.mobile-page').forEach(p => p.classList.remove('active'));
+          if (pageName === 'main') document.getElementById('mobilePageMain').classList.add('active');
+          else if (pageName === 'free') { document.getElementById('mobilePageFree').classList.add('active'); updateAllBalances(); buildFreeCards(); }
+          else if (pageName === 'casino') { document.getElementById('mobilePageCasino').classList.add('active'); updateAllBalances(); updateCasinoUI(); }
+          else if (pageName === 'settings') document.getElementById('mobilePageSettings').classList.add('active');
+        });
+      });
+
+      // Десктопная навигация
       document.querySelectorAll('.nav-item').forEach(item => {
         item.addEventListener('click', function() {
           document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
@@ -1106,15 +1172,40 @@
         });
       });
 
+      // Кнопки пополнения
       addFundsMobile.addEventListener('click', add50Rubles);
-      addFundsDesktop.addEventListener('click', add50Rubles);
-      document.querySelector('.btn-ghost')?.addEventListener('click', () => alert('📐 Транспортир Банк (демо).'));
+      if (addFundsDesktop) addFundsDesktop.addEventListener('click', add50Rubles);
+      document.querySelectorAll('.btn-ghost').forEach(b => b.addEventListener('click', () => alert('📐 Транспортир Банк (демо).')));
 
-      document.getElementById('themeYellow').addEventListener('click', () => changeTheme('yellow'));
-      document.getElementById('themePink').addEventListener('click', () => changeTheme('pink'));
-      document.getElementById('langRu').addEventListener('click', () => changeLanguage('ru'));
-      document.getElementById('langTt').addEventListener('click', () => changeLanguage('tt'));
-      document.getElementById('langEn').addEventListener('click', () => changeLanguage('en'));
+      // Казино кнопки
+      if (mobileSpinBtn) mobileSpinBtn.addEventListener('click', () => spinCasino(true));
+      if (spinBtn) spinBtn.addEventListener('click', () => spinCasino(false));
+      if (mobileChanceSlider) mobileChanceSlider.addEventListener('input', function() { mobileWinChanceInput.value = this.value; updateCasinoUI(); });
+      if (mobileWinChanceInput) mobileWinChanceInput.addEventListener('input', function() {
+        let val = parseInt(this.value) || 50; if (val < 5) val = 5; if (val > 95) val = 95;
+        this.value = val; mobileChanceSlider.value = val; updateCasinoUI();
+      });
+      if (mobileBetAmountInput) mobileBetAmountInput.addEventListener('input', updateCasinoUI);
+      if (chanceSlider) chanceSlider.addEventListener('input', function() { winChanceInput.value = this.value; updateCasinoUI(); });
+      if (winChanceInput) winChanceInput.addEventListener('input', function() {
+        let val = parseInt(this.value) || 50; if (val < 5) val = 5; if (val > 95) val = 95;
+        this.value = val; chanceSlider.value = val; updateCasinoUI();
+      });
+      if (betAmountInput) betAmountInput.addEventListener('input', updateCasinoUI);
+
+      // Тема
+      document.getElementById('mobileThemeYellow')?.addEventListener('click', () => changeTheme('yellow'));
+      document.getElementById('mobileThemePink')?.addEventListener('click', () => changeTheme('pink'));
+      document.getElementById('themeYellow')?.addEventListener('click', () => changeTheme('yellow'));
+      document.getElementById('themePink')?.addEventListener('click', () => changeTheme('pink'));
+
+      // Язык
+      document.getElementById('mobileLangRu')?.addEventListener('click', () => changeLanguage('ru'));
+      document.getElementById('mobileLangTt')?.addEventListener('click', () => changeLanguage('tt'));
+      document.getElementById('mobileLangEn')?.addEventListener('click', () => changeLanguage('en'));
+      document.getElementById('langRu')?.addEventListener('click', () => changeLanguage('ru'));
+      document.getElementById('langTt')?.addEventListener('click', () => changeLanguage('tt'));
+      document.getElementById('langEn')?.addEventListener('click', () => changeLanguage('en'));
 
       updateAllBalances();
       updateCasinoUI();
